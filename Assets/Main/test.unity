@@ -356,6 +356,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 598ea7d5a607c40c0a9a5fafc68f11af, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &253286282 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4628785911444876, guid: 598ea7d5a607c40c0a9a5fafc68f11af,
+    type: 2}
+  m_PrefabInternal: {fileID: 253286281}
 --- !u!1 &281612202
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +607,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 598ea7d5a607c40c0a9a5fafc68f11af, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &288613880 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4628785911444876, guid: 598ea7d5a607c40c0a9a5fafc68f11af,
+    type: 2}
+  m_PrefabInternal: {fileID: 288613879}
 --- !u!1 &400790354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,6 +1038,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 598ea7d5a607c40c0a9a5fafc68f11af, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &718305001 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4628785911444876, guid: 598ea7d5a607c40c0a9a5fafc68f11af,
+    type: 2}
+  m_PrefabInternal: {fileID: 718305000}
 --- !u!1 &734382939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,6 +1054,7 @@ GameObject:
   - component: {fileID: 734382942}
   - component: {fileID: 734382941}
   - component: {fileID: 734382940}
+  - component: {fileID: 734382944}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1109,6 +1125,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &734382944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734382939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80288809b1a11484da9bc365b2528b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewTargets:
+  - {fileID: 288613880}
+  - {fileID: 253286282}
+  - {fileID: 718305001}
+  widthMargin: 3
+  heightMargin: 3
+  minWidth: 5
 --- !u!1 &787036089
 GameObject:
   m_ObjectHideFlags: 0
