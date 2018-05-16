@@ -20,6 +20,8 @@ public abstract class Item : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag != "Player") return;
+
         /*Player player = collision.gameObject.GetComponent<Player>();
         if (colorId != -1 && colorId != player.id) return;*/
 

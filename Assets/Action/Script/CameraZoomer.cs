@@ -11,6 +11,8 @@ public class CameraZoomer : MonoBehaviour
     float widthMargin, heightMargin;
     [SerializeField]
     float minWidth;
+    [SerializeField]
+    float followSpeedRate = 0.1f;//0~1、1なら即座に追従
 
     float heightRatio;
     Camera mainCamera;
@@ -31,20 +33,24 @@ public class CameraZoomer : MonoBehaviour
 
     void UpdateView()
     {
+        followSpeedRate = Mathf.Clamp(followSpeedRate, 0, 1);
+
         Rect viewRect = CalcViewRect();
-        transform.position = viewRect.center;
+        transform.position
+            = (Vector2)transform.position * (1 - followSpeedRate)
+            + viewRect.center * followSpeedRate;
         transform.position -= Vector3.forward * 10;
         mainCamera.orthographicSize = viewRect.height * 0.5f;
     }
 
-    void UpdateViewRealTime()
+    /*void UpdateViewRealTime()
     {
         Rect viewRect = CalcViewRect();
         transform.position = ((Vector2)transform.position + viewRect.center) * 0.5f;
         transform.position -= Vector3.forward * 10;
         mainCamera.orthographicSize
             = (mainCamera.orthographicSize + viewRect.height * 0.5f) * 0.5f;
-    }
+    }*/
 
     Rect CalcViewRect()
     {

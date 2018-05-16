@@ -278,7 +278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa5be34574a0f1449480ce9a3d44555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: -1
 --- !u!61 &1105759584
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -591,9 +590,10 @@ MonoBehaviour:
   viewTargets:
   - {fileID: 1453270189}
   - {fileID: 567680192}
-  widthMargin: 0.5
-  heightMargin: 0.5
+  widthMargin: 1
+  heightMargin: 1
   minWidth: 3
+  followSpeedRate: 0.96
 --- !u!1 &1182392648
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,7 +696,7 @@ GameObject:
   - component: {fileID: 1453270193}
   m_Layer: 5
   m_Name: Chara1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -770,6 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b18fa82f3747b4db9675ab770e4699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 0
 --- !u!61 &1453270191
 BoxCollider2D:
   m_ObjectHideFlags: 0

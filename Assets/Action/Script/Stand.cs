@@ -5,12 +5,12 @@ using UnityEngine;
 public class Stand : MonoBehaviour
 {
     [SerializeField]
-    GameObject moneyObject;
+    GameObject moneyObjectOrigin;
     [SerializeField]
     int salesPerFrame;
 
-    public int Money { get; private set; }
-
+    int moneyAmount;
+    GameObject moneyObject;
     
     // Use this for initialization
     void Start()
@@ -21,12 +21,18 @@ public class Stand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Money += salesPerFrame;
+        moneyAmount += salesPerFrame;
     }
 
-    private void OnDestroy()
+    void OnDestroy()
     {
         
     }
 
+    void GenerateMoneyObject()
+    {
+        moneyObject = Instantiate(moneyObjectOrigin);
+
+        moneyObject.transform.SetParent(transform);
+    }
 }

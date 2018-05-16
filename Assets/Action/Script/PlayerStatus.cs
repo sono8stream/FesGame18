@@ -5,12 +5,12 @@ using sonoHelpers;
 
 public class PlayerStatus : MonoBehaviour
 {
+    public int money;
     public int[] MaterialCounts { get; private set; }
-    public int Money { get; private set; }
     public float[] TempStatus { get; private set; }
 
     float[] initStatus;
-    TimeCounter[] tempStatusCounter;
+    TimeCounter[] tempStatusTimer;
 
     int materialNamesLength;
     int statusLength;
@@ -25,27 +25,30 @@ public class PlayerStatus : MonoBehaviour
         {
             MaterialCounts[i] = 0;
         }
-        Money = 0;
+        money = 0;
 
         //ステータスの配列の初期化
         statusLength = EnumHelper.GetTypeLength<StatusNames>();
         initStatus = new float[statusLength];
         initStatus[(int)StatusNames.speed] = 0.05f;
+        initStatus[(int)StatusNames.jumpLims] = 1;
+        initStatus[(int)StatusNames.hp] = 100;
+
         TempStatus = new float[statusLength];
-        tempStatusCounter = new TimeCounter[statusLength];
+        tempStatusTimer = new TimeCounter[statusLength];
         for (int i = 0; i < statusLength; i++)
         {
             TempStatus[i] = initStatus[i];
-            tempStatusCounter[i] = new TimeCounter();
+            tempStatusTimer[i] = new TimeCounter();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < statusLength; i++)
+        for (int i = 0; i < statusLength; i++)
         {
-            if (tempStatusCounter[i].OnLimit())
+            if (tempStatusTimer[i].OnLimit())
             {
                 ResetStatus(i);
                 Debug.Log("End Item Power!");
@@ -57,26 +60,37 @@ public class PlayerStatus : MonoBehaviour
     {
         if (statusIndex < 0 || MaterialCounts.Length <= statusIndex) return;
 
+
         ResetStatus(statusIndex);
 
         TempStatus[statusIndex] = val;
-        if (lastSec == -1) return;
+        if (Mathf.RoundToInt(lastSec) == -1) return;
 
-        tempStatusCounter[statusIndex].Start(lastSec);
+        tempStatusTimer[statusIndex].Start(lastSec);
     }
 
     void ResetStatus(int statusIndex)
     {
-        if (statusIndex < 0 || MaterialCounts.Length<=statusIndex) return;
+        if (statusIndex < 0 || MaterialCounts.Length <= statusIndex) return;
 
         TempStatus[statusIndex] = initStatus[statusIndex];
-        tempStatusCounter[statusIndex].Stop();
+        tempStatusTimer[statusIndex].Stop();
+    }
+
+    public void AddMaterial(int materialIndex, int increment)
+    {
+        MaterialCounts[materialIndex] += increment;
+    }
+
+    public void ReduceMaterial(int materialIndex, int decrement)
+    {
+        MaterialCounts[materialIndex] -= decrement;
     }
 }
 
 public enum StatusNames
 {
-    speed, jumpLims
+    speed = 0, jumpLims, hp
 }
 
 public enum MaterialNames
