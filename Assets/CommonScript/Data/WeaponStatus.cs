@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon
+public class WeaponStatus
 {
     public readonly string name,description;
     public readonly int range, power, rapid;
     public readonly Sprite imageSprite;
 
-    public Weapon(string name,string description,
+    public WeaponStatus(string name,string description,
         int range, int power, int rapid, Sprite image = null)
     {
         this.name = name;

@@ -144,14 +144,14 @@ public class WeaponSelector : MonoBehaviour
     void UpdateTargetStatus()
     {
         float max = 30;
-        Weapon weapon
+        WeaponStatus weaponStatus
             = UserData.instance.playersWeapon[playerNo].GetWeaponByIndex(selectCounter.Now);
 
-        nameText.text = weapon.name;
-        descriptionText.text = weapon.description;
-        targetGaugeX[0] = weapon.range / max * gaugeWidth;
-        targetGaugeX[1] = weapon.power / max * gaugeWidth;
-        targetGaugeX[2] = weapon.rapid / max * gaugeWidth;
+        nameText.text = weaponStatus.name;
+        descriptionText.text = weaponStatus.description;
+        targetGaugeX[0] = weaponStatus.range / max * gaugeWidth;
+        targetGaugeX[1] = weaponStatus.power / max * gaugeWidth;
+        targetGaugeX[2] = weaponStatus.rapid / max * gaugeWidth;
     }
 
     void GetUpTargetStatus()
@@ -168,8 +168,10 @@ public class WeaponSelector : MonoBehaviour
     void ChooseWeapon()
     {
         int selectWeaponIndex = selectCounter.Now;
-        UserData.instance.playersWeapon[playerNo].SetWeapon(selectNo, selectWeaponIndex);
-        transform.GetChild(selectCounter.Now).GetComponent<SpriteRenderer>().color = Color.black;
+        UserData.instance.playersWeapon[playerNo].SetWeaponStatus(
+            selectNo, selectWeaponIndex);
+        transform.GetChild(selectCounter.Now).GetComponent<SpriteRenderer>().color
+            = Color.black;
         selectedImages[selectNo].sprite = weaponSprites[selectWeaponIndex];
         selectedImages[selectNo].enabled = true;
 

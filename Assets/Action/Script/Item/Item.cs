@@ -36,10 +36,3 @@ public abstract class Item : MonoBehaviour
     /// <param name="player"></param>
     protected abstract void EffectFire(PlayerStatus playerStatus);
 }
-
-public class Player
-{
-    public int id;
-
-
-}
