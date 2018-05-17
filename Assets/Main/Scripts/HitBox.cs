@@ -30,10 +30,10 @@ public class HitBox : MonoBehaviour {
 
 	public void OnHit(Collision2D collision,SubHitBox subHitBox){
 		foreach (ContactPoint2D contact in collision.contacts)
-        {
+        {			
 			if (CheckHitBit(contact.collider.gameObject,subHitBox))
             {
-				attacker.HitReaction(contact, subHitBox);
+				attacker.HitReaction(contact, subHitBox);            
             }
         }
 	}
