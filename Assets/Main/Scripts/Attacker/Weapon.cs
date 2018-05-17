@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour {
+public class Weapon : Attacker {
 	public InstantiateMissile[] instantiateMissiles;
 	public HitBox hitBox;
-	public Player player;
+	//public Player player;
 	public Animator animator;
 	public EventReceiver eventReceiver;
 	public string clipName;
@@ -15,8 +15,7 @@ public class Weapon : MonoBehaviour {
 		hitBox = GetComponent<HitBox>();
 		player = transform.root.GetComponent<Player>();
 		animator = transform.root.GetComponent<Animator>();
-		eventReceiver = transform.root.GetComponent<EventReceiver>();
-		if(hitBox)hitBox.player = this.player;
+		eventReceiver = transform.root.GetComponent<EventReceiver>();       
 		instantiateMissiles = GetComponentsInChildren<InstantiateMissile>();
 	}
 
@@ -42,7 +41,14 @@ public class Weapon : MonoBehaviour {
             //scale = new Vector2(scale.x * muki, scale.y);
             //missile.transform.localScale = scale;            
 			missile.GetComponent<Rigidbody2D>().velocity = Quaternion.Euler(0,90f-90f*muki,IM.angle) * new Vector2(IM.speed, 0);
-            missile.GetComponent<HitBox>().player = this.player;
+			missile.GetComponent<Attacker>().player = this.player;
         }
     }
+
+	public override void HitReaction(ContactPoint2D contact, SubHitBox subHitBox)
+	{
+		GameObject tmpObj = Instantiate(subHitBox.Effect, contact.point, Quaternion.identity);
+        AudioSource audioSource = tmpObj.AddComponent<AudioSource>();//音
+        audioSource.PlayOneShot(subHitBox.HitSound);            
+	}
 }

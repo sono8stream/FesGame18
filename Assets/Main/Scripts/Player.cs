@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
 
 	public void Damage(SubHitBox subHitBox){
 		Vector2 vec = subHitBox.Angle;
-		vec = new Vector2(vec.x * subHitBox.hitBox.player.anim.muki, vec.y);
+		vec = new Vector2(vec.x * subHitBox.hitBox.owner.anim.muki, vec.y);
 		StartCoroutine(anim.Damage(vec, subHitBox.Hitlag));
 		Koutyoku(subHitBox.stopTime);
 	}
