@@ -19,10 +19,10 @@ public class Counter
     {
         Now += increment;
         Now = Now > Limit ? Limit : Now;
-        return OnLimitit();
+        return OnLimit();
     }
 
-    public bool OnLimitit()
+    public bool OnLimit()
     {
         return Now == Limit;
     }
