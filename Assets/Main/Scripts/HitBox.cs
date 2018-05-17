@@ -7,16 +7,19 @@ using System.Linq;
 public class HitBox : MonoBehaviour {
     public HitBitsInfo HitBits;//当たる対象
     public List<GameObject> HitedObjects;//当たったリスト
-    public Player player;//親の情報   
+    public Player owner;//親の情報   
+	public Attacker attacker;
 
 	private void Awake()
 	{
-		HitBits = GetComponent<HitBitsInfo>();  
+		HitBits = GetComponent<HitBitsInfo>();
+		attacker = GetComponent<Attacker>();
+		owner = attacker.player;     
 	}
 
 	void Start()
-    {
-		if(player==null)player = transform.root.GetComponent<Player>();       
+    {		
+		owner = attacker.player;
     }
 
     // Update is called once per frame
@@ -30,12 +33,7 @@ public class HitBox : MonoBehaviour {
         {
 			if (CheckHitBit(contact.collider.gameObject,subHitBox))
             {
-                GameObject tmpObj = Instantiate(subHitBox.Effect, contact.point, Quaternion.identity);
-				AudioSource audioSource = tmpObj.AddComponent<AudioSource>();//音
-                audioSource.PlayOneShot(subHitBox.HitSound);
-                var tmpPS = tmpObj.GetComponentsInChildren<ParticleSystem>();
-                float maxL = tmpPS.Max(x => x.startLifetime);
-                Destroy(tmpObj, maxL);
+				attacker.HitReaction(contact, subHitBox);
             }
         }
 	}
@@ -51,20 +49,20 @@ public class HitBox : MonoBehaviour {
                 case "Player":
                     Player opponent = obj.GetComponent<Player>();
                     if(HitBits.mySelf){
-                        if(opponent.PlayerID == player.PlayerID){
+                        if(opponent.PlayerID == owner.PlayerID){
                             HitedObjects.Add(obj);
                             return true;
                         }
                     }
                     if(HitBits.myFriend){
-                        if(opponent.PlayerID != player.PlayerID && opponent.teamColor == player.teamColor){
+                        if(opponent.PlayerID != owner.PlayerID && opponent.teamColor == owner.teamColor){
                             HitedObjects.Add(obj);
                             return true;
                         }
                     }
                     if (HitBits.enemy)
                     {
-                        if (opponent.PlayerID != player.PlayerID && opponent.teamColor != player.teamColor)
+                        if (opponent.PlayerID != owner.PlayerID && opponent.teamColor != owner.teamColor)
                         {
                             //StartCoroutine(player.HitStop(Hitlag));                           
 							opponent.Damage(subHitBox);                         
