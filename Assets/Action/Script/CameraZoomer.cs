@@ -26,14 +26,14 @@ public class CameraZoomer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         UpdateView();
     }
 
     void UpdateView()
     {
-        followSpeedRate = Mathf.Clamp(followSpeedRate, 0, 1);
+        followSpeedRate = Mathf.Clamp(followSpeedRate, 0.01f, 1);
 
         Rect viewRect = CalcViewRect();
         transform.position
