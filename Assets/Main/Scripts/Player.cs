@@ -23,6 +23,7 @@ public class Player : Reactor {
 	public PlayerController2D playerController;
 	public Weapon weapon;
 	public InstantiateMissile instantiateMissile;
+	public Transform handPos;
 
 	private float stopTime;
 
