@@ -34,5 +34,6 @@ public class Stand : MonoBehaviour
         moneyObject = Instantiate(moneyObjectOrigin);
 
         moneyObject.transform.SetParent(transform);
+        moneyObject.transform.localPosition = Vector3.zero;
     }
 }
