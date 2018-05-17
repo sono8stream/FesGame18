@@ -10,7 +10,7 @@ public class Stand : MonoBehaviour
     int salesPerFrame;
 
     int moneyAmount;
-    GameObject moneyObject;
+    GameObject currentMoneyObject;
     
     // Use this for initialization
     void Start()
@@ -21,7 +21,7 @@ public class Stand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moneyAmount += salesPerFrame;
+        SaleMoney();
     }
 
     void OnDestroy()
@@ -31,9 +31,16 @@ public class Stand : MonoBehaviour
 
     void GenerateMoneyObject()
     {
-        moneyObject = Instantiate(moneyObjectOrigin);
+        currentMoneyObject = Instantiate(moneyObjectOrigin);
 
-        moneyObject.transform.SetParent(transform);
-        moneyObject.transform.localPosition = Vector3.zero;
+        currentMoneyObject.transform.SetParent(transform);
+        currentMoneyObject.transform.localPosition = Vector3.zero;
+
+    }
+
+    void SaleMoney()
+    {
+        moneyAmount += salesPerFrame;
+        currentMoneyObject.transform.localScale = Vector3.one * moneyAmount * 0.001f;
     }
 }
