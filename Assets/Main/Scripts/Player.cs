@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : Reactor {
     public float HP;
     public int PlayerID;
     public enum State
@@ -90,5 +90,10 @@ public class Player : MonoBehaviour {
 				break;
 			}
 		}
+	}
+
+	public override void DamageReaction(SubHitBox subHitBox)
+	{
+		throw new System.NotImplementedException();
 	}
 }
