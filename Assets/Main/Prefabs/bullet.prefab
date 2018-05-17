@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4167682091636618}
   - component: {fileID: 212636272172992542}
+  - component: {fileID: 114899845751367026}
   - component: {fileID: 114286578068770054}
   - component: {fileID: 114829505634748312}
   - component: {fileID: 50376731539691150}
@@ -175,7 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitBits: {fileID: 0}
   HitedObjects: []
-  player: {fileID: 0}
+  owner: {fileID: 0}
+  attacker: {fileID: 0}
 --- !u!114 &114829505634748312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,6 +196,20 @@ MonoBehaviour:
   shop: 0
   item: 0
   other: 0
+--- !u!114 &114899845751367026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678085288890146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 494bcafcb405d4228b5a85433d89edb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  afterCollisionState: 0
+  lifeTime: 1
 --- !u!212 &212636272172992542
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -207,6 +223,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
