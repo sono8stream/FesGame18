@@ -12,6 +12,7 @@ public class UserData
     public WeaponSet[] playersWeapon;
     public int winnerIndex;
     public int winnerScore;
+    public Dictionary<string, int> variableDict;//消さない
 
     Weapon[] weaponData;
 
@@ -23,6 +24,9 @@ public class UserData
         winnerIndex = 0;
         winnerScore = 1000000;
 
-        playersWeapon = new WeaponSet[playerCount] { new WeaponSet(), new WeaponSet() };
+        playersWeapon = new WeaponSet[playerCount] {
+            new WeaponSet(), new WeaponSet() };
+
+        variableDict = SaveManager.LoadVariableDict();
     }
 }

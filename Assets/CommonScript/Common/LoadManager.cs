@@ -7,13 +7,14 @@ public class LoadManager : MonoBehaviour {
 
     public const string objectName = "SceneLoader";
 
+    public Image FadeImage { get; private set; }
+
     [SerializeField]
     int fadeFrames;
     float fadeSpeed;
     bool fadeIn, fadeOut;
     int sceneIndex;
     Waiter fadeWaiter;
-    Image image;
 
     // Use this for initialization
     void Awake()
@@ -23,8 +24,8 @@ public class LoadManager : MonoBehaviour {
         sceneIndex = -1;
         fadeSpeed = 1.0f / fadeFrames;
         fadeWaiter = new Waiter(fadeFrames);
-        image = GetComponent<Image>();
-        image.enabled = false;
+        FadeImage = GetComponent<Image>();
+        FadeImage.enabled = false;
     }
 
     // Update is called once per frame
@@ -48,7 +49,7 @@ public class LoadManager : MonoBehaviour {
         }
         AsyncOperation async = SceneManager.LoadSceneAsync(index);
         async.allowSceneActivation = false;    // シーン遷移を待つ
-        image.enabled = true;
+        FadeImage.enabled = true;
         while (!FadeIn() || async.progress < 0.9f)
         {
             //Debug.Log(async.progress);
@@ -62,14 +63,14 @@ public class LoadManager : MonoBehaviour {
         {
             yield return new WaitForEndOfFrame();
         }
-        image.enabled = false;
+        FadeImage.enabled = false;
     }
 
     bool FadeIn()
     {
         if (fadeWaiter.Wait()) return true;
 
-        image.color += Color.black * fadeSpeed;
+        FadeImage.color += Color.black * fadeSpeed;
         return false;
     }
 
@@ -77,7 +78,7 @@ public class LoadManager : MonoBehaviour {
     {
         if (fadeWaiter.Wait()) return true;
 
-        image.color -= Color.black * fadeSpeed;
+        FadeImage.color -= Color.black * fadeSpeed;
         return false;
     }
 
