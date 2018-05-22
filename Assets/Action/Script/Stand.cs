@@ -17,7 +17,7 @@ public class Stand : MonoBehaviour
     [SerializeField]
     int[] requiredMaterialIndexes;
     [SerializeField]
-    int requiredMaterialCounts;
+    int[] requiredMaterialCounts;
     [SerializeField]
     int requiredMaterialIncrement;
     [SerializeField]
@@ -78,7 +78,7 @@ public class Stand : MonoBehaviour
         for (int i = 0; i < requiredMaterialIndexes.Length; i++)
         {
             int index = requiredMaterialIndexes[i];
-            if (playerStatus.MaterialCounts[index] < requiredMaterialCounts)
+            if (playerStatus.MaterialCounts[index] < requiredMaterialCounts[index])
             {
                 return;
             }
@@ -87,8 +87,8 @@ public class Stand : MonoBehaviour
         for (int i = 0; i < requiredMaterialIndexes.Length; i++)
         {
             playerStatus.ReduceMaterial(
-                requiredMaterialIndexes[i], requiredMaterialCounts);
-            requiredMaterialCounts += requiredMaterialIncrement;
+                requiredMaterialIndexes[i], requiredMaterialCounts[i]);
+            requiredMaterialCounts[i] += requiredMaterialIncrement;
         }
     }
 }
