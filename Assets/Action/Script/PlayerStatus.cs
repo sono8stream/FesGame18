@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using sonoHelpers;
 
 public class PlayerStatus : MonoBehaviour
 {
+    [SerializeField]
+    Text moneyText;
+
     public int money;
     public int[] MaterialCounts { get; private set; }
     public float[] TempStatus { get; private set; }
@@ -54,6 +58,7 @@ public class PlayerStatus : MonoBehaviour
                 Debug.Log("End Item Power!");
             }
         }
+        moneyText.text = string.Format("￥{0:#,0}", money);
     }
 
     public void ChangeStatus(int statusIndex, float val, float lastSec = -1)

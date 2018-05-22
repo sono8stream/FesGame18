@@ -22,9 +22,8 @@ public class Stand : MonoBehaviour
     int requiredMaterialIncrement;
     [SerializeField]
     int regenerateInterval = 200;
-
-    int moneyAmount;
-    GameObject currentMoneyObject;
+    
+    Money currentMoney;
     Counter saleIntervalCounter;
     Counter regenerateCounter;
 
@@ -43,17 +42,16 @@ public class Stand : MonoBehaviour
 
     void GenerateMoneyObject()
     {
-        currentMoneyObject = Instantiate(moneyObjectOrigin);
+        currentMoney = Instantiate(moneyObjectOrigin).GetComponent<Money>();
 
-        currentMoneyObject.transform.SetParent(transform);
-        currentMoneyObject.transform.localPosition = Vector3.zero;
-        moneyAmount = 0;
+        currentMoney.transform.SetParent(transform);
+        currentMoney.transform.localPosition = Vector3.zero;
 
     }
 
     void SaleMoney()
     {
-        if (currentMoneyObject == null)
+        if (currentMoney == null)
         {
             if (regenerateCounter.Count())
             {
@@ -68,9 +66,9 @@ public class Stand : MonoBehaviour
 
         if (saleIntervalCounter.Count())
         {
-            moneyAmount += onceSales;
-            currentMoneyObject.transform.localScale
-                = Vector3.one * (1 + moneyAmount * 0.005f);
+            currentMoney.value += onceSales;
+            currentMoney.transform.localScale
+                = Vector3.one * (1 + currentMoney.value * 0.001f);
             saleIntervalCounter.Initialize();
         }
     }

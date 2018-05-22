@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Money : Item
 {
+    public int value;
+
+    private void Start()
+    {
+        value=0;
+    }
+
     protected override void EffectFire(PlayerStatus playerStatus)
     {
-        playerStatus.money += 100;
+        playerStatus.money += value;
     }
 }

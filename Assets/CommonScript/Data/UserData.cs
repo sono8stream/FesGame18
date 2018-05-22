@@ -11,7 +11,7 @@ public class UserData
     public KeySet[] playersKeySet;
     public WeaponSet[] playersWeapon;
     public int winnerIndex;
-    public int winnerScore;
+    public int winnerMoney;
     public Dictionary<string, int> variableDict;//消さない
 
     Weapon[] weaponData;
@@ -22,7 +22,7 @@ public class UserData
             new KeySet(KeySetName.KeyboardL), new KeySet(KeySetName.KeyboardR) };
 
         winnerIndex = 0;
-        winnerScore = 1000000;
+        winnerMoney = 1000000;
 
         playersWeapon = new WeaponSet[playerCount] {
             new WeaponSet(), new WeaponSet() };

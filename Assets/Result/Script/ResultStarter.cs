@@ -13,7 +13,7 @@ public class ResultStarter : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        scoreText.text = string.Format("￥ {0:#,0}", UserData.instance.winnerScore);
+        scoreText.text = string.Format("￥ {0:#,0}", UserData.instance.winnerMoney);
         SoundPlayer player =
         GameObject.Find(SoundPlayer.objectName).GetComponent<SoundPlayer>();
         player.PlayBGM(bgm,2);

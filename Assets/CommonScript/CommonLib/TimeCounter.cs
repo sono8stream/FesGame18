@@ -5,10 +5,13 @@ using UnityEngine;
 public class TimeCounter
 {
     public float Limit { get; private set; }
-    public float Now { get { return Time.fixedTime - startTime; } }
+    public float Now { get {
+            return enabled ? Time.fixedTime - startTime : stopTime - startTime;
+        } }
 
     bool enabled;
     float startTime;
+    float stopTime;
 
     public bool OnLimit()
     {
@@ -16,6 +19,7 @@ public class TimeCounter
         if (Now >= Limit)
         {
             enabled = false;
+            Debug.Log("OnEnd");
             return true;
         }
         return false;
@@ -30,6 +34,15 @@ public class TimeCounter
 
     public void Stop()
     {
+        if (!enabled) return;
         enabled = false;
+        stopTime = Time.fixedTime;
+    }
+
+    public void Restart()
+    {
+        if (enabled) return;
+        startTime += Time.fixedTime - stopTime;//停止時間だけ進める
+        enabled = true;
     }
 }

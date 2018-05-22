@@ -36,12 +36,12 @@ public class LoadManager : MonoBehaviour {
         return GameObject.Find(objectName).GetComponent<LoadManager>();
     }
 
-    public void LoadScene(int index)
+    public void LoadScene(int index,float loadSec=0)
     {
-        StartCoroutine(LoadSceneCoroutine(index));
+        StartCoroutine(LoadSceneCoroutine(index,loadSec));
     }
 
-    IEnumerator LoadSceneCoroutine(int index)
+    IEnumerator LoadSceneCoroutine(int index,float loadSec)
     {
         if (sceneIndex == index)
         {
@@ -55,6 +55,7 @@ public class LoadManager : MonoBehaviour {
             //Debug.Log(async.progress);
             yield return new WaitForEndOfFrame();
         }
+        yield return new WaitForSeconds(loadSec);
         async.allowSceneActivation = true;    // シーン遷移許可
         yield return new WaitForSeconds(0.2f);
 
