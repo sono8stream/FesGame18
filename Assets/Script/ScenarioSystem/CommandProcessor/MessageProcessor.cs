@@ -12,6 +12,10 @@ public class MessageProcessor : CommandProcessor
     [SerializeField]
     Text messageText;
     [SerializeField]
+    int maxLineCount;
+    [SerializeField]
+    float lineHeight;
+    [SerializeField]
     Transform choicesTransform;
     //[SerializeField]
     //Logger logger;
@@ -27,6 +31,7 @@ public class MessageProcessor : CommandProcessor
     bool choiceSelected;
     bool onTag;
     bool onAuto;
+    bool onNewLine;
     int autoWaitLim;
     VariableProcessor varProcessor;
     Waiter messageWaiter;
@@ -34,6 +39,8 @@ public class MessageProcessor : CommandProcessor
     Waiter autoWaiter;
     Counter messageLengthCounter;
     Counter messageBoxCounter;//メッセージbox内トータル文字数
+    Counter lineCounter;
+    Counter lineUpCounter;
     Counter waitCounter;
     Counter choicesCounter;
     TextLoader loader;
@@ -57,8 +64,13 @@ public class MessageProcessor : CommandProcessor
 
         messageWaiter = new Waiter(defaultCount);
         inputWaiter = new Waiter(inputWaitCount);
+
         messageLengthCounter = new Counter(1, true);
-        messageBoxCounter = new Counter(1000);
+        messageBoxCounter = new Counter(500);
+
+        lineCounter = new Counter(maxLineCount);
+        lineUpCounter = new Counter(10);
+
         waitCounter = new Counter(waitCount);
         autoWaitLim = 30;
         autoWaiter = new Waiter(autoWaitLim);
@@ -109,9 +121,20 @@ public class MessageProcessor : CommandProcessor
             {
                 messageText.text += "\r\n";
                 messageBoxCounter.Count(2);
+                if (onNewLine)
+                {
+                    lineUpCounter.Count(lineUpCounter.Limit);
+                    MoveUpLine();
+                }
+                if (lineCounter.Count())
+                {
+                    onNewLine = true;
+                }
                 return true;//メッセージ終端で処理終わり
             }
         }
+
+        MoveUpLine();
 
         return false;
     }
@@ -126,12 +149,17 @@ public class MessageProcessor : CommandProcessor
             return true;
         }
 
-        if (InputEnter() || onSkip || messageWaiter.Wait())//文字無制限
+        if (InputEnter() || onSkip || messageWaiter.Wait())
         {
             messageWaiter.Initialize();
             messageText.text
                 = messageText.text.Insert(messageBoxCounter.Now, character.ToString());
+            if (character == '\n'&& lineCounter.Count())
+            {
+                onNewLine = true;
+            }
             messageBoxCounter.Count();
+            Debug.Log(lineCounter.Now);
             return true;
         }
         return false;
@@ -178,6 +206,7 @@ public class MessageProcessor : CommandProcessor
     {
         messageText.text = "";
         messageBoxCounter.Initialize();
+        lineCounter.Initialize();
         return true;
     }
     
@@ -237,6 +266,22 @@ public class MessageProcessor : CommandProcessor
         return true;
     }
     #endregion
+
+    void MoveUpLine()
+    {
+        if (!onNewLine) return;
+
+        if (lineUpCounter.Count())
+        {
+            onNewLine = false;
+            lineUpCounter.Initialize();
+            int firstLineLength = messageText.text.IndexOf('\n')+1;
+            messageText.text = messageText.text.Substring(firstLineLength);
+            messageBoxCounter.Now -= firstLineLength;
+        }
+        messageText.GetComponent<RectTransform>().offsetMax
+            = Vector2.up * lineHeight * lineUpCounter.Now / lineUpCounter.Limit;
+    }
 
     void PreWriteTags()
     {

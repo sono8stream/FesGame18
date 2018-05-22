@@ -15,8 +15,7 @@ public class SoundProcessor : CommandProcessor
         trigger = 's';
 
         resourceLoader = loader;
-        soundPlayer 
-            = GameObject.Find(SoundPlayer.objectName).GetComponent<SoundPlayer>();
+        soundPlayer = GameObject.Find(SoundPlayer.objectName).GetComponent<SoundPlayer>();
         clipLoadWaiter = new Waiter(loadLim);
 
         commandList = new List<System.Func<bool>>();
