@@ -28,7 +28,9 @@ public class Missile : Attacker {
 			GameObject tmpObj = Instantiate(subHitBox.Effect, contact.point, Quaternion.identity);
             AudioSource audioSource = tmpObj.AddComponent<AudioSource>();//音
             audioSource.PlayOneShot(subHitBox.HitSound);
-            Destroy(this.gameObject);
+			if(afterCollisionState==AfterCollisionState.Disappearance){
+				Destroy(this.gameObject);
+			}            
 		}      
 	}
 }

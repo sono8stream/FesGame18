@@ -9,28 +9,24 @@ public class PlayerController2D : MonoBehaviour
 {
     private PlatformerMotor2D _motor;
     public PC2D.AnimaController anim;
-    private Player playerInfo;
-    private int PID;
-    private string sPID;
-	public bool isPlayable = true;
+	private KeyInput keyInput;
+	private Player owner;       
 
     // Use this for initialization
     void Start()
     {
         _motor = GetComponent<PlatformerMotor2D>();
         anim = GetComponent<PC2D.AnimaController>();
-        playerInfo = GetComponent<Player>();
-        PID = playerInfo.PlayerID;
-        sPID = PID.ToString();
+		keyInput = GetComponent<KeyInput>();
+		owner = GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isPlayable){
-            if (Mathf.Abs(Input.GetAxis(PC2D.Input.HORIZONTAL + sPID)) > PC2D.Globals.INPUT_THRESHOLD)
+			if (Mathf.Abs(keyInput.GetAxis(PC2D.Input.HORIZONTAL)) > PC2D.Globals.INPUT_THRESHOLD)
             {
-                _motor.normalizedXMovement = Input.GetAxis(PC2D.Input.HORIZONTAL + sPID);
+				_motor.normalizedXMovement = keyInput.GetAxis(PC2D.Input.HORIZONTAL);
             }
             else
             {
@@ -38,14 +34,14 @@ public class PlayerController2D : MonoBehaviour
             }
 
             // Jump?
-            if (Input.GetButtonDown(PC2D.Input.JUMP + sPID))
+			if (keyInput.GetButtonDown(PC2D.Input.JUMP))
             {
                 _motor.Jump();
             }
 
-            _motor.jumpingHeld = Input.GetButton(PC2D.Input.JUMP + sPID);
-
-            if (Input.GetAxis(PC2D.Input.VERTICAL + sPID) < -PC2D.Globals.FAST_FALL_THRESHOLD)
+			_motor.jumpingHeld = keyInput.GetButton(PC2D.Input.JUMP);
+            
+			if (keyInput.GetAxis(PC2D.Input.VERTICAL) < -PC2D.Globals.FAST_FALL_THRESHOLD)
             {
                 _motor.fallFast = true;
             }
@@ -54,24 +50,39 @@ public class PlayerController2D : MonoBehaviour
                 _motor.fallFast = false;
             }
 
-            if (Input.GetButtonDown(PC2D.Input.DASH))
+		/*
+			if (keyInput.GetButtonDown(PC2D.Input.DASH))
             {
                 _motor.Dash();
             }
+            */
 
-            //攻撃
-            if (Input.GetButtonDown(PC2D.Input.ATTACK + sPID))
-            {
-                anim.Attack1();
-            }             
-			else if (Input.GetButtonDown(PC2D.Input.SUBATTACK + sPID))
-            {
-                anim.Attack2();
-            } 
-        }
-		else{
-			//入力キャンセル
-			_motor.normalizedXMovement = 0;
-		}
+		//ボタン１
+		if (keyInput.GetButtonDown(PC2D.Input.ATTACK))
+		{
+			if (owner.aroundItem && owner.havingItem == false)
+			{
+				owner.aroundItem.PickUpReaction(owner);
+			}
+			else if (owner.havingItem)
+			{
+				anim._animator.Play("throw");
+			}
+			else if(owner.aroundStand && owner.aroundStand.isStand==false)
+			{
+				owner.aroundStand.isStand = true;
+				//owner.aroundStand.GetComponent<SpriteRenderer>().enabled = true;                
+				owner.aroundStand.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+			}
+			else
+			{
+				anim.Attack1();
+			}
+		}          
+
+		if (keyInput.GetButtonDown(PC2D.Input.SUBATTACK))
+        {
+            anim.Attack2();
+        } 
     }
 }

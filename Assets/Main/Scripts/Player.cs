@@ -21,32 +21,37 @@ public class Player : Reactor {
 
 	public PC2D.AnimaController anim;
 	public PlayerController2D playerController;
-	public Weapon weapon;
+	public Weapon havingWeapon;
+	public PickableItem havingItem;
+	public PickableItem aroundItem;
+	public StandManager aroundStand;
+	public bool isThrowable;
 	public InstantiateMissile instantiateMissile;
 	public Transform handPos;
 
 	private float stopTime;
 
+	public KeyInput keyInput;
 
 
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<PC2D.AnimaController>();
 		playerController = GetComponent<PlayerController2D>();
-		playerController.isPlayable = true;      
-
+		keyInput = GetComponent<KeyInput>();
+		keyInput.isPlayable = true;
 	}
 	
 	// Update is called once per frame
 	void Update () { 
 		if (stopTime >= 0)
 		{
-			playerController.isPlayable = false;
+			keyInput.isPlayable = false;
 			stopTime -= Time.deltaTime;           
 			//anim._animator.Play("Idle");
 		}
 		else{
-			playerController.isPlayable = true;
+			keyInput.isPlayable = true;
 			//anim._animator.CrossFade("Idle", 0.05f);
 		}
 

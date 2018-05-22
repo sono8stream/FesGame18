@@ -16,17 +16,23 @@ public abstract class PickableItem : MonoBehaviour {
 		
 	}
 
-	private void OnTriggerStay2D(Collider2D collider)
+	private void OnCollisionStay2D(Collision2D collision)
 	{
-		if(collider.gameObject.tag=="Player"){
-			canPickUp = true;
-			owner = collider.GetComponent<Player>();
-			if(Input.GetKey(KeyCode.A)){
-				this.transform.parent = owner.handPos;
-				PickUpReaction(collider.gameObject);
-			}
+		if (collision.gameObject.tag == "Player"){
+			collision.collider.GetComponent<Player>().aroundItem = this;
 		}
 	}
 
-	public abstract void PickUpReaction(GameObject obj);
+	private void OnCollisionExit2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "Player")
+        {
+			collision.collider.GetComponent<Player>().aroundItem = null;
+        }
+	}
+
+    
+
+	public abstract void PickUpReaction(Player owner);
+	public abstract void ThrowReaction();
 }

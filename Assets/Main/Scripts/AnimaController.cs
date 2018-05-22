@@ -137,6 +137,8 @@ namespace PC2D
             _animator.Play("attack_gun");
         }
 
+        
+
         //ダメージ
 		public IEnumerator Damage(Vector2 angle,float time){
 			_animator.Play("damage");

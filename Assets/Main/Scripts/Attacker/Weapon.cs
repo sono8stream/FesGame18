@@ -11,12 +11,17 @@ public class Weapon : Attacker {
 	public string clipName;
 
 	// Use this for initialization
-	void Start () {		
+	private void Awake()
+	{
 		hitBox = GetComponent<HitBox>();
-		player = transform.root.GetComponent<Player>();
-		animator = transform.root.GetComponent<Animator>();
-		eventReceiver = transform.root.GetComponent<EventReceiver>();       
-		instantiateMissiles = GetComponentsInChildren<InstantiateMissile>();
+        player = transform.root.GetComponent<Player>();
+        animator = transform.root.GetComponent<Animator>();
+        eventReceiver = transform.root.GetComponent<EventReceiver>();
+        instantiateMissiles = GetComponentsInChildren<InstantiateMissile>();
+	}
+
+	void Start () {		
+		
 	}
 
 
@@ -47,8 +52,11 @@ public class Weapon : Attacker {
 
 	public override void HitReaction(ContactPoint2D contact, SubHitBox subHitBox)
 	{
-		GameObject tmpObj = Instantiate(subHitBox.Effect, contact.point, Quaternion.identity);
+		if (contact.collider.gameObject.tag == "Player")
+		{ 
+			GameObject tmpObj = Instantiate(subHitBox.Effect, contact.point, Quaternion.identity);
         AudioSource audioSource = tmpObj.AddComponent<AudioSource>();//音
         audioSource.PlayOneShot(subHitBox.HitSound);            
+		}
 	}
 }

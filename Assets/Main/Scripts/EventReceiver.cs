@@ -6,10 +6,12 @@ public class EventReceiver : MonoBehaviour {
     public GameObject receiveObj;
     public AudioClip sound;
     private AudioSource audioSource;
+	public Player owner;
 
 	// Use this for initialization
 	void Start () {
         audioSource = GetComponent<AudioSource>();
+		owner = GetComponent<Player>();
 	}
 	
 	// Update is called once per frame
@@ -30,6 +32,10 @@ public class EventReceiver : MonoBehaviour {
     public void PlaySound(){
         audioSource.PlayOneShot(sound);
     }
+
+	public void ThrowItem(){
+		owner.havingItem.ThrowReaction();
+	}
 
     /*
     public void ShowCollision(){
