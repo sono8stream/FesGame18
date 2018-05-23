@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Stand : MonoBehaviour
@@ -19,10 +20,10 @@ public class Stand : MonoBehaviour
     [SerializeField]
     int[] requiredMaterialCounts;
     [SerializeField]
-    int requiredMaterialIncrement;
+    int[] requiredMaterialIncrements;
     [SerializeField]
     int regenerateInterval = 200;
-    
+
     Money currentMoney;
     Counter saleIntervalCounter;
     Counter regenerateCounter;
@@ -32,6 +33,19 @@ public class Stand : MonoBehaviour
     {
         saleIntervalCounter = new Counter(saleInterval);
         regenerateCounter = new Counter(regenerateInterval, true);
+
+        int indexesLength = requiredMaterialIndexes.Length;
+        int countsLength = requiredMaterialCounts.Length;
+        if (indexesLength < countsLength)
+        {
+            requiredMaterialCounts
+                = requiredMaterialCounts.Take(indexesLength).ToArray();
+        }
+        else
+        {
+            requiredMaterialIndexes
+                = requiredMaterialIndexes.Take(countsLength).ToArray();
+        }
     }
 
     // Update is called once per frame
@@ -88,7 +102,9 @@ public class Stand : MonoBehaviour
         {
             playerStatus.ReduceMaterial(
                 requiredMaterialIndexes[i], requiredMaterialCounts[i]);
-            requiredMaterialCounts[i] += requiredMaterialIncrement;
+
+            if (requiredMaterialIncrements.Length <= i) continue;
+            requiredMaterialCounts[i] += requiredMaterialIncrements[i];
         }
     }
 }

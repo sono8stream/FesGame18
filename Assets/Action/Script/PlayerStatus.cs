@@ -12,10 +12,9 @@ public class PlayerStatus : MonoBehaviour
     public int money;
     public int[] MaterialCounts { get; private set; }
     public float[] TempStatus { get; private set; }
+    public float[] InitStatus { get; private set; }
 
-    float[] initStatus;
     TimeCounter[] tempStatusTimer;
-
     int materialNamesLength;
     int statusLength;
 
@@ -33,17 +32,17 @@ public class PlayerStatus : MonoBehaviour
 
         //ステータスの配列の初期化
         statusLength = EnumHelper.GetTypeLength<StatusNames>();
-        initStatus = new float[statusLength];
-        initStatus[(int)StatusNames.speed] = 0.05f;
-        initStatus[(int)StatusNames.jumpLims] = 1;
-        initStatus[(int)StatusNames.hp] = 100;
+        InitStatus = new float[statusLength];
+        InitStatus[(int)StatusNames.speed] = 0.05f;
+        InitStatus[(int)StatusNames.jumpLims] = 1;
+        InitStatus[(int)StatusNames.hp] = 100;
 
         TempStatus = new float[statusLength];
         tempStatusTimer = new TimeCounter[statusLength];
         for (int i = 0; i < statusLength; i++)
         {
-            TempStatus[i] = initStatus[i];
-            tempStatusTimer[i] = new TimeCounter();
+            TempStatus[i] = InitStatus[i];
+            tempStatusTimer[i] = new TimeCounter(0);
         }
     }
 
@@ -78,7 +77,7 @@ public class PlayerStatus : MonoBehaviour
     {
         if (statusIndex < 0 || MaterialCounts.Length <= statusIndex) return;
 
-        TempStatus[statusIndex] = initStatus[statusIndex];
+        TempStatus[statusIndex] = InitStatus[statusIndex];
         tempStatusTimer[statusIndex].Stop();
     }
 
@@ -100,5 +99,5 @@ public enum StatusNames
 
 public enum MaterialNames
 {
-    Red = 0, Blue, Green
+    Red = 0, Orange, Yellow, Green, Blue, Purple, Pink, Silver, Black, Rainbow
 }

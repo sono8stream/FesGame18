@@ -33,6 +33,21 @@ public abstract class Item : MonoBehaviour
         Debug.Log(this);
     }
 
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("entered");
+        if (collision.gameObject.tag != "Player") return;
+
+        /*Player player = collision.gameObject.GetComponent<Player>();
+        if (colorId != -1 && colorId != player.id) return;*/
+
+        EffectFire(collision.gameObject.GetComponent<PlayerStatus>());
+
+        GetComponent<Collider2D>().enabled = false;
+        Destroy(gameObject);
+        Debug.Log(this);
+    }
+
     /// <summary>
     /// アイテム取ったときの効果
     /// </summary>
