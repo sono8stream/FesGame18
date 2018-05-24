@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ScenarioProcessor : MonoBehaviour
 {
+    //外部から取得可
+    public bool OnEnd { get { return onEnd; } }
+    public int CurrentLine { get { return 0; } }
+
     [SerializeField]
     TextAsset testText;
     [SerializeField]
@@ -24,8 +28,6 @@ public class ScenarioProcessor : MonoBehaviour
 
     bool onEnd;
 
-    public bool OnEnd { get { return onEnd; } }
-
     // Use this for initialization
     void Start()
     {
@@ -36,7 +38,7 @@ public class ScenarioProcessor : MonoBehaviour
         sounder = new SoundProcessor();
         sounder.Initialize(resourceLoader);
         varProcessor = new VariableProcessor();
-        varProcessor.Initialize();
+        varProcessor.Initialize(textLoader);
         sceneProcessor = new SceneProcessor();
         sceneProcessor.Initialize(this, resourceLoader);
         messenger.Initialize(textLoader, varProcessor);
@@ -93,7 +95,7 @@ public class ScenarioProcessor : MonoBehaviour
     {
         testText = newScript;
         textLoader = new TextLoader(testText.text);
-        varProcessor.Initialize();
+        varProcessor.Initialize(textLoader);
         onEnd = false;
     }
 }

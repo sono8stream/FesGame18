@@ -12,6 +12,8 @@ public class CameraZoomer : MonoBehaviour
     [SerializeField]
     float minWidth;
     [SerializeField]
+    Rect maxRect;
+    [SerializeField]
     float followSpeedRate = 0.1f;//0~1、1なら即座に追従
 
     float heightRatio;
@@ -42,15 +44,6 @@ public class CameraZoomer : MonoBehaviour
         transform.position -= Vector3.forward * 10;
         mainCamera.orthographicSize = viewRect.height * 0.5f;
     }
-
-    /*void UpdateViewRealTime()
-    {
-        Rect viewRect = CalcViewRect();
-        transform.position = ((Vector2)transform.position + viewRect.center) * 0.5f;
-        transform.position -= Vector3.forward * 10;
-        mainCamera.orthographicSize
-            = (mainCamera.orthographicSize + viewRect.height * 0.5f) * 0.5f;
-    }*/
 
     Rect CalcViewRect()
     {
@@ -88,7 +81,7 @@ public class CameraZoomer : MonoBehaviour
             rawRect.y = rawRect.center.y - newHeight * 0.5f;
             rawRect.height = newHeight;
         }
-        if (rawRect.width < minWidth)
+        if (rawRect.width < minWidth)//最小以下
         {
             rawRect.x = rawRect.center.x - minWidth * 0.5f;
             rawRect.y = rawRect.center.y - minWidth * heightRatio * 0.5f;
@@ -97,5 +90,25 @@ public class CameraZoomer : MonoBehaviour
         }
 
         return rawRect;
+    }
+
+    void LapInMaxRect(ref Rect rawRect)//最大範囲内に収める
+    {
+        if (rawRect.xMin < maxRect.xMin)
+        {
+            rawRect.xMin = maxRect.xMin;
+        }
+        if (rawRect.xMax > maxRect.xMax)
+        {
+            rawRect.xMax = maxRect.xMax;
+        }
+        if (rawRect.yMin < maxRect.yMin)
+        {
+            rawRect.yMin = maxRect.yMin;
+        }
+        if (rawRect.yMax > maxRect.yMax)
+        {
+            rawRect.yMax = maxRect.yMax;
+        }
     }
 }

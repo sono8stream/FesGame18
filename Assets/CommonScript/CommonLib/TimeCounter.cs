@@ -13,6 +13,11 @@ public class TimeCounter
     float startTime;
     float stopTime;
 
+    public TimeCounter(float lim)
+    {
+        Limit = lim;
+    }
+
     public bool OnLimit()
     {
         if (!enabled) return false;

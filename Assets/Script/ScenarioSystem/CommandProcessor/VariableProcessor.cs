@@ -5,13 +5,16 @@ using UnityEngine;
 public class VariableProcessor : CommandProcessor
 {
     int[] tempVariables;
+    TextLoader textLoader;
 
-    public void Initialize()
+    public void Initialize(TextLoader loader)
     {
         trigger = 'v';
         tempVariables = new int[10];
         commandList = new List<System.Func<bool>>();
         commandList.Add(ChangeVariable);
+        commandList.Add(BranchByVariable);
+        textLoader = loader;
     }
 
     bool ChangeVariable()//代入先変数名:演算子:値
@@ -41,6 +44,47 @@ public class VariableProcessor : CommandProcessor
         }
         return true;
     }
+
+    bool BranchByVariable()
+    {
+        string[] s = keyText.Split(':');
+        if (s.Length != 3) return true;
+
+        int baseValue = GetVariableValue(s[0]);
+        int comparedValue = GetVariableValue(s[2]);
+        bool on = false;
+        switch ((s[1][0]))
+        {
+            case '<':
+                if (s[1].Length == 2 && s[1][1] == '=')
+                {
+                    on = baseValue <= comparedValue;
+                }
+                else
+                {
+                    on= baseValue < comparedValue;
+                }
+                break;
+            case '>':
+                if (s[1].Length == 2 && s[1][1] == '=')
+                {
+                    on = baseValue >= comparedValue;
+                }
+                else
+                {
+                    on = baseValue > comparedValue;
+                }
+                break;
+            case '=':
+                on = baseValue == comparedValue;
+                break;
+        }
+
+        string label = string.Format("{0}{1}{2}", s[0], s[1], s[2]);
+        if (!on) label = label.Insert(0, "Not ");
+        textLoader.JumpLabel(label);
+        return true;
+    }    
 
     public int GetVariableValue(string valueText)
     {

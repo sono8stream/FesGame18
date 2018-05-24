@@ -17,16 +17,22 @@ public class ResourceLoader
     Dictionary<string, AudioClip> seDict;//読み込んだスプライトの実参照
     Dictionary<string, TextAsset> scriptDict;
 
-    bool isLoading,loadFailed;
+    bool loadFailed;
     ScenarioProcessor scenarioProcessor;
+    int loadStateNo;
+
+    enum LoadStateName
+    {
+        Unload = 0, Loading, Complete
+    }
 
     public void Initialize(ScenarioProcessor processor)
     {
         scenarioProcessor = processor;
-        LoadDefault();
+        SetDefault();
     }
 
-    void LoadDefault()
+    void SetDefault()
     {
         charaSpriteDict = new Dictionary<string, Sprite>();
         charaSpriteDict.Add(defaultName, defaultSprite);
@@ -79,28 +85,26 @@ public class ResourceLoader
         Dictionary<string, Type> resourceDict, string folderName)
         where Type : class
     {
-        if (resourceDict.ContainsKey(name))
+        switch (loadStateNo)
         {
-            Debug.Log("Loaded Success");
-            return resourceDict[name];
-        }
-        else if (!isLoading)//うまいアルゴリズムが書けない
-        {
-            if (loadFailed)//ロード失敗
-            {
-                Debug.Log("Loaded Default");
-                loadFailed = false;
-                return resourceDict[defaultName];
-            }
-            else//ロード
-            {
+            case (int)LoadStateName.Unload:
+                if (resourceDict.ContainsKey(name))
+                {
+                    Debug.Log("Successfully Loaded");
+                    return resourceDict[name];
+                }
+                //ロード処理
+                loadStateNo = (int)LoadStateName.Loading;
                 string path = folderName + "/" + name;
                 ResourceRequest request = Resources.LoadAsync(path, typeof(Type));
                 scenarioProcessor.StartCoroutine(CheckLoadDone(
                     name, request, resourceDict));
-                Debug.Log(path);
-                return default(Type);
-            }
+                break;
+
+            case (int)LoadStateName.Complete:
+                loadStateNo = (int)LoadStateName.Unload;
+                return loadFailed ? 
+                    resourceDict[defaultName] : resourceDict[name];
         }
         return default(Type);
     }
@@ -109,20 +113,21 @@ public class ResourceLoader
         Dictionary<string, Type> resourceDict)
         where Type : class
     {
-        isLoading = true;
         while (!request.isDone) yield return null;
 
         Type resource = request.asset as Type;
         if (resource == null)
         {
+            Debug.Log("Failed to load");
             loadFailed = true;
         }
         else
         {
             Debug.Log("load succeed");
             resourceDict.Add(name, resource);
+            loadFailed = false;
         }
         Debug.Log("load done");
-        isLoading = false;
+        loadStateNo = (int)LoadStateName.Complete;
     }
 }

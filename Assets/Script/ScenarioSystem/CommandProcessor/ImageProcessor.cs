@@ -7,6 +7,8 @@ using UnityEngine.UI;
 [Serializable]
 public class ImageProcessor : CommandProcessor
 {
+    const int fadeLim = 10;
+
     [SerializeField]
     Image sceneryImage;
     [SerializeField]
@@ -17,6 +19,14 @@ public class ImageProcessor : CommandProcessor
     float cursorPosY;
 
     ResourceLoader resourceLoader;
+    Counter fadeCounter;
+    int fadeStateNo;
+    string spriteName;
+
+    enum FadeStateName
+    {
+        FadeOut = 0,FadeIn
+    }
 
     public void Initialize(ResourceLoader loader)
     {
@@ -24,6 +34,7 @@ public class ImageProcessor : CommandProcessor
 
         cursorTransform.localPosition = new Vector2(-1500, cursorPosY);
         resourceLoader = loader;
+        fadeCounter = new Counter(fadeLim);
 
         commandList = new List<Func<bool>>();
         commandList.Add(ChangeCharacterName);
@@ -33,6 +44,25 @@ public class ImageProcessor : CommandProcessor
         commandList.Add(ChangeSceneryImage);
     }
 
+    public override void ProcessBegin(string rawText)
+    {
+        base.ProcessBegin(rawText);
+
+        if (commandNo == 1 || commandNo == 4)//画像を読み込むとき
+        {
+            /*if (commandNo == 1)
+            {
+                string[] keyStrings = keyText.Split(':');
+                string spriteName;
+                if (keyStrings.Length == 2)
+                {
+                    spriteName = keyStrings[1]
+;                }
+            }*/
+            fadeStateNo = (int)FadeStateName.FadeOut;
+        }
+    }
+
     bool ChangeCharacterName()
     {
         return true;
@@ -40,7 +70,6 @@ public class ImageProcessor : CommandProcessor
 
     bool ChangeCharacterImage()
     {
-        Debug.Log(keyText);
         string[] keyStrings = keyText.Split(':');
         if (keyStrings.Length != 2) return true;
 
@@ -48,12 +77,31 @@ public class ImageProcessor : CommandProcessor
         if (!(int.TryParse(keyStrings[0], out charaIndex)//総キャラ数はindex:0~3までの4人
             && (0 <= charaIndex && charaIndex <= 3))) return true;
 
-        Sprite sprite = resourceLoader.GetCharaSprite(keyStrings[1]);
-        if (sprite == null) return false;
+        Image targetImage
+            = charactersTransform.GetChild(charaIndex).GetComponent<Image>();
 
-        Image targetImage = charactersTransform.GetChild(charaIndex).GetComponent<Image>();
-        targetImage.sprite = sprite;
-        return true;
+        //Debug.Log("Fading");
+        switch (fadeStateNo)
+        {
+            case (int)FadeStateName.FadeOut:
+                Sprite sprite = resourceLoader.GetCharaSprite(keyStrings[1]);
+                Debug.Log(sprite);
+                if (FadeOut(targetImage) && sprite != null)
+                {
+                    targetImage.sprite = sprite;
+                    fadeStateNo = (int)FadeStateName.FadeIn;
+                    fadeCounter.Initialize();
+                }
+                break;
+            case (int)FadeStateName.FadeIn:
+                if (FadeIn(targetImage))
+                {
+                    fadeCounter.Initialize();
+                    return true;
+                }
+                break;
+        }
+        return false;
     }
 
     bool HighlightCharacter()
@@ -61,7 +109,7 @@ public class ImageProcessor : CommandProcessor
         int charaIndex;
         if (!(int.TryParse(keyText, out charaIndex)//総キャラ数はindex:0~3までの4人
             && (-1 <= charaIndex && charaIndex <= 3))) return true;
-        
+
         Vector2 pos = Vector2.up * cursorTransform.localPosition.y;
         if (charaIndex == -1)
         {
@@ -85,10 +133,47 @@ public class ImageProcessor : CommandProcessor
 
     bool ChangeSceneryImage()
     {
-        Sprite sprite = resourceLoader.GetSceneSprite(keyText);
-        if (sprite == null) return false;
-        
-        sceneryImage.sprite = sprite;
-        return true;
+        switch (fadeStateNo)
+        {
+            case (int)FadeStateName.FadeOut:
+                Sprite sprite = resourceLoader.GetSceneSprite(keyText);
+                Debug.Log(sprite);
+                if (FadeOut(sceneryImage) && sprite != null)
+                {
+                    sceneryImage.sprite = sprite;
+                    fadeStateNo = (int)FadeStateName.FadeIn;
+                    fadeCounter.Initialize();
+                }
+                break;
+            case (int)FadeStateName.FadeIn:
+                if (FadeIn(sceneryImage))
+                {
+                    fadeCounter.Initialize();
+                    return true;
+                }
+                break;
+        }
+        return false;
+    }
+
+    bool FadeIn(Image targetImage)
+    {
+        if (fadeStateNo != (int)FadeStateName.FadeIn) return true;
+
+        fadeCounter.Count();
+        targetImage.color
+            = Color.white * fadeCounter.Now / fadeCounter.Limit;
+        return fadeCounter.OnLimit();
+    }
+
+    bool FadeOut(Image targetImage)
+    {
+        if (fadeStateNo != (int)FadeStateName.FadeOut) return true;
+
+        fadeCounter.Count();
+        targetImage.color
+            = Color.white * (1 - 1f * fadeCounter.Now / fadeCounter.Limit);
+        Debug.Log("Fade out");
+        return fadeCounter.OnLimit();
     }
 }

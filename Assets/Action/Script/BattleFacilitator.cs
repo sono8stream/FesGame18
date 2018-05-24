@@ -20,7 +20,7 @@ public class BattleFacilitator : MonoBehaviour
     void Start()
     {
         leftTimeText.enabled = false;
-        timer = new TimeCounter();
+        timer = new TimeCounter(timerLim);
         foreach (Player player in players)
         {
             player.enabled = false;
@@ -44,7 +44,7 @@ public class BattleFacilitator : MonoBehaviour
 
     public void StartBattle()
     {
-        timer.Start(timerLim);
+        timer.Start();
         onBattle = true;
         foreach (Player player in players)
         {
