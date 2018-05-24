@@ -27,11 +27,14 @@ public class Stand : MonoBehaviour
     Counter saleIntervalCounter;
     Counter regenerateCounter;
 
+	public Player owner;
+
     // Use this for initialization
     void Start()
     {
         saleIntervalCounter = new Counter(saleInterval);
         regenerateCounter = new Counter(regenerateInterval, true);
+        
     }
 
     // Update is called once per frame
