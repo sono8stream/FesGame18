@@ -10,9 +10,9 @@ public class CameraZoomer : MonoBehaviour
     [SerializeField]
     float widthMargin, heightMargin;
     [SerializeField]
-    float minWidth;
+    float minWidth = 3;
     [SerializeField]
-    Rect maxRect;
+    Rect maxRect = new Rect(-3, -2, 6, 4);
     [SerializeField]
     float followSpeedRate = 0.1f;//0~1、1なら即座に追従
 
@@ -89,26 +89,44 @@ public class CameraZoomer : MonoBehaviour
             rawRect.height = minWidth * heightRatio;
         }
 
+        LapInMaxRect(ref rawRect);
+
         return rawRect;
     }
 
     void LapInMaxRect(ref Rect rawRect)//最大範囲内に収める
     {
+        Debug.Log(rawRect);
         if (rawRect.xMin < maxRect.xMin)
         {
-            rawRect.xMin = maxRect.xMin;
+            rawRect.x = maxRect.xMin;
         }
         if (rawRect.xMax > maxRect.xMax)
         {
-            rawRect.xMax = maxRect.xMax;
+            rawRect.x = maxRect.xMax - rawRect.width;
         }
+        if (rawRect.xMin < maxRect.xMin)//縮小
+        {
+            rawRect.xMin = maxRect.xMin;
+            float newHeight = rawRect.width * heightRatio;
+            rawRect.y = rawRect.center.y - newHeight * 0.5f;
+            rawRect.height = newHeight;
+        }
+
         if (rawRect.yMin < maxRect.yMin)
         {
-            rawRect.yMin = maxRect.yMin;
+            rawRect.y = maxRect.yMin;
         }
         if (rawRect.yMax > maxRect.yMax)
         {
-            rawRect.yMax = maxRect.yMax;
+            rawRect.y = maxRect.yMax - rawRect.height;
+        }
+        if (rawRect.yMin < maxRect.yMin)//縮小
+        {
+            rawRect.yMin = maxRect.yMin;
+            float newWidth = rawRect.height / heightRatio;
+            rawRect.x = rawRect.center.x - newWidth * 0.5f;
+            rawRect.width = newWidth;
         }
     }
 }
