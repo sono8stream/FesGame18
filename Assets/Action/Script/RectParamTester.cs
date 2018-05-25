@@ -8,6 +8,10 @@ public class RectParamTester : MonoBehaviour
     Rect rect;
     [SerializeField]
     float xMin;
+    [SerializeField]
+    float xMax;
+    [SerializeField]
+    float x;
 
     // Use this for initialization
     void Start()
@@ -19,5 +23,7 @@ public class RectParamTester : MonoBehaviour
     void Update()
     {
         rect.xMin = xMin;
+        //rect.xMax = xMax;
+        //rect.x = x;
     }
 }
