@@ -70,9 +70,7 @@ public class PlayerController2D : MonoBehaviour
 			}
 			else if(owner.aroundStand && owner.aroundStand.isStand==false)
 			{
-				owner.aroundStand.isStand = true;
-				//owner.aroundStand.GetComponent<SpriteRenderer>().enabled = true;                
-				owner.aroundStand.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+				owner.aroundStand.CreateStand();
 			}
 			else
 			{

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public enum DestroyTrigger{
 	Animation,
+    Animator,
     Particle,
     Time
 }
@@ -14,6 +15,7 @@ public class EffectDestroyer : MonoBehaviour {
 	public DestroyTrigger dt;
 	public float lifeTime = 0;
 	private Animation animation;
+	private Animator animator;
 
 	// Use this for initialization
 	void Start () {
@@ -22,10 +24,14 @@ public class EffectDestroyer : MonoBehaviour {
 				//アニメーション
                 animation = GetComponent<Animation>();
 				break;
+			case DestroyTrigger.Animator:
+				AnimatorClipInfo clipInfo = animator.GetCurrentAnimatorClipInfo(0)[0];
+				Destroy(this.gameObject, clipInfo.clip.length);
+				break;
 			case DestroyTrigger.Particle:
 				//パーティクル
                 var tmpPS = gameObject.GetComponentsInChildren<ParticleSystem>();
-                float maxL = tmpPS.Max(x => x.startLifetime);
+				float maxL = tmpPS.Max(x => (x.startLifetime + x.duration));
                 Destroy(gameObject, maxL);
 				break;
 			case DestroyTrigger.Time:
