@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Stand : MonoBehaviour
 {
+    public int[] requiredMaterialIndexes;
+    public int[] requiredMaterialCounts;
+
     [SerializeField]
     GameObject moneyObjectOrigin;
     [SerializeField]
@@ -16,10 +19,6 @@ public class Stand : MonoBehaviour
     [SerializeField]
     int salesIncrement = 10;
     [SerializeField]
-    int[] requiredMaterialIndexes;
-    [SerializeField]
-    int[] requiredMaterialCounts;
-    [SerializeField]
     int[] requiredMaterialIncrements;
     [SerializeField]
     int regenerateInterval = 200;
@@ -28,7 +27,7 @@ public class Stand : MonoBehaviour
     Counter saleIntervalCounter;
     Counter regenerateCounter;
 
-	public Player owner;
+    public Player owner;
 
     // Use this for initialization
     void Start()
@@ -89,14 +88,14 @@ public class Stand : MonoBehaviour
         }
     }
 
-    public void LevelUp(PlayerStatus playerStatus)
+    public bool LevelUp(PlayerStatus playerStatus)
     {
         for (int i = 0; i < requiredMaterialIndexes.Length; i++)
         {
             int index = requiredMaterialIndexes[i];
             if (playerStatus.MaterialCounts[index] < requiredMaterialCounts[index])
             {
-                return;
+                return false;
             }
         }
 
@@ -108,5 +107,6 @@ public class Stand : MonoBehaviour
             if (requiredMaterialIncrements.Length <= i) continue;
             requiredMaterialCounts[i] += requiredMaterialIncrements[i];
         }
+        return true;
     }
 }

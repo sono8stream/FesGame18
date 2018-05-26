@@ -70,7 +70,14 @@ public class PlayerController2D : MonoBehaviour
 			}
 			else if(owner.aroundStand && owner.aroundStand.isStand==false)
 			{
-				owner.aroundStand.CreateStand();
+                if (owner.aroundStand.isStand)
+                {
+                    owner.aroundStand.LevelUpStand();
+                }
+                else
+                {
+                    owner.aroundStand.CreateStand();
+                }
 			}
 			else
 			{

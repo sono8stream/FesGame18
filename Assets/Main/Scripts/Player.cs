@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerStatus))]
 public class Player : Reactor {
     public float HP;
     public int PlayerID;
@@ -32,7 +33,7 @@ public class Player : Reactor {
 	private float stopTime;
 
 	public KeyInput keyInput;
-
+    public PlayerStatus Status { get; private set; }
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +41,7 @@ public class Player : Reactor {
 		playerController = GetComponent<PlayerController2D>();
 		keyInput = GetComponent<KeyInput>();
 		keyInput.isPlayable = true;
+        Status = GetComponent<PlayerStatus>();
 	}
 	
 	// Update is called once per frame

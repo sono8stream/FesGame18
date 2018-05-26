@@ -34,7 +34,7 @@ public class BattleFacilitator : MonoBehaviour
 
         float leftSec = timerLim - timer.Now;
         leftTimeText.text = string.Format("{0:00} : {1:00.00}",
-            leftSec / 60, leftSec);
+            leftSec / 60, leftSec - (int)(leftSec / 60) * 60);
 
         if (timer.OnLimit())
         {
