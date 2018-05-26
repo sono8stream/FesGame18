@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraZoomer : MonoBehaviour
 {
     [SerializeField]
-    Transform[] viewTargets;
+    List<Transform> viewTargets;
     [SerializeField]
     float widthMargin, heightMargin;
     [SerializeField]
@@ -50,7 +50,7 @@ public class CameraZoomer : MonoBehaviour
         Vector2 minPos = viewTargets[0].position;
         Vector2 maxPos = viewTargets[0].position;
 
-        int targetsCount = viewTargets.Length;
+        int targetsCount = viewTargets.Count;
         for (int i = 1; i < targetsCount; i++)
         {
             Vector2 targetPos = viewTargets[i].position;

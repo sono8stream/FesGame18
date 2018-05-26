@@ -6,8 +6,12 @@ using sonoHelpers;
 
 public class PlayerStatus : MonoBehaviour
 {
+    const int materialLimit = 5;
+
     [SerializeField]
     Text moneyText;
+    [SerializeField]
+    Transform materialsTransform;
 
     public int money;
     public int[] MaterialCounts { get; private set; }
@@ -57,7 +61,7 @@ public class PlayerStatus : MonoBehaviour
                 Debug.Log("End Item Power!");
             }
         }
-        moneyText.text = string.Format("￥{0:#,0}", money);
+        moneyText.text = string.Format("￥ {0:#,0}", money);
     }
 
     public void ChangeStatus(int statusIndex, float val, float lastSec = -1)
@@ -83,7 +87,14 @@ public class PlayerStatus : MonoBehaviour
 
     public void AddMaterial(int materialIndex, int increment)
     {
+        if (MaterialCounts[materialIndex] > materialLimit) return;
+
         MaterialCounts[materialIndex] += increment;
+        if (materialsTransform.childCount <= materialIndex) return;
+
+        Transform t = materialsTransform.GetChild(materialIndex);
+        t.Find("Text").GetComponent<Text>().text
+            = MaterialCounts[materialIndex].ToString();
     }
 
     public void ReduceMaterial(int materialIndex, int decrement)
@@ -99,5 +110,5 @@ public enum StatusNames
 
 public enum MaterialNames
 {
-    Red = 0, Orange, Yellow, Green, Blue, Purple, Pink, Silver, Black, Rainbow
+    Red = 0, Yellow, Blue, Purple, Silver, Orange, Green, Pink, Black, Rainbow
 }

@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4492102409772536}
   - component: {fileID: 212759894429062482}
   - component: {fileID: 61433394642975286}
-  - component: {fileID: 114959450561566572}
   - component: {fileID: 50455316867234272}
+  - component: {fileID: 114092332836501650}
   m_Layer: 0
   m_Name: materialRainbow
   m_TagString: Untagged
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114959450561566572
+--- !u!114 &114092332836501650
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -96,10 +96,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1969347114004198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f52abde904aeaa4587c00688b74efac, type: 3}
+  m_Script: {fileID: 11500000, guid: d90463e78c105174ab4f6b790ece5535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialNo: 9
   count: 1
 --- !u!212 &212759894429062482
 SpriteRenderer:

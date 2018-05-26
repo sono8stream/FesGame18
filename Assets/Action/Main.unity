@@ -1241,16 +1241,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 114309511856112188, guid: 9f97497690ddb8c49856cd60cd8ff2fb,
-        type: 2}
-      propertyPath: generateIntervalSec
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114309511856112188, guid: 9f97497690ddb8c49856cd60cd8ff2fb,
-        type: 2}
-      propertyPath: maxGenerateCount
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f97497690ddb8c49856cd60cd8ff2fb, type: 2}
   m_IsPrefabParent: 0
@@ -1683,6 +1673,7 @@ MonoBehaviour:
   requiredMaterialCounts: 
   requiredMaterialIncrements: 
   regenerateInterval: 200
+  owner: {fileID: 0}
 --- !u!212 &1105759585
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2535,6 +2526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 974235140}
+  materialsTransform: {fileID: 1354871786}
   money: 0
 --- !u!61 &1453270191
 BoxCollider2D:
