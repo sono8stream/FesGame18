@@ -52,27 +52,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObjects:
-  - {fileID: 1037146193968140, guid: b19d07d1726fa8c49b15c8b3e9c2894f, type: 2}
   - {fileID: 1512121424724084, guid: bbc7e47cdb18f0c4c94ea708788a927b, type: 2}
-  - {fileID: 1505131575243040, guid: b5d5f9b1dba0e8040b3e4064d84a3157, type: 2}
-  - {fileID: 1521867738868662, guid: 1d6744f0df4976e4a844981c14b0f3ed, type: 2}
-  - {fileID: 1233261964216402, guid: 4856bc1d977efdf4981500018b13234f, type: 2}
+  - {fileID: 1971495914081974, guid: 2005eacd4023d1a429db77bf8df1ff3d, type: 2}
   - {fileID: 1398478713288028, guid: c84361c77f79d104e8e305e7807d8fac, type: 2}
-  - {fileID: 1969347114004198, guid: c290d4ea69feed8488ff0886f0bfd3da, type: 2}
   - {fileID: 1089156419801250, guid: fda4033ea4d266e48b9e4ac3ae20902f, type: 2}
   - {fileID: 1045428761006118, guid: 25c2d41c77c68784e92c14d89087c852, type: 2}
-  - {fileID: 1971495914081974, guid: 2005eacd4023d1a429db77bf8df1ff3d, type: 2}
+  - {fileID: 1969347114004198, guid: c290d4ea69feed8488ff0886f0bfd3da, type: 2}
   generateRatios:
   - 1
   - 1
   - 1
   - 1
   - 1
-  - 1
-  - 0.2
-  - 1
-  - 1
-  - 1
+  - 0.3
   generateRect:
     serializedVersion: 2
     x: -3
@@ -81,5 +73,5 @@ MonoBehaviour:
     height: 4
   maxGenerateCount: 10
   zPosition: -1
-  generateIntervalSec: 1
+  generateIntervalSec: 0.5
   generatedObjects: []

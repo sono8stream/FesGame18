@@ -35,9 +35,6 @@ public class Stand : MonoBehaviour
     {
         saleIntervalCounter = new Counter(saleInterval);
         regenerateCounter = new Counter(regenerateInterval, true);
-<<<<<<< HEAD
-        
-=======
 
         int indexesLength = requiredMaterialIndexes.Length;
         int countsLength = requiredMaterialCounts.Length;
@@ -51,7 +48,6 @@ public class Stand : MonoBehaviour
             requiredMaterialIndexes
                 = requiredMaterialIndexes.Take(countsLength).ToArray();
         }
->>>>>>> 61e31f16a9471b7d406b9c66e863b3e76fda7797
     }
 
     // Update is called once per frame
