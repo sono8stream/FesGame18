@@ -53,6 +53,12 @@ public class CameraZoomer : MonoBehaviour
         int targetsCount = viewTargets.Count;
         for (int i = 1; i < targetsCount; i++)
         {
+            if (viewTargets[i] == null)
+            {
+                viewTargets.RemoveAt(i);
+                i--;
+                continue;
+            }
             Vector2 targetPos = viewTargets[i].position;
             minPos = Vector2.Min(minPos, targetPos);
             maxPos = Vector2.Max(maxPos, targetPos);
