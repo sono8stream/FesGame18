@@ -87,7 +87,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void AddMaterial(int materialIndex, int increment)
     {
-        if (MaterialCounts[materialIndex] > materialLimit) return;
+        if (MaterialCounts[materialIndex] >= materialLimit) return;
 
         MaterialCounts[materialIndex] += increment;
         if (materialsTransform.childCount <= materialIndex) return;
