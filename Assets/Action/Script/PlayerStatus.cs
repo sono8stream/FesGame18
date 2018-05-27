@@ -93,14 +93,20 @@ public class PlayerStatus : MonoBehaviour
         MaterialCounts[materialIndex] += increment;
         if (materialsTransform.childCount <= materialIndex) return;
 
-        Transform t = materialsTransform.GetChild(materialIndex);
-        t.Find("Text").GetComponent<Text>().text
-            = MaterialCounts[materialIndex].ToString();
+        UpdateMaterialText(materialIndex);
     }
 
     public void ReduceMaterial(int materialIndex, int decrement)
     {
         MaterialCounts[materialIndex] -= decrement;
+        UpdateMaterialText(materialIndex);
+    }
+
+    void UpdateMaterialText(int materialIndex)
+    {
+        Transform t = materialsTransform.GetChild(materialIndex);
+        t.Find("Text").GetComponent<Text>().text
+            = MaterialCounts[materialIndex].ToString();
     }
 }
 
