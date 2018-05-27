@@ -102,7 +102,6 @@ public class CameraZoomer : MonoBehaviour
 
     void LapInMaxRect(ref Rect rawRect)//最大範囲内に収める
     {
-        Debug.Log(rawRect);
         if (rawRect.xMin < maxRect.xMin)
         {
             rawRect.x = maxRect.xMin;
