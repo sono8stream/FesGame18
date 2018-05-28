@@ -10,20 +10,28 @@ public class StandManager : MonoBehaviour
 
     [SerializeField]
     GameObject[] materialImageObj;
+    [SerializeField]
+    Sprite[] levelSprites;
+    [SerializeField]
+    Explodable explodable;
 
     private GameObject subjectObj;
-    private SpriteRenderer spriteRenderer;
     private Stand stand;
     private GameObject popupObj;
+    private Transform stateTransform;
+    private Counter levelCounter;
+    private Animator emptyLandAnimator;
 
     // Use this for initialization
     void Start()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         stand = GetComponentInChildren<Stand>();
         stand.gameObject.SetActive(false);
         popupObj = transform.Find("popup").gameObject;
         popupObj.SetActive(false);
+        stateTransform = transform.Find("state");
+        levelCounter = new Counter(levelSprites.Length);
+        emptyLandAnimator = transform.Find("emptyLand").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,6 +40,10 @@ public class StandManager : MonoBehaviour
         if (stand.owner == null)
         {
             isStand = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Q)&&explodable)
+        {
+            explodable.explode();
         }
     }
 
@@ -73,27 +85,57 @@ public class StandManager : MonoBehaviour
 
     public void CreateStand()
     {
-        Instantiate(smokeEffect, transform.position, Quaternion.identity);
+        Instantiate(smokeEffect,
+            transform.position + Vector3.down, Quaternion.identity);
         stand.gameObject.SetActive(true);
         stand.owner = this.owner;
         isStand = true;
         PopupMessage();
         popupObj.GetComponent<Animator>().Play("popup");
         popupObj.SetActive(true);
+        emptyLandAnimator.SetTrigger("Switch");
     }
 
     public void LevelUpStand()
     {
+        if (levelCounter.OnLimit()) return;
+
         if (stand.LevelUp(owner.Status))
         {
-            Instantiate(smokeEffect, transform.position, Quaternion.identity);
-            PopupMessage();
-            popupObj.GetComponent<Animator>().Play("popup");
+            Instantiate(smokeEffect,
+                transform.position + new Vector3(0, -1f, 2f), Quaternion.identity);
+            AddLevelSprite();
+            if (levelCounter.OnLimit())
+            {
+                popupObj.SetActive(false);
+            }
+            else
+            {
+                PopupMessage();
+                popupObj.GetComponent<Animator>().Play("popup");
+            }
         }
+    }
+
+    void AddLevelSprite()
+    {
+        if (levelCounter.OnLimit()) return;
+        Transform t = new GameObject().transform;
+        t.SetParent(stateTransform);
+        SpriteRenderer renderer= t.gameObject.AddComponent<SpriteRenderer>();
+        renderer.sprite = levelSprites[levelCounter.Now];
+        t.localPosition = Vector2.down * levelCounter.Now * 2;
+        t.localScale = Vector3.one;
+        levelCounter.Count();
     }
 
     void PopupMessage()
     {
+        foreach (Transform child in popupObj.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         float currentX = -1.4f;
         float currentY = 0;
         float y = 0.1f;

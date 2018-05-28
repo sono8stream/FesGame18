@@ -161,8 +161,9 @@ public class ImageProcessor : CommandProcessor
         if (fadeStateNo != (int)FadeStateName.FadeIn) return true;
 
         fadeCounter.Count();
-        targetImage.color
-            = Color.white * fadeCounter.Now / fadeCounter.Limit;
+        Color c = targetImage.color;
+        c.a = 1f * fadeCounter.Now / fadeCounter.Limit;
+        targetImage.color = c;
         return fadeCounter.OnLimit();
     }
 
@@ -171,9 +172,9 @@ public class ImageProcessor : CommandProcessor
         if (fadeStateNo != (int)FadeStateName.FadeOut) return true;
 
         fadeCounter.Count();
-        targetImage.color
-            = Color.white * (1 - 1f * fadeCounter.Now / fadeCounter.Limit);
-        Debug.Log("Fade out");
+        Color c = targetImage.color;
+        c.a = 1 - 1f * fadeCounter.Now / fadeCounter.Limit;
+        targetImage.color = c;
         return fadeCounter.OnLimit();
     }
 }

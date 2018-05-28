@@ -40,13 +40,14 @@ public class Player : Reactor {
 		anim = GetComponent<PC2D.AnimaController>();
 		playerController = GetComponent<PlayerController2D>();
 		keyInput = GetComponent<KeyInput>();
-		keyInput.isPlayable = true;
+		keyInput.isPlayable = false;
+        Debug.Log(keyInput.isPlayable);
         Status = GetComponent<PlayerStatus>();
 	}
 	
 	// Update is called once per frame
 	void Update () { 
-		if (stopTime >= 0)
+		/*if (stopTime >= 0)
 		{
 			keyInput.isPlayable = false;
 			stopTime -= Time.deltaTime;           
@@ -55,8 +56,7 @@ public class Player : Reactor {
 		else{
 			keyInput.isPlayable = true;
 			//anim._animator.CrossFade("Idle", 0.05f);
-		}
-
+		}*/
 	}
 
 	public void Damage(SubHitBox subHitBox){

@@ -108,6 +108,7 @@ public class Stand : MonoBehaviour
             if (requiredMaterialIncrements.Length <= i) continue;
             requiredMaterialCounts[i] += requiredMaterialIncrements[i];
         }
+        salesIncrement += salesIncrement;
         return true;
     }
 }
