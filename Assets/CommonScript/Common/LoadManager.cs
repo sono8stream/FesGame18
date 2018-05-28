@@ -65,6 +65,7 @@ public class LoadManager : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         FadeImage.enabled = false;
+        fadeWaiter.Initialize();
     }
 
     bool FadeIn()

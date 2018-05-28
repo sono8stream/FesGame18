@@ -59,13 +59,12 @@ public class BattleFacilitator : MonoBehaviour
 
     void EndGame()
     {
-        timer.Stop();
+        timer.Pause();
         onBattle = false;
         foreach (Player player in players)
         {
             player.keyInput.isPlayable = false;
         }
-        timer.Stop();
         GetComponent<Animator>().SetTrigger("EndTrigger");
         leftTimeText.enabled = false;
         JudgeWinner();

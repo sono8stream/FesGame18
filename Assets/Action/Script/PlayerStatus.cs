@@ -83,7 +83,7 @@ public class PlayerStatus : MonoBehaviour
         if (statusIndex < 0 || MaterialCounts.Length <= statusIndex) return;
 
         TempStatus[statusIndex] = InitStatus[statusIndex];
-        tempStatusTimer[statusIndex].Stop();
+        tempStatusTimer[statusIndex].Pause();
     }
 
     public void AddMaterial(int materialIndex, int increment)

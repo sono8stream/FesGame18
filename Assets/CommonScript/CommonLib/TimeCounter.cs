@@ -37,7 +37,7 @@ public class TimeCounter
         enabled = true;
     }
 
-    public void Stop()
+    public void Pause()
     {
         if (!enabled) return;
         enabled = false;

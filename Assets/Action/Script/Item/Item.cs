@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public abstract class Item : MonoBehaviour
 {
-    int colorId = -1;
+    public int colorID;
+
     int id;
 
     // Use this for initialization
@@ -38,8 +39,8 @@ public abstract class Item : MonoBehaviour
         Debug.Log("entered");
         if (collision.gameObject.tag != "Player") return;
 
-        /*Player player = collision.gameObject.GetComponent<Player>();
-        if (colorId != -1 && colorId != player.id) return;*/
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (colorID != -1 && colorID != player.PlayerID) return;
 
         EffectFire(collision.gameObject.GetComponent<PlayerStatus>());
 

@@ -8,7 +8,7 @@ public class Money : Item
 
     private void Start()
     {
-        value=0;
+        value = 0;
     }
 
     protected override void EffectFire(PlayerStatus playerStatus)
