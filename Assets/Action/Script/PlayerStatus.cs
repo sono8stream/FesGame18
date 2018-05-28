@@ -27,6 +27,7 @@ public class PlayerStatus : MonoBehaviour
     {
         //素材取得数の配列の初期化
         materialNamesLength = EnumHelper.GetTypeLength<MaterialNames>();
+        Debug.Log(materialNamesLength);
         MaterialCounts = new int[materialNamesLength];
         for (int i = 0; i < materialNamesLength; i++)
         {
@@ -92,14 +93,20 @@ public class PlayerStatus : MonoBehaviour
         MaterialCounts[materialIndex] += increment;
         if (materialsTransform.childCount <= materialIndex) return;
 
-        Transform t = materialsTransform.GetChild(materialIndex);
-        t.Find("Text").GetComponent<Text>().text
-            = MaterialCounts[materialIndex].ToString();
+        UpdateMaterialText(materialIndex);
     }
 
     public void ReduceMaterial(int materialIndex, int decrement)
     {
         MaterialCounts[materialIndex] -= decrement;
+        UpdateMaterialText(materialIndex);
+    }
+
+    void UpdateMaterialText(int materialIndex)
+    {
+        Transform t = materialsTransform.GetChild(materialIndex);
+        t.Find("Text").GetComponent<Text>().text
+            = MaterialCounts[materialIndex].ToString();
     }
 }
 

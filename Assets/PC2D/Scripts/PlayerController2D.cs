@@ -68,7 +68,7 @@ public class PlayerController2D : MonoBehaviour
 			{
 				anim._animator.Play("throw");
 			}
-			else if(owner.aroundStand && owner.aroundStand.isStand==false)
+			else if(owner.aroundStand)
 			{
                 if (owner.aroundStand.isStand)
                 {

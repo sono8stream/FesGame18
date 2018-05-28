@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundProcessor : CommandProcessor
 {
-    const int loadLim = 8;
+    const int loadLim = 15;
 
     ResourceLoader resourceLoader;
     SoundPlayer soundPlayer;

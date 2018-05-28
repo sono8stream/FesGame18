@@ -93,7 +93,8 @@ public class Stand : MonoBehaviour
         for (int i = 0; i < requiredMaterialIndexes.Length; i++)
         {
             int index = requiredMaterialIndexes[i];
-            if (playerStatus.MaterialCounts[index] < requiredMaterialCounts[index])
+            Debug.Log(index);
+            if (playerStatus.MaterialCounts[index] < requiredMaterialCounts[i])
             {
                 return false;
             }
@@ -107,6 +108,7 @@ public class Stand : MonoBehaviour
             if (requiredMaterialIncrements.Length <= i) continue;
             requiredMaterialCounts[i] += requiredMaterialIncrements[i];
         }
+        salesIncrement += salesIncrement;
         return true;
     }
 }

@@ -14,9 +14,7 @@ public class ResultStarter : MonoBehaviour
     void Start()
     {
         scoreText.text = string.Format("￥ {0:#,0}", UserData.instance.winnerMoney);
-        SoundPlayer player =
-        GameObject.Find(SoundPlayer.objectName).GetComponent<SoundPlayer>();
-        player.PlayBGM(bgm,2);
+        SoundPlayer.Find().PlayBGM(bgm, 0.5f);
     }
 
     // Update is called once per frame
