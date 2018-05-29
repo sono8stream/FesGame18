@@ -27,7 +27,6 @@ public class PlayerStatus : MonoBehaviour
     {
         //素材取得数の配列の初期化
         materialNamesLength = EnumHelper.GetTypeLength<MaterialNames>();
-        Debug.Log(materialNamesLength);
         MaterialCounts = new int[materialNamesLength];
         for (int i = 0; i < materialNamesLength; i++)
         {
