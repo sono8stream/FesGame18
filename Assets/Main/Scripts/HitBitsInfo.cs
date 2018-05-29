@@ -7,7 +7,7 @@ public class HitBitsInfo : MonoBehaviour {
     public bool myFriend;
     public bool enemy;
     public bool stage;
-    public bool shop;
+    public bool stand;
     public bool item;
     public bool other;
 }

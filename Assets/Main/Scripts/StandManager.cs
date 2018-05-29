@@ -158,5 +158,6 @@ public class StandManager : MonoBehaviour
             currentX += xInterval * 2;
             currentY = 0;
         }
-    }
+    }    
+    
 }

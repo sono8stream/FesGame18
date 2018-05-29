@@ -71,10 +71,11 @@ public class HitBox : MonoBehaviour {
                         }
                     }
                     break;
-                case "Shop":
-                    if (HitBits.shop)
-                    {
+                case "Stand":
+                    if (HitBits.stand)
+                    {						
                         HitedObjects.Add(obj);
+						obj.GetComponent<ResetPieces>().Explosion();
                         return true;
                     }
                     break;

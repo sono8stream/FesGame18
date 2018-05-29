@@ -14,13 +14,7 @@ public class Bomb : PickableItem {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		/*
-		if(owner.keyInput.GetButtonDown(PC2D.Input.ATTACK) && owner){
-			owner.anim._animator.Play("throw");
-		}
-		*/
-
+	void Update () {		
 		if(isFire){
 			lifeTime -= Time.deltaTime;
 			if(lifeTime<=0){
