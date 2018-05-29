@@ -9217,6 +9217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childList: []
   childDefualtPos: []
+  onEndExplosion: 0
 --- !u!114 &178784380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9377,7 +9378,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2e74f71663448445caa1598d38bd1d86, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16451,6 +16452,9 @@ MonoBehaviour:
   levelSprites:
   - {fileID: 21300000, guid: abc68da55fdce214e882b3aca8fa0924, type: 3}
   explodable: {fileID: 0}
+  outlineMaterials:
+  - {fileID: 2100000, guid: 99a1c71e76bcd41c99d2361c02afb877, type: 2}
+  - {fileID: 2100000, guid: 4b4c358d26b844f6a9f3828b3154e918, type: 2}
 --- !u!61 &326667631
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21783,6 +21787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childList: []
   childDefualtPos: []
+  onEndExplosion: 0
 --- !u!95 &440311262
 Animator:
   serializedVersion: 3
@@ -32949,15 +32954,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4558451469260174, guid: 075c2752218b646d1aa834bf0fc6b66e, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4558451469260174, guid: 075c2752218b646d1aa834bf0fc6b66e, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4558451469260174, guid: 075c2752218b646d1aa834bf0fc6b66e, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4558451469260174, guid: 075c2752218b646d1aa834bf0fc6b66e, type: 2}
       propertyPath: m_LocalRotation.w
@@ -34185,6 +34190,18 @@ Prefab:
     - target: {fileID: 114628548405293872, guid: 075c2752218b646d1aa834bf0fc6b66e,
         type: 2}
       propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558451469260174, guid: 075c2752218b646d1aa834bf0fc6b66e, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558451469260174, guid: 075c2752218b646d1aa834bf0fc6b66e, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558451469260174, guid: 075c2752218b646d1aa834bf0fc6b66e, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -42529,6 +42546,9 @@ MonoBehaviour:
   levelSprites:
   - {fileID: 21300000, guid: abc68da55fdce214e882b3aca8fa0924, type: 3}
   explodable: {fileID: 0}
+  outlineMaterials:
+  - {fileID: 2100000, guid: 99a1c71e76bcd41c99d2361c02afb877, type: 2}
+  - {fileID: 2100000, guid: 4b4c358d26b844f6a9f3828b3154e918, type: 2}
 --- !u!61 &893042016
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43025,6 +43045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childList: []
   childDefualtPos: []
+  onEndExplosion: 0
 --- !u!114 &905206179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44039,6 +44060,9 @@ MonoBehaviour:
   levelSprites:
   - {fileID: 21300000, guid: abc68da55fdce214e882b3aca8fa0924, type: 3}
   explodable: {fileID: 0}
+  outlineMaterials:
+  - {fileID: 2100000, guid: 99a1c71e76bcd41c99d2361c02afb877, type: 2}
+  - {fileID: 2100000, guid: 4b4c358d26b844f6a9f3828b3154e918, type: 2}
 --- !u!61 &930660486
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48708,6 +48732,9 @@ MonoBehaviour:
   levelSprites:
   - {fileID: 21300000, guid: abc68da55fdce214e882b3aca8fa0924, type: 3}
   explodable: {fileID: 0}
+  outlineMaterials:
+  - {fileID: 2100000, guid: 99a1c71e76bcd41c99d2361c02afb877, type: 2}
+  - {fileID: 2100000, guid: 4b4c358d26b844f6a9f3828b3154e918, type: 2}
 --- !u!61 &1052957412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53889,6 +53916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childList: []
   childDefualtPos: []
+  onEndExplosion: 0
 --- !u!114 &1178596467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54546,6 +54574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childList: []
   childDefualtPos: []
+  onEndExplosion: 0
 --- !u!114 &1193517865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62408,6 +62437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childList: []
   childDefualtPos: []
+  onEndExplosion: 0
 --- !u!114 &1402417300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65087,6 +65117,9 @@ MonoBehaviour:
   levelSprites:
   - {fileID: 21300000, guid: abc68da55fdce214e882b3aca8fa0924, type: 3}
   explodable: {fileID: 0}
+  outlineMaterials:
+  - {fileID: 2100000, guid: 99a1c71e76bcd41c99d2361c02afb877, type: 2}
+  - {fileID: 2100000, guid: 4b4c358d26b844f6a9f3828b3154e918, type: 2}
 --- !u!61 &1442635930
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -66602,6 +66635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childList: []
   childDefualtPos: []
+  onEndExplosion: 0
 --- !u!114 &1470541927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66860,6 +66894,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 21a5d9f8ef00d1e46a9bc991381f0935, type: 3}
   - {fileID: 21300000, guid: a4222777b34014e449a9043b67a4e56b, type: 3}
   explodable: {fileID: 0}
+  outlineMaterials:
+  - {fileID: 2100000, guid: 99a1c71e76bcd41c99d2361c02afb877, type: 2}
+  - {fileID: 2100000, guid: 4b4c358d26b844f6a9f3828b3154e918, type: 2}
 --- !u!61 &1478391635
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -69127,6 +69164,9 @@ MonoBehaviour:
   levelSprites:
   - {fileID: 21300000, guid: abc68da55fdce214e882b3aca8fa0924, type: 3}
   explodable: {fileID: 0}
+  outlineMaterials:
+  - {fileID: 2100000, guid: 99a1c71e76bcd41c99d2361c02afb877, type: 2}
+  - {fileID: 2100000, guid: 4b4c358d26b844f6a9f3828b3154e918, type: 2}
 --- !u!61 &1531721192
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -73682,6 +73722,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 21a5d9f8ef00d1e46a9bc991381f0935, type: 3}
   - {fileID: 21300000, guid: a4222777b34014e449a9043b67a4e56b, type: 3}
   explodable: {fileID: 1674483403}
+  outlineMaterials:
+  - {fileID: 2100000, guid: 99a1c71e76bcd41c99d2361c02afb877, type: 2}
+  - {fileID: 2100000, guid: 4b4c358d26b844f6a9f3828b3154e918, type: 2}
 --- !u!61 &1646253992
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -82401,6 +82444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childList: []
   childDefualtPos: []
+  onEndExplosion: 0
 --- !u!114 &1881217632
 MonoBehaviour:
   m_ObjectHideFlags: 0

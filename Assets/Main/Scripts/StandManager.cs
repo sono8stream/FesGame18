@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,9 +15,12 @@ public class StandManager : MonoBehaviour
     Sprite[] levelSprites;
     [SerializeField]
     Explodable explodable;
+    [SerializeField]
+    Material[] outlineMaterials;
 
     private GameObject subjectObj;
     private Stand stand;
+    private ResetPieces resetter;
     private GameObject popupObj;
     private Transform stateTransform;
     private Counter levelCounter;
@@ -27,6 +31,7 @@ public class StandManager : MonoBehaviour
     {
         stand = GetComponentInChildren<Stand>();
         stand.gameObject.SetActive(false);
+        resetter = stand.GetComponent<ResetPieces>();
         popupObj = transform.Find("popup").gameObject;
         popupObj.SetActive(false);
         stateTransform = transform.Find("state");
@@ -41,10 +46,15 @@ public class StandManager : MonoBehaviour
         {
             isStand = false;
         }
-        if (Input.GetKeyDown(KeyCode.Q)&&explodable)
+        else if (resetter.onEndExplosion)//リセット処理
+        {
+            ResetLand();
+        }
+
+        /*if (Input.GetKeyDown(KeyCode.Q)&&explodable)
         {
             explodable.explode();
-        }
+        }*/
     }
 
     //Collisionの方はいらない予定
@@ -89,6 +99,8 @@ public class StandManager : MonoBehaviour
             transform.position + Vector3.down, Quaternion.identity);
         stand.gameObject.SetActive(true);
         stand.owner = this.owner;
+        stand.GetComponent<SpriteRenderer>().material
+            = outlineMaterials[owner.PlayerID];
         isStand = true;
         PopupMessage();
         popupObj.GetComponent<Animator>().Play("popup");
@@ -115,6 +127,22 @@ public class StandManager : MonoBehaviour
                 popupObj.GetComponent<Animator>().Play("popup");
             }
         }
+    }
+
+    void ResetLand()
+    {
+        resetter.onEndExplosion = false;
+        stand.ResetLevel();
+        stand.owner = null;
+        stand.gameObject.SetActive(false);
+        resetter.ResetP();
+        popupObj.SetActive(false);
+        foreach(Transform child in stateTransform)
+        {
+            Destroy(child.gameObject);
+        }
+        levelCounter.Initialize();
+        emptyLandAnimator.SetTrigger("Switch");
     }
 
     void AddLevelSprite()
