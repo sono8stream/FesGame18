@@ -8,19 +8,37 @@ public class TitleFacilitator : MonoBehaviour
     BGMinfo bgm;
     [SerializeField]
     float prologueInterval;
+    [SerializeField]
+    Transform startTextTransform;
 
     TimeCounter timer;
+    bool onBattle;
+    Counter transitionCounter;
 
     void Start()
     {
         SoundPlayer.Find().PlayBGM(bgm);
         timer = new TimeCounter(prologueInterval);
         timer.Start();
+        onBattle = false;
+        transitionCounter = new Counter(50);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (onBattle)
+        {
+            transitionCounter.Count();
+            if (transitionCounter.Now == transitionCounter.Limit / 2)
+            {
+                LoadManager.Find().LoadScene(3);
+            }
+            startTextTransform.localScale
+                = Vector3.one * (transitionCounter.Now % 2);
+            return;
+        }
+
         if (timer.OnLimit())
         {
             LoadManager.Find().LoadScene(1);
@@ -28,7 +46,7 @@ public class TitleFacilitator : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            LoadManager.Find().LoadScene(3);
+            onBattle = true;
         }
     }
 }

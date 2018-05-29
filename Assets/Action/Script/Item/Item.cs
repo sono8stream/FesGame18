@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public abstract class Item : MonoBehaviour
 {
-    public int colorID;
+    public int colorID = -1;
 
     int id;
 
@@ -21,7 +21,6 @@ public abstract class Item : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("entered");
         if (collider.gameObject.tag != "Player") return;
 
         /*Player player = collision.gameObject.GetComponent<Player>();

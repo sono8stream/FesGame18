@@ -38,7 +38,6 @@ public class SoundPlayer : MonoBehaviour
     public void PlayBGM(BGMinfo bgm, float delay = 0)
     {
         currentBGM = bgm;
-        Debug.Log(audioSource.clip);
         audioSource.clip = currentBGM.clip;
         audioSource.PlayDelayed(delay);
         interruptBGMpos = 0;
