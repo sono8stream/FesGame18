@@ -26,6 +26,7 @@ public class Stand : MonoBehaviour
     Money currentMoney;
     Counter saleIntervalCounter;
     Counter regenerateCounter;
+    int tempSales;
 
     public Player owner;
 
@@ -47,6 +48,7 @@ public class Stand : MonoBehaviour
             requiredMaterialIndexes
                 = requiredMaterialIndexes.Take(countsLength).ToArray();
         }
+        ResetLevel();
     }
 
     // Update is called once per frame
@@ -62,12 +64,15 @@ public class Stand : MonoBehaviour
         currentMoney.transform.SetParent(transform);
         currentMoney.transform.localPosition = Vector3.zero;
         currentMoney.colorID = owner.PlayerID;
+        currentMoney.GetComponent<SpriteRenderer>().material
+            = GetComponent<SpriteRenderer>().material;
     }
 
     void SaleMoney()
     {
         if (currentMoney == null)
         {
+            Debug.Log("moneyWait");
             if (regenerateCounter.Count())
             {
                 GenerateMoneyObject();
@@ -81,9 +86,9 @@ public class Stand : MonoBehaviour
 
         if (saleIntervalCounter.Count())
         {
-            currentMoney.value += onceSales;
+            currentMoney.value += tempSales;
             currentMoney.transform.localScale
-                = Vector3.one * (1 + currentMoney.value * 0.001f);
+                = Vector3.one * (1 + currentMoney.value * 0.0001f);
             saleIntervalCounter.Initialize();
         }
     }
@@ -108,7 +113,12 @@ public class Stand : MonoBehaviour
             if (requiredMaterialIncrements.Length <= i) continue;
             requiredMaterialCounts[i] += requiredMaterialIncrements[i];
         }
-        salesIncrement += salesIncrement;
+        tempSales += salesIncrement;
         return true;
+    }
+
+    public void ResetLevel()
+    {
+        tempSales = onceSales;
     }
 }
