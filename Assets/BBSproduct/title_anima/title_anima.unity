@@ -987,7 +987,7 @@ PlayableDirector:
   m_GameObject: {fileID: 371124113}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 5859f36e50b1a90419196d86f0f4a83e, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: f9476a5b44f012b42943122b02ec9210, type: 2}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -1001,6 +1001,10 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 114537150034845192, guid: 5859f36e50b1a90419196d86f0f4a83e, type: 2}
     value: {fileID: 1697327380}
+  - key: {fileID: 114924554836954888, guid: f9476a5b44f012b42943122b02ec9210, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 114537150034845192, guid: f9476a5b44f012b42943122b02ec9210, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &371124115
@@ -4780,6 +4784,7 @@ GameObject:
   - component: {fileID: 1697327383}
   - component: {fileID: 1697327382}
   - component: {fileID: 1697327381}
+  - component: {fileID: 1697327391}
   m_Layer: 10
   m_Name: koitan_chara
   m_TagString: Player
@@ -4890,7 +4895,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1697327380}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4990dbf63a354428094c748156449672, type: 3}
   m_Name: 
@@ -4931,7 +4936,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1697327380}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 900cc63ee193640c0a53063e3297f535, type: 3}
   m_Name: 
@@ -4949,7 +4954,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1697327380}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ee1224ee819bd6418867d9a5171806d, type: 3}
   m_Name: 
@@ -4962,7 +4967,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1697327380}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d522286c13b9ff41b33ba3ff16074d5, type: 3}
   m_Name: 
@@ -5102,6 +5107,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1697327391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1697327380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a183c15ef1f804592a722164fd281605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayable: 1
 --- !u!1 &1707961495
 GameObject:
   m_ObjectHideFlags: 0

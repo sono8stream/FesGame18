@@ -4,39 +4,60 @@ using UnityEngine;
 
 public class ResetPieces : MonoBehaviour {
 	[SerializeField]
-	List<Transform> transformList;
+	List<Transform> childList;
 	[SerializeField]
 	List<Vector3> childDefualtPos;
+	public int fadeTime;
+	private bool isExplode;
+	private float tmpTime;
 
 	// Use this for initialization
 	void Start () {
 		foreach (Transform child in transform)
 		{
-			transformList.Add(child);
+			childList.Add(child);
 			childDefualtPos.Add(child.position);
-		}
-
+		}       
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.R)){
-			for (int i = 0; i < transformList.Count;i++){
-				transformList[i].position = childDefualtPos[i];
-				transformList[i].rotation = Quaternion.identity;
-				transformList[i].SetParent(this.transform);
-				transformList[i].gameObject.SetActive(false);
-			}
-			GetComponent<SpriteRenderer>().enabled = true;
-            GetComponent<Collider2D>().enabled = true;
-		}
-		if(Input.GetMouseButtonDown(0)){		
-			GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<Collider2D>().enabled = false;
-			foreach(Transform child in transformList){
-				child.SetParent(null);
-				child.gameObject.SetActive(true);
+		if(isExplode){
+			tmpTime += Time.deltaTime;
+			Debug.Log(tmpTime);
+			if(tmpTime>fadeTime){
+				foreach(Transform child in childList)
+				{
+					child.gameObject.SetActive(false);
+				}
 			}
 		}
 	}
+
+	public void Explosion(){
+		GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        foreach (Transform child in childList)
+        {
+            child.SetParent(null);
+            child.gameObject.SetActive(true);
+        }
+		isExplode = true;
+		tmpTime = 0;
+	}
+
+	public void ResetP()
+	{
+		for (int i = 0; i < childList.Count; i++)
+        {
+            childList[i].position = childDefualtPos[i];
+            childList[i].rotation = Quaternion.identity;
+            childList[i].SetParent(this.transform);
+            childList[i].gameObject.SetActive(false);
+        }
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<Collider2D>().enabled = true;
+		isExplode = false;
+	}
+        
 }
