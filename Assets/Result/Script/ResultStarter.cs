@@ -10,11 +10,19 @@ public class ResultStarter : MonoBehaviour
     [SerializeField]
     BGMinfo bgm;
 
+	[SerializeField]
+	Animator staggerAnimChara;
+	[SerializeField]
+    Animator resultAnimChara;
+
+
     // Use this for initialization
     void Start()
     {
         scoreText.text = string.Format("￥ {0:#,0}", UserData.instance.winnerMoney);
         SoundPlayer.Find().PlayBGM(bgm, 0.5f);
+		staggerAnimChara.Play("stagger");
+		resultAnimChara.Play("result");
     }
 
     // Update is called once per frame
