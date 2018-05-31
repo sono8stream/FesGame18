@@ -35,7 +35,7 @@ public abstract class Item : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("entered");
+        //Debug.Log("entered");
         if (collision.gameObject.tag != "Player") return;
 
         Player player = collision.gameObject.GetComponent<Player>();

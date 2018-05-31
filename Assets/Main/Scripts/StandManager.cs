@@ -26,6 +26,7 @@ public class StandManager : MonoBehaviour
     private Counter levelCounter;
     private Animator emptyLandAnimator;
 
+
     // Use this for initialization
     void Start()
     {
@@ -50,11 +51,6 @@ public class StandManager : MonoBehaviour
         {
             ResetLand();
         }
-
-        /*if (Input.GetKeyDown(KeyCode.Q)&&explodable)
-        {
-            explodable.explode();
-        }*/
     }
 
     //Collisionの方はいらない予定

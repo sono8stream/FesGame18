@@ -36,7 +36,7 @@ public class Player : Reactor {
     public PlayerStatus Status { get; private set; }
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		anim = GetComponent<PC2D.AnimaController>();
 		playerController = GetComponent<PlayerController2D>();
 		keyInput = GetComponent<KeyInput>();
@@ -91,7 +91,6 @@ public class Player : Reactor {
 		while(true){
 			yield return null;
 			if(stopTime<=0){
-				Debug.Log("プレイIDle");
 				//anim._animator.Play("Idle");
 				anim._animator.CrossFade("Idle", 0.1f);
 				//anim._animator.SetTrigger("koutyoku");
