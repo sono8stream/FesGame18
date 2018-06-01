@@ -34,6 +34,7 @@ public class Player : Reactor {
 
 	public KeyInput keyInput;
     public PlayerStatus Status { get; private set; }
+	public GameObject coinPrefab;
 
 	// Use this for initialization
 	void Awake () {
@@ -60,11 +61,21 @@ public class Player : Reactor {
 	}
 
 	public void Damage(SubHitBox subHitBox){
-		if(havingItem)havingItem.ReleaseReaction(this);
-		Vector2 vec = subHitBox.Angle;
-		vec = new Vector2(vec.x * subHitBox.hitBox.owner.anim.muki, vec.y);
-		StartCoroutine(anim.Damage(vec, subHitBox.Hitlag));
-		Koutyoku(subHitBox.stopTime);
+		if(state==Player.State.HUTU){
+			state = State.MUTEKI;
+			//金を落とす
+			GameObject moneyObj = Instantiate(coinPrefab, transform.position + Vector3.up*2.5, Quaternion.identity);
+			Rigidbody2D tmpRb = moneyObj.AddComponent<Rigidbody2D>();
+			tmpRb.AddForce(new Vector2(Random.Range(-100f, 100f), 1000));
+			moneyObj.GetComponent<Money>().value = (int)(Status.money * 0.05f);
+			Status.money = (int)(Status.money * 0.95f);            
+			StartCoroutine(FinishMUTEKI(subHitBox.stopTime * 2));
+    		if(havingItem)havingItem.ReleaseReaction(this);
+    		Vector2 vec = subHitBox.Angle;
+    		vec = new Vector2(vec.x * subHitBox.hitBox.owner.anim.muki, vec.y);
+    		StartCoroutine(anim.Damage(vec, subHitBox.Hitlag));
+    		Koutyoku(subHitBox.stopTime);
+		}
 	}
 
 	public IEnumerator HitStop(float time){
@@ -98,6 +109,11 @@ public class Player : Reactor {
 				break;
 			}
 		}
+	}
+
+	public IEnumerator FinishMUTEKI(float time){
+		yield return new WaitForSeconds(time);
+		state = State.HUTU;
 	}
 
 	public override void DamageReaction(SubHitBox subHitBox)
