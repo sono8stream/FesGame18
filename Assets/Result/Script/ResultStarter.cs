@@ -11,9 +11,9 @@ public class ResultStarter : MonoBehaviour
     BGMinfo bgm;
 
 	[SerializeField]
-	Animator staggerAnimChara;
+	Animator[] staggerAnimCharas;
 	[SerializeField]
-    Animator resultAnimChara;
+    Animator[] resultAnimCharas;
 
 
     // Use this for initialization
@@ -21,8 +21,13 @@ public class ResultStarter : MonoBehaviour
     {
         scoreText.text = string.Format("￥ {0:#,0}", UserData.instance.winnerMoney);
         SoundPlayer.Find().PlayBGM(bgm, 0.5f);
-		staggerAnimChara.Play("stagger");
-		resultAnimChara.Play("result");
+        //int winnerMatID = UserData.instance.winnerIndex - 1;
+        int winnerMatID = 0;
+        int looserMatID = winnerMatID == 0 ? 1 : 0;
+        staggerAnimCharas[looserMatID].Play("stagger");
+        Destroy(staggerAnimCharas[winnerMatID].gameObject);
+        resultAnimCharas[winnerMatID].Play("result");
+        Destroy(resultAnimCharas[looserMatID].gameObject);
     }
 
     // Update is called once per frame

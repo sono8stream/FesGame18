@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Money : Item
 {
-    public int value;
+    public int value = 0;
 
     private void Start()
     {
-        value = 0;
+
     }
 
     protected override void EffectFire(PlayerStatus playerStatus)

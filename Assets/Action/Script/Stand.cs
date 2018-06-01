@@ -27,6 +27,7 @@ public class Stand : MonoBehaviour
     Counter saleIntervalCounter;
     Counter regenerateCounter;
     int tempSales;
+    Material defaultMoneyMaterial;
 
     public Player owner;
 
@@ -49,6 +50,9 @@ public class Stand : MonoBehaviour
                 = requiredMaterialIndexes.Take(countsLength).ToArray();
         }
         ResetLevel();
+        defaultMoneyMaterial
+            = moneyObjectOrigin.GetComponent<SpriteRenderer>().sharedMaterial;
+        Debug.Log(defaultMoneyMaterial);
     }
 
     // Update is called once per frame
@@ -132,6 +136,7 @@ public class Stand : MonoBehaviour
         currentMoney.gameObject.AddComponent<Rigidbody2D>();
         currentMoney.transform.SetParent(null);
         currentMoney.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000);
+        currentMoney.GetComponent<SpriteRenderer>().material = defaultMoneyMaterial;
         Debug.Log("Released");
     }
 }

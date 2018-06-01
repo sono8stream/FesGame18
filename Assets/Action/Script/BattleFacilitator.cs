@@ -25,7 +25,6 @@ public class BattleFacilitator : MonoBehaviour
     {
         leftTimeText.enabled = false;
         timer = new TimeCounter(timerLim);
-        SoundPlayer.Find().PlayBGM(bgm);
         foreach (Player player in players)
         {
             player.playerController.enabled = false;
@@ -56,6 +55,7 @@ public class BattleFacilitator : MonoBehaviour
             player.playerController.enabled = true;
         }
         leftTimeText.enabled = true;
+        SoundPlayer.Find().PlayBGM(bgm);
     }
 
     public void CallResultScene()
