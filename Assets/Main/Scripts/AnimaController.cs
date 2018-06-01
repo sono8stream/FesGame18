@@ -20,8 +20,11 @@ namespace PC2D
         private bool _currentFacingLeft;
         private Vector3 defaultScale;
 		public int muki = 1;
-		public GameObject effect;
-		public Transform asimoto;        
+		public GameObject jumpEffectPrefab;
+		public GameObject landingEffectPrefab;
+		public Transform asimoto;
+
+		PlatformerMotor2D.MotorState state = PlatformerMotor2D.MotorState.Jumping;
 
         // Use this for initialization
         void Start()
@@ -124,6 +127,9 @@ namespace PC2D
 
             //ジャンプエフェクト
 			JumpEffect();
+			//着地エフェクト
+			LandingEffect();
+			state = _motor.motorState;
         }
 
         //攻撃
@@ -153,12 +159,15 @@ namespace PC2D
         }
 
         //波紋       
-		PlatformerMotor2D.MotorState state=PlatformerMotor2D.MotorState.Jumping;
 		private void JumpEffect(){
 			if (state != PlatformerMotor2D.MotorState.Jumping && _motor.motorState == PlatformerMotor2D.MotorState.Jumping){
-				Instantiate(effect, asimoto.position, Quaternion.identity);	
+				Instantiate(jumpEffectPrefab, asimoto.position, Quaternion.identity);	
 			}
-			state = _motor.motorState;
+		}
+		private void LandingEffect(){
+			if(state != PlatformerMotor2D.MotorState.OnGround && _motor.motorState == PlatformerMotor2D.MotorState.OnGround){
+				Instantiate(landingEffectPrefab, asimoto.position, Quaternion.identity);
+			}
 		}
     }
 }

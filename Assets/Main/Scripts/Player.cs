@@ -60,6 +60,7 @@ public class Player : Reactor {
 	}
 
 	public void Damage(SubHitBox subHitBox){
+		if(havingItem)havingItem.ReleaseReaction(this);
 		Vector2 vec = subHitBox.Angle;
 		vec = new Vector2(vec.x * subHitBox.hitBox.owner.anim.muki, vec.y);
 		StartCoroutine(anim.Damage(vec, subHitBox.Hitlag));
@@ -104,4 +105,5 @@ public class Player : Reactor {
 	{
 		throw new System.NotImplementedException();
 	}
+    
 }

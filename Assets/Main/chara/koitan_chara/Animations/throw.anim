@@ -1688,7 +1688,16 @@ AnimationClip:
     path: IK/bangs2
   m_ScaleCurves: []
   m_FloatCurves: []
-  m_PPtrCurves: []
+  m_PPtrCurves:
+  - curve:
+    - time: 0
+      value: {fileID: 0}
+    - time: 0.23333333
+      value: {fileID: 8300000, guid: b6822b92db88e44cd9e626156875e6c9, type: 3}
+    attribute: sound
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: 04ceabd6fd1ec42c99e08b10be19092e, type: 3}
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -1998,6 +2007,13 @@ AnimationClip:
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
+      path: 0
+      attribute: 4170105732
+      script: {fileID: 11500000, guid: 04ceabd6fd1ec42c99e08b10be19092e, type: 3}
+      typeID: 114
+      customType: 0
+      isPPtrCurve: 1
+    - serializedVersion: 2
       path: 2128849199
       attribute: 1
       script: {fileID: 0}
@@ -2018,7 +2034,9 @@ AnimationClip:
       typeID: 4
       customType: 4
       isPPtrCurve: 0
-    pptrCurveMapping: []
+    pptrCurveMapping:
+    - {fileID: 0}
+    - {fileID: 8300000, guid: b6822b92db88e44cd9e626156875e6c9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -8534,6 +8552,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.25
     functionName: ThrowItem
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.25
+    functionName: PlaySound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -34,5 +34,6 @@ public abstract class PickableItem : MonoBehaviour {
     
 
 	public abstract void PickUpReaction(Player owner);
+	public abstract void ReleaseReaction(Player owner);
 	public abstract void ThrowReaction();
 }

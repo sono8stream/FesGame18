@@ -50,12 +50,14 @@ public class HitBox : MonoBehaviour {
                     Player opponent = obj.GetComponent<Player>();
                     if(HitBits.mySelf){
                         if(opponent.PlayerID == owner.PlayerID){
+							opponent.Damage(subHitBox); 
                             HitedObjects.Add(obj);
                             return true;
                         }
                     }
                     if(HitBits.myFriend){
                         if(opponent.PlayerID != owner.PlayerID && opponent.teamColor == owner.teamColor){
+							opponent.Damage(subHitBox); 
                             HitedObjects.Add(obj);
                             return true;
                         }

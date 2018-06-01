@@ -35,7 +35,15 @@ public class Bomb : PickableItem {
         GetComponent<Rigidbody2D>().simulated = false;
 	}
 
-	public void Explosion(){
+	public override void ReleaseReaction(Player owner)
+	{
+		this.owner = null;
+		this.transform.SetParent(null);
+		owner.havingItem = null;
+		GetComponent<Rigidbody2D>().simulated=true;
+	}
+
+	public void Explosion(){		
 		GameObject tmpObj = Instantiate(explosionEffect, transform.position, Quaternion.identity);
 		tmpObj.GetComponent<Attacker>().player = this.owner;
 		tmpObj.GetComponent<HitBox>().owner = this.owner;
