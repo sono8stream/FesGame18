@@ -14,6 +14,8 @@ public class BattleFacilitator : MonoBehaviour
     Player[] players;
     [SerializeField]
     BGMinfo bgm;
+    [SerializeField]
+    AudioClip startSE, stopSE;
 
     TimeCounter timer;
     bool onBattle;
@@ -24,6 +26,10 @@ public class BattleFacilitator : MonoBehaviour
         leftTimeText.enabled = false;
         timer = new TimeCounter(timerLim);
         SoundPlayer.Find().PlayBGM(bgm);
+        foreach (Player player in players)
+        {
+            player.playerController.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -47,7 +53,7 @@ public class BattleFacilitator : MonoBehaviour
         onBattle = true;
         foreach (Player player in players)
         {
-            player.keyInput.isPlayable = true;
+            player.playerController.enabled = true;
         }
         leftTimeText.enabled = true;
     }
@@ -55,6 +61,11 @@ public class BattleFacilitator : MonoBehaviour
     public void CallResultScene()
     {
         LoadManager.Find().LoadScene(4, 1.5f);
+    }
+
+    public void PlayStartSE()
+    {
+        SoundPlayer.Find().PlaySE(startSE);
     }
 
     void EndGame()
@@ -68,7 +79,9 @@ public class BattleFacilitator : MonoBehaviour
         GetComponent<Animator>().SetTrigger("EndTrigger");
         leftTimeText.enabled = false;
         JudgeWinner();
-        SoundPlayer.Find().StopBGM();
+        SoundPlayer s = SoundPlayer.Find();
+        s.StopBGM();
+        s.PlaySE(stopSE);
     }
 
     void JudgeWinner()

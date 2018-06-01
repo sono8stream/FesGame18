@@ -24,7 +24,6 @@ public class TimeCounter
         if (Now >= Limit)
         {
             enabled = false;
-            Debug.Log("OnEnd");
             return true;
         }
         return false;

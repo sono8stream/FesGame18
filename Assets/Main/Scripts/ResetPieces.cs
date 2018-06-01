@@ -14,6 +14,7 @@ public class ResetPieces : MonoBehaviour
     public bool onEndExplosion;
     private bool isExplode;
     private float tmpTime;
+    private Stand stand;
 
     // Use this for initialization
     void Start()
@@ -23,6 +24,8 @@ public class ResetPieces : MonoBehaviour
             childList.Add(child);
             childDefualtPos.Add(child.position);
         }
+
+        stand = GetComponent<Stand>();
     }
 
     // Update is called once per frame
@@ -31,7 +34,7 @@ public class ResetPieces : MonoBehaviour
         if (isExplode)
         {
             tmpTime += Time.deltaTime;
-            Debug.Log(tmpTime);
+            //Debug.Log(tmpTime);
             if (tmpTime > fadeTime)
             {
                 foreach (Transform child in childList)
@@ -55,6 +58,7 @@ public class ResetPieces : MonoBehaviour
         }
         isExplode = true;
         tmpTime = 0;
+        stand.ReleaseMoney();
     }
 
     public void ResetP()

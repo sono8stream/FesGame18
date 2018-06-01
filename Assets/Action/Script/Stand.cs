@@ -64,6 +64,7 @@ public class Stand : MonoBehaviour
         currentMoney.transform.SetParent(transform);
         currentMoney.transform.localPosition = Vector3.zero;
         currentMoney.colorID = owner.PlayerID;
+        currentMoney.value = 0;
         currentMoney.GetComponent<SpriteRenderer>().material
             = GetComponent<SpriteRenderer>().material;
     }
@@ -120,5 +121,17 @@ public class Stand : MonoBehaviour
     public void ResetLevel()
     {
         tempSales = onceSales;
+    }
+
+    public void ReleaseMoney()
+    {
+        if (!currentMoney) return;
+        /*currentMoney.GetComponent<SpriteRenderer>().material
+            = Resources.GetBuiltinResource<Material>("Sprites-Default.mat");*/
+        currentMoney.colorID = -1;
+        currentMoney.gameObject.AddComponent<Rigidbody2D>();
+        currentMoney.transform.SetParent(null);
+        currentMoney.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000);
+        Debug.Log("Released");
     }
 }
