@@ -64,7 +64,7 @@ public class Player : Reactor {
 		if(state==Player.State.HUTU){
 			state = State.MUTEKI;
 			//金を落とす
-			GameObject moneyObj = Instantiate(coinPrefab, transform.position + Vector3.up*2.5, Quaternion.identity);
+			GameObject moneyObj = Instantiate(coinPrefab, transform.position + Vector3.up * 2.5f, Quaternion.identity);
 			Rigidbody2D tmpRb = moneyObj.AddComponent<Rigidbody2D>();
 			tmpRb.AddForce(new Vector2(Random.Range(-100f, 100f), 1000));
 			moneyObj.GetComponent<Money>().value = (int)(Status.money * 0.05f);
