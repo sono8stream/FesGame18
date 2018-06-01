@@ -66,7 +66,7 @@ public class Player : Reactor {
 			//金を落とす
 			GameObject moneyObj = Instantiate(coinPrefab, transform.position + Vector3.up * 2.5f, Quaternion.identity);
 			Rigidbody2D tmpRb = moneyObj.AddComponent<Rigidbody2D>();
-			tmpRb.AddForce(new Vector2(Random.Range(-100f, 100f), 1000));
+			tmpRb.AddForce(new Vector2(Random.Range(-300f, 300f), 600f));
 			moneyObj.GetComponent<Money>().value = (int)(Status.money * 0.05f);
 			Status.money = (int)(Status.money * 0.95f);            
 			StartCoroutine(FinishMUTEKI(subHitBox.stopTime * 2));
