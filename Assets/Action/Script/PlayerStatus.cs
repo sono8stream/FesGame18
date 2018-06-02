@@ -38,7 +38,7 @@ public class PlayerStatus : MonoBehaviour
         statusLength = EnumHelper.GetTypeLength<StatusNames>();
         InitStatus = new float[statusLength];
         InitStatus[(int)StatusNames.speed] = 0.05f;
-        InitStatus[(int)StatusNames.jumpLims] = 1;
+        InitStatus[(int)StatusNames.airJumpLims] = 0;
         InitStatus[(int)StatusNames.hp] = 100;
 
         TempStatus = new float[statusLength];
@@ -111,7 +111,7 @@ public class PlayerStatus : MonoBehaviour
 
 public enum StatusNames
 {
-    speed = 0, jumpLims, hp
+    speed = 0, airJumpLims, hp
 }
 
 public enum MaterialNames

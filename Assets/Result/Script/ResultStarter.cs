@@ -20,7 +20,7 @@ public class ResultStarter : MonoBehaviour
     Animator[] resultAnimCharas;
 
     Counter counter;
-    bool onTransition;
+    bool toNextTransition, onRetryTransition;
 
     // Use this for initialization
     void Start()
@@ -42,16 +42,26 @@ public class ResultStarter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (onTransition && counter.Count())
+        if (toNextTransition||onRetryTransition)
         {
-            LoadManager.Find().LoadScene(5);
-            counter.Initialize();
+            if (counter.Count())
+            {
+                //LoadManager.Find().LoadScene(5);
+                int sceneIndex = toNextTransition ? 0 : 3;
+                LoadManager.Find().LoadScene(sceneIndex);
+                counter.Initialize();
+            }
+            return;
         }
-
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            onTransition = true;
+            toNextTransition = true;
+            SoundPlayer.Find().PlaySE(enterSE);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            onRetryTransition = true;
             SoundPlayer.Find().PlaySE(enterSE);
         }
     }

@@ -89,12 +89,13 @@ public class StandManager : MonoBehaviour
         }
     }
 
-    public void CreateStand()
+    public void CreateStand(Player player)
     {
         Instantiate(smokeEffect,
             transform.position + Vector3.down, Quaternion.identity);
         stand.gameObject.SetActive(true);
-        stand.owner = this.owner;
+        this.owner = player;
+        stand.owner = player;
         stand.GetComponent<SpriteRenderer>().material
             = outlineMaterials[owner.PlayerID];
         isStand = true;

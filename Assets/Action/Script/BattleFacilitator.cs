@@ -45,6 +45,12 @@ public class BattleFacilitator : MonoBehaviour
         {
             EndGame();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            StopGame();
+            LoadManager.Find().LoadScene(0);
+        }
     }
 
     public void StartBattle()
@@ -69,7 +75,7 @@ public class BattleFacilitator : MonoBehaviour
         SoundPlayer.Find().PlaySE(startSE);
     }
 
-    void EndGame()
+    void StopGame()
     {
         timer.Pause();
         onBattle = false;
@@ -77,6 +83,11 @@ public class BattleFacilitator : MonoBehaviour
         {
             player.keyInput.isPlayable = false;
         }
+    }
+
+    void EndGame()
+    {
+        StopGame();
         GetComponent<Animator>().SetTrigger("EndTrigger");
         leftTimeText.enabled = false;
         JudgeWinner();

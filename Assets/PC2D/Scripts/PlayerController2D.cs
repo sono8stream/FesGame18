@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlatformerMotor2D))]
 public class PlayerController2D : MonoBehaviour
 {
-    private PlatformerMotor2D _motor;
+    public PlatformerMotor2D _motor;
     public PC2D.AnimaController anim;
 	private KeyInput keyInput;
 	private Player owner;       
@@ -76,7 +76,7 @@ public class PlayerController2D : MonoBehaviour
                 }
                 else
                 {
-                    owner.aroundStand.CreateStand();
+                    owner.aroundStand.CreateStand(owner);
                 }
 			}
 			else

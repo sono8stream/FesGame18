@@ -45,38 +45,50 @@ public class Player : Reactor {
         Debug.Log(keyInput.isPlayable);
         Status = GetComponent<PlayerStatus>();
 	}
-	
-	// Update is called once per frame
-	void Update () { 
-		if (stopTime >= 0)
-		{
-			keyInput.isPlayable = false;
-			stopTime -= Time.deltaTime;           
-			//anim._animator.Play("Idle");
-		}
-		else{
-			keyInput.isPlayable = true;
-			//anim._animator.CrossFade("Idle", 0.05f);
-		}        
-	}
 
-	public void Damage(SubHitBox subHitBox){
-		if(state==Player.State.HUTU){
-			state = State.MUTEKI;
-			//金を落とす
-			GameObject moneyObj = Instantiate(coinPrefab, transform.position + Vector3.up * 2.5f, Quaternion.identity);
-			Rigidbody2D tmpRb = moneyObj.AddComponent<Rigidbody2D>();
-			tmpRb.AddForce(new Vector2(Random.Range(-300f, 300f), 600f));
-			moneyObj.GetComponent<Money>().value = (int)(Status.money * 0.05f);
-			Status.money = (int)(Status.money * 0.95f);            
-			StartCoroutine(FinishMUTEKI(subHitBox.stopTime * 2));
-    		if(havingItem)havingItem.ReleaseReaction(this);
-    		Vector2 vec = subHitBox.Angle;
-    		vec = new Vector2(vec.x * subHitBox.hitBox.owner.anim.muki, vec.y);
-    		StartCoroutine(anim.Damage(vec, subHitBox.Hitlag));
-    		Koutyoku(subHitBox.stopTime);
-		}
-	}
+    // Update is called once per frame
+    void Update()
+    {
+        if (stopTime >= 0)
+        {
+            keyInput.isPlayable = false;
+            stopTime -= Time.deltaTime;
+            //anim._animator.Play("Idle");
+        }
+        else
+        {
+            keyInput.isPlayable = true;
+            //anim._animator.CrossFade("Idle", 0.05f);
+        }
+
+        playerController._motor.numOfAirJumps
+            = (int)Status.TempStatus[(int)StatusNames.airJumpLims];
+    }
+
+    public void Damage(SubHitBox subHitBox)
+    {
+        if (state == Player.State.HUTU)
+        {
+            state = State.MUTEKI;
+            //金を落とす
+            if (Status.money > 0)
+            {
+                GameObject moneyObj = Instantiate(
+                    coinPrefab, transform.position + Vector3.up * 2.5f, Quaternion.identity);
+                Rigidbody2D tmpRb = moneyObj.AddComponent<Rigidbody2D>();
+                float reduceRatio = 0.1f;
+                tmpRb.AddForce(new Vector2(Random.Range(-300f, 300f), 600f));
+                moneyObj.GetComponent<Money>().value = (int)(Status.money * reduceRatio);
+                Status.money = (int)(Status.money * (1 - reduceRatio));
+                StartCoroutine(FinishMUTEKI(subHitBox.stopTime * 2));
+            }
+            if (havingItem) havingItem.ReleaseReaction(this);
+            Vector2 vec = subHitBox.Angle;
+            vec = new Vector2(vec.x * subHitBox.hitBox.owner.anim.muki, vec.y);
+            StartCoroutine(anim.Damage(vec, subHitBox.Hitlag));
+            Koutyoku(subHitBox.stopTime);
+        }
+    }
 
 	public IEnumerator HitStop(float time){
 		anim._animator.speed = 0f;
