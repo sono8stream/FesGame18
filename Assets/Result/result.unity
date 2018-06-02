@@ -1863,6 +1863,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 99a1c71e76bcd41c99d2361c02afb877, type: 2}
+    - target: {fileID: 1909144347499920, guid: 075c2752218b646d1aa834bf0fc6b66e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 075c2752218b646d1aa834bf0fc6b66e, type: 2}
   m_IsPrefabParent: 0
@@ -5144,10 +5148,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 765966281}
+  winnerText: {fileID: 991579130}
   bgm:
     clip: {fileID: 8300000, guid: c71838d288496ac469eb6ca6e39862a0, type: 3}
     loopBeginSec: 0
     loopEndSec: 0
+  enterSE: {fileID: 8300000, guid: 9df4db89eaba389469eba5694a07576b, type: 3}
   staggerAnimCharas:
   - {fileID: 356399274}
   - {fileID: 2134464089}
@@ -8375,6 +8381,10 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1909144347499920, guid: 075c2752218b646d1aa834bf0fc6b66e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 075c2752218b646d1aa834bf0fc6b66e, type: 2}

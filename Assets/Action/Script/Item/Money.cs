@@ -5,6 +5,8 @@ using UnityEngine;
 public class Money : Item
 {
     public int value = 0;
+    [SerializeField]
+    AudioClip getSE;
 
     private void Start()
     {
@@ -14,5 +16,6 @@ public class Money : Item
     protected override void EffectFire(PlayerStatus playerStatus)
     {
         playerStatus.money += value;
+        SoundPlayer.Find().PlaySE(getSE);
     }
 }

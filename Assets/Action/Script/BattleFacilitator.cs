@@ -29,6 +29,7 @@ public class BattleFacilitator : MonoBehaviour
         {
             player.playerController.enabled = false;
         }
+        SoundPlayer.Find().StopBGM();
     }
 
     // Update is called once per frame
@@ -38,7 +39,7 @@ public class BattleFacilitator : MonoBehaviour
 
         float leftSec = timerLim - timer.Now;
         leftTimeText.text = string.Format("{0:00} : {1:00.00}",
-            leftSec / 60, leftSec - (int)(leftSec / 60) * 60);
+            Mathf.FloorToInt(leftSec / 60), leftSec - (int)(leftSec / 60) * 60);
 
         if (timer.OnLimit())
         {

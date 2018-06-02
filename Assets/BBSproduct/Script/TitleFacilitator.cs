@@ -7,6 +7,8 @@ public class TitleFacilitator : MonoBehaviour
     [SerializeField]
     BGMinfo bgm;
     [SerializeField]
+    AudioClip enterSE;
+    [SerializeField]
     float prologueInterval;
     [SerializeField]
     Transform startTextTransform;
@@ -47,6 +49,7 @@ public class TitleFacilitator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             onBattle = true;
+            SoundPlayer.Find().PlaySE(enterSE);
         }
     }
 }
