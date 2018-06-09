@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50210929195627540}
   - component: {fileID: 58031483467478802}
   - component: {fileID: 114567511320965504}
+  - component: {fileID: 58086373233335132}
   m_Layer: 0
   m_Name: bakudan
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1070111010529910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.64, y: 5.47, z: 0}
+  m_LocalPosition: {x: -3.1717749, y: -9.581579, z: 0}
   m_LocalScale: {x: 0.25482225, y: 0.25482225, z: 0.25482225}
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,6 +79,21 @@ CircleCollider2D:
   m_Offset: {x: -0.59016085, y: -0.45526782}
   serializedVersion: 2
   m_Radius: 2.2207415
+--- !u!58 &58086373233335132
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070111010529910}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.58222616, y: -0.47796038}
+  serializedVersion: 2
+  m_Radius: 5.63
 --- !u!114 &114567511320965504
 MonoBehaviour:
   m_ObjectHideFlags: 1

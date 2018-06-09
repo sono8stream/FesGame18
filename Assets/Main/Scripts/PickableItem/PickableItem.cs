@@ -31,7 +31,21 @@ public abstract class PickableItem : MonoBehaviour {
         }
 	}
 
-    
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+		if(collision.gameObject.tag == "Player")
+		{
+			collision.GetComponent<Player>().aroundItem = this;
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "Player")
+        {
+            collision.GetComponent<Player>().aroundItem = null;
+        }
+	}
 
 	public abstract void PickUpReaction(Player owner);
 	public abstract void ReleaseReaction(Player owner);
