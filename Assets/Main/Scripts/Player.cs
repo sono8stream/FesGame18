@@ -6,18 +6,7 @@ using UnityEngine;
 public class Player : Reactor {
     public float HP;
     public int PlayerID;
-    public enum State
-    {
-        HUTU,
-        MUTEKI
-    }
     public State state;
-    public enum TeamColor{
-        RED,
-        BLUE,
-        YELLOW,
-        GREEN
-    }
     public TeamColor teamColor;
 
 	public PC2D.AnimaController anim;
@@ -35,6 +24,7 @@ public class Player : Reactor {
 	public KeyInput keyInput;
     public PlayerStatus Status { get; private set; }
 	public GameObject coinPrefab;
+    public Counter disableCounter;
 
 	// Use this for initialization
 	void Awake () {
@@ -53,12 +43,10 @@ public class Player : Reactor {
         {
             keyInput.isPlayable = false;
             stopTime -= Time.deltaTime;
-            //anim._animator.Play("Idle");
         }
         else
         {
             keyInput.isPlayable = true;
-            //anim._animator.CrossFade("Idle", 0.05f);
         }
 
         playerController._motor.numOfAirJumps
@@ -67,27 +55,30 @@ public class Player : Reactor {
 
     public void Damage(SubHitBox subHitBox)
     {
-        if (state == Player.State.HUTU)
-        {
-            state = State.MUTEKI;
-            //金を落とす
-            if (Status.money > 0)
-            {
-                GameObject moneyObj = Instantiate(
-                    coinPrefab, transform.position + Vector3.up * 2.5f, Quaternion.identity);
-                Rigidbody2D tmpRb = moneyObj.AddComponent<Rigidbody2D>();
-                float reduceRatio = 0.1f;
-                tmpRb.AddForce(new Vector2(Random.Range(-300f, 300f), 600f));
-                moneyObj.GetComponent<Money>().value = (int)(Status.money * reduceRatio);
-                Status.money = (int)(Status.money * (1 - reduceRatio));
-                StartCoroutine(FinishMUTEKI(subHitBox.stopTime * 2));
-            }
-            if (havingItem) havingItem.ReleaseReaction(this);
-            Vector2 vec = subHitBox.Angle;
-            vec = new Vector2(vec.x * subHitBox.hitBox.owner.anim.muki, vec.y);
-            StartCoroutine(anim.Damage(vec, subHitBox.Hitlag));
-            Koutyoku(subHitBox.stopTime);
-        }
+        if (state != State.HUTU) return;
+
+        state = State.MUTEKI;
+        //金を落とす
+        LoseMoney(subHitBox.stopTime * 2);
+        if (havingItem) havingItem.ReleaseReaction(this);
+        Vector2 vec = subHitBox.Angle;
+        vec = new Vector2(vec.x * subHitBox.hitBox.owner.anim.muki, vec.y);
+        StartCoroutine(anim.Damage(vec, subHitBox.Hitlag));
+        Koutyoku(subHitBox.stopTime);
+    }
+
+    private void LoseMoney(float time)
+    {
+        float loseRatio = 0.1f;
+        if (Status.money <= 0) return;
+
+        GameObject moneyObj = Instantiate(
+            coinPrefab, transform.position + Vector3.up * 2.5f, Quaternion.identity);
+        Rigidbody2D tmpRb = moneyObj.AddComponent<Rigidbody2D>();
+        tmpRb.AddForce(new Vector2(Random.Range(-300f, 300f), 600f));
+        moneyObj.GetComponent<Money>().value = (int)(Status.money * loseRatio);
+        Status.money = (int)(Status.money * (1 - loseRatio));
+        StartCoroutine(FinishMUTEKI(time));
     }
 
 	public IEnumerator HitStop(float time){
@@ -101,36 +92,42 @@ public class Player : Reactor {
 		StartCoroutine(Kaizyo());
 	}
 
-    /*
-	public void InisiateAttack(){
-		GameObject tmpObj = Instantiate(instantiateMissile.bullet,instantiateMissile.transform.position,instantiateMissile.bullet.transform.rotation);
-		Vector2 vec = instantiateMissile.speed;
-		vec = new Vector2(vec.x * anim.muki, vec.y);
-		tmpObj.GetComponent<Rigidbody2D>().velocity = vec;
-		tmpObj.GetComponent<HitBox>().player = this;
-	}
-	*/
+    public IEnumerator Kaizyo()
+    {
+        while (true)
+        {
+            yield return null;
+            if (stopTime <= 0)
+            {
+                anim._animator.CrossFade("Idle", 0.1f);
+                break;
+            }
+        }
+    }
 
-	public IEnumerator Kaizyo(){
-		while(true){
-			yield return null;
-			if(stopTime<=0){
-				//anim._animator.Play("Idle");
-				anim._animator.CrossFade("Idle", 0.1f);
-				//anim._animator.SetTrigger("koutyoku");
-				break;
-			}
-		}
-	}
-
-	public IEnumerator FinishMUTEKI(float time){
-		yield return new WaitForSeconds(time);
-		state = State.HUTU;
-	}
+    public IEnumerator FinishMUTEKI(float time)
+    {
+        yield return new WaitForSeconds(time);
+        state = State.HUTU;
+    }
 
 	public override void DamageReaction(SubHitBox subHitBox)
 	{
 		throw new System.NotImplementedException();
 	}
     
+}
+
+public enum State
+{
+    HUTU,
+    MUTEKI
+}
+
+public enum TeamColor
+{
+    RED,
+    BLUE,
+    YELLOW,
+    GREEN
 }

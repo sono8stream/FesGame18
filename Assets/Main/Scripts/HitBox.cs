@@ -14,7 +14,6 @@ public class HitBox : MonoBehaviour {
 	{
 		HitBits = GetComponent<HitBitsInfo>();
 		attacker = GetComponent<Attacker>();
-		owner = attacker.player;     
 	}
 
 	void Start()
@@ -23,50 +22,57 @@ public class HitBox : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
 
     }
-    
 
-	public void OnHit(Collision2D collision,SubHitBox subHitBox){
-		foreach (ContactPoint2D contact in collision.contacts)
-        {			
-			if (CheckHitBit(contact.collider.gameObject,subHitBox))
+    public void OnHit(Collision2D collision, SubHitBox subHitBox)
+    {
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            if (CheckHitBit(contact.collider.gameObject, subHitBox))
             {
-				attacker.HitReaction(contact, subHitBox);            
+                attacker.HitReaction(contact, subHitBox);
             }
         }
-	}
+    }
 
     //当たる対象かチェック
 	private bool CheckHitBit(GameObject obj,SubHitBox subHitBox){
         //一度当たったものには当たらない
-        if(HitedObjects.Contains(obj)==false){
+        if(!HitedObjects.Contains(obj)){
             string s = obj.tag;
             switch (s)
             {
                 //プレイヤー
                 case "Player":
                     Player opponent = obj.GetComponent<Player>();
-                    if(HitBits.mySelf){
-                        if(opponent.PlayerID == owner.PlayerID){
-							opponent.Damage(subHitBox); 
+                    if (!opponent) break;
+                    Debug.Log(owner.teamColor);
+
+                    if (HitBits.mySelf)
+                    {
+                        if (opponent.PlayerID == owner.PlayerID)
+                        {
+                            opponent.Damage(subHitBox);
                             HitedObjects.Add(obj);
                             return true;
                         }
                     }
-                    if(HitBits.myFriend){
-                        if(opponent.PlayerID != owner.PlayerID && opponent.teamColor == owner.teamColor){
-							opponent.Damage(subHitBox); 
+                    if (HitBits.myFriend)
+                    {
+                        if (opponent.teamColor == owner.teamColor)
+                        {
+                            opponent.Damage(subHitBox);
                             HitedObjects.Add(obj);
                             return true;
                         }
                     }
                     if (HitBits.enemy)
                     {
-                        if (opponent.PlayerID != owner.PlayerID && opponent.teamColor != owner.teamColor)
+                        if (opponent.teamColor != owner.teamColor)
                         {
-                            //StartCoroutine(player.HitStop(Hitlag));                           
 							opponent.Damage(subHitBox);                         
                             HitedObjects.Add(obj);                   
                             return true;
@@ -105,6 +111,5 @@ public class HitBox : MonoBehaviour {
     //アニメーション終了時に当たったものリストをリセット
     public void ResetList(){
         HitedObjects.Clear();
-    }
-    
+    }    
 }
