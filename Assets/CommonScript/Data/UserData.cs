@@ -10,6 +10,7 @@ public class UserData
 
     public KeySet[] playersKeySet;
     public WeaponSet[] playersWeapon;
+    public int selectedStageNo;
     public int winnerIndex;
     public int winnerMoney;
     public Dictionary<string, int> variableDict;//消さない
@@ -26,6 +27,7 @@ public class UserData
 
         playersWeapon = new WeaponSet[playerCount] {
             new WeaponSet(), new WeaponSet() };
+        selectedStageNo = 0;
 
         variableDict = SaveManager.LoadVariableDict();
     }
