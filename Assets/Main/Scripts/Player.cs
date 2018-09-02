@@ -31,7 +31,7 @@ public class Player : Reactor {
 		anim = GetComponent<PC2D.AnimaController>();
 		playerController = GetComponent<PlayerController2D>();
 		keyInput = GetComponent<KeyInput>();
-		keyInput.isPlayable = false;
+		keyInput.isPlayable = true;
         Debug.Log(keyInput.isPlayable);
         Status = GetComponent<PlayerStatus>();
 	}
@@ -51,6 +51,7 @@ public class Player : Reactor {
         //お金を落とす
         LoseMoney();
         if (havingItem) havingItem.ReleaseReaction(this);
+
         Vector2 vec = subHitBox.Angle;
         vec = new Vector2(vec.x * subHitBox.hitBox.owner.anim.muki, vec.y);
         StartCoroutine(anim.Damage(vec, subHitBox.Hitlag));
@@ -80,7 +81,14 @@ public class Player : Reactor {
 	IEnumerator Koutyoku(float time)
     {
         keyInput.isPlayable = false;
-        yield return new WaitForSeconds(time);
+        float prevTime = Time.fixedTime;
+        while (time > 0)
+        {
+            yield return null;
+            time = ShortenRigor(time);
+            time -= Time.fixedTime - prevTime;
+            prevTime = Time.fixedTime;
+        }
         keyInput.isPlayable = true;
         anim._animator.CrossFade("Idle", 0.1f);
 	}
@@ -95,6 +103,15 @@ public class Player : Reactor {
 	{
 		throw new System.NotImplementedException();
 	}
+
+    float ShortenRigor(float remainTime)
+    {
+        if (Input.anyKeyDown)
+        {
+            remainTime -= 0.05f;
+        }
+        return remainTime;
+    }
 }
 
 public enum State

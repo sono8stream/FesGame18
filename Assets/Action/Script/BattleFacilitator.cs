@@ -60,6 +60,7 @@ public class BattleFacilitator : MonoBehaviour
         foreach (Player player in players)
         {
             player.playerController.enabled = true;
+            //player.playerController
         }
         leftTimeText.enabled = true;
         SoundPlayer.Find().PlayBGM(bgm);
