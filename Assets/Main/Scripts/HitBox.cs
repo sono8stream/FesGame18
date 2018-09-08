@@ -49,7 +49,7 @@ public class HitBox : MonoBehaviour {
                 case "Player":
                     Player opponent = obj.GetComponent<Player>();
                     if (!opponent) break;
-                    Debug.Log(owner.teamColor);
+                    Debug.Log(owner.name);
 
                     if (HitBits.mySelf)
                     {
