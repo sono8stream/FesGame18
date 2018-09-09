@@ -9,11 +9,13 @@ public class TweetGetter
     public Tweet[] Tweets { get; private set; }
     public bool DownloadEnded { get; private set; }
 
-    public IEnumerator GetTweet()
+    public IEnumerator GetTweet(int tweetCnt)
     {
         DownloadEnded = false;
         UnityWebRequest request = UnityWebRequest.Get(
-            "https://script.google.com/macros/s/AKfycbx14FEyVqlPhlLDOVbW-8FAN_xCEN6CcxJlE4FgvfOFdljhvbkY/exec");
+            "https://script.google.com/macros/s/"
+            + "AKfycbx14FEyVqlPhlLDOVbW-8FAN_xCEN6CcxJlE4FgvfOFdljhvbkY/exec"
+            + "?count=" + tweetCnt.ToString());
         yield return request.SendWebRequest();
 
         DownloadEnded = true;
