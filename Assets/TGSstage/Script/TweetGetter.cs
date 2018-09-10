@@ -36,7 +36,7 @@ public class TweetGetter
                 if (string.IsNullOrEmpty(tweetTexts[i])) continue;
                 string[] tweet = tweetTexts[i].Split(':');
                 string user = tweet[0].Substring(1);
-                string message = tweet[1];
+                string message = tweet[1].Replace("\n", "");
                 tweets.Add(new Tweet(user, message));
                 Debug.Log(string.Format("{0}:{1}", user, message));
             }

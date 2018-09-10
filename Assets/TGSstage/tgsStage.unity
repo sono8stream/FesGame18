@@ -177,8 +177,8 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: New Text
 --- !u!222 &272472504
@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweetObjOrigin: {fileID: 272472501}
-  tweetCnt: 10
+  tweetCnt: 50
   tweetHeight: 120
   renderTweetLim: 7
 --- !u!1 &1999723687

@@ -13,7 +13,7 @@ public class StageSelector : MonoBehaviour
     [SerializeField]
     Transform statusWin;
     [SerializeField]
-    Sprite[] weaponSprites;
+    Sprite[] stageSprites;
     [SerializeField]
     Text nameText;
     [SerializeField]
@@ -44,7 +44,7 @@ public class StageSelector : MonoBehaviour
             float rad = (anglePerStage * i - 90) * Mathf.PI / 180;
             t.localPosition = new Vector3(
                 Mathf.Cos(rad), 0, Mathf.Sin(rad)) * selectRadius;
-            t.GetComponent<SpriteRenderer>().sprite = weaponSprites[i];
+            //t.GetComponent<SpriteRenderer>().sprite = stageSprites[i];
         }
         nowAngle = 0;
         targetAngle = 0;
@@ -117,8 +117,8 @@ public class StageSelector : MonoBehaviour
                 nowAngle = 360;
             }
         }
-        while (transform.GetChild(selectCounter.Now).GetComponent<
-            SpriteRenderer>().color == Color.black);
+        while (transform.GetChild(selectCounter.Now)
+        .GetComponent<SpriteRenderer>().color == Color.black);
 
         onRotate = true;
         targetAngle = anglePerStage * selectCounter.Now;
@@ -138,11 +138,11 @@ public class StageSelector : MonoBehaviour
     void UpdateTargetStatus()
     {
         float max = 30;
-        WeaponStatus weaponStatus
-            = UserData.instance.playersWeapon[playerNo].GetWeaponByIndex(selectCounter.Now);
+        StageStatus stageStatus
+            = UserData.instance.stages.GetStage(selectCounter.Now);
 
-        nameText.text = weaponStatus.name;
-        descriptionText.text = weaponStatus.description;
+        nameText.text = stageStatus.name;
+        descriptionText.text = stageStatus.description;
     }
 
     void ChooseStage()

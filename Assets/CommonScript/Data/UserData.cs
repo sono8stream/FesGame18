@@ -8,12 +8,14 @@ public class UserData
 
     const int playerCount = 2;
 
+    public Dictionary<string, int> variableDict;//消さない
+
     public KeySet[] playersKeySet;
     public WeaponSet[] playersWeapon;
     public int selectedStageNo;
     public int winnerIndex;
     public int winnerMoney;
-    public Dictionary<string, int> variableDict;//消さない
+    public StageSet stages;
 
     Weapon[] weaponData;
 
@@ -30,5 +32,7 @@ public class UserData
         selectedStageNo = 0;
 
         variableDict = SaveManager.LoadVariableDict();
+
+        stages = new StageSet();
     }
 }
