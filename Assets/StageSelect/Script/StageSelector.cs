@@ -18,6 +18,10 @@ public class StageSelector : MonoBehaviour
     Text nameText;
     [SerializeField]
     Text descriptionText;
+    [SerializeField]
+    SpriteRenderer backRenderer, backFadeRenderer;
+    [SerializeField]
+    int fadeFrame;
 
     Counter selectCounter;
     int stageCount;
@@ -29,6 +33,9 @@ public class StageSelector : MonoBehaviour
     float gaugeWidth;
     int selectNo;//武器何個選択したか
     bool canSelect;
+
+    Counter fadeCounter;
+    bool onFade;
 
     // Use this for initialization
     void Start()
@@ -53,18 +60,22 @@ public class StageSelector : MonoBehaviour
         canSelect = true;
 
         SelectStage(1);
+
+        fadeCounter = new Counter(fadeFrame);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (onFade) FadeBackground();
+
         if (onRotate)
         {
             if (Mathf.Abs(nowAngle - targetAngle) < 0.1f)
             {
                 onRotate = false;
             }
-            nowAngle = (nowAngle*3 + targetAngle) * 0.25f;
+            nowAngle = (nowAngle * 3 + targetAngle) * 0.25f;
 
             RotateList(nowAngle);
 
@@ -143,6 +154,10 @@ public class StageSelector : MonoBehaviour
 
         nameText.text = stageStatus.name;
         descriptionText.text = stageStatus.description;
+        backFadeRenderer.sprite = backRenderer.sprite;
+        backRenderer.sprite = transform.GetChild(selectCounter.Now)
+            .GetComponent<SpriteRenderer>().sprite;
+        onFade = true;
     }
 
     void ChooseStage()
@@ -168,5 +183,20 @@ public class StageSelector : MonoBehaviour
         transform.GetChild(weaponIndex)
             .GetComponent<SpriteRenderer>().color = Color.white;
         canSelect = true;
+    }
+
+    void FadeBackground()
+    {
+        if (fadeCounter.Count())
+        {
+            fadeCounter.Initialize();
+            onFade = false;
+            backFadeRenderer.color = Color.white;
+            backFadeRenderer.sprite = null;
+            return;
+        }
+
+        float alpha = 1f * fadeCounter.Now / fadeCounter.Limit;
+        backFadeRenderer.color = new Color(1, 1, 1, 1 - alpha);
     }
 }
