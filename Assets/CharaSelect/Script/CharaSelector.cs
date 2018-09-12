@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StageSelector : MonoBehaviour
+public class CharaSelector : MonoBehaviour
 {
     [SerializeField]
     float selectRadius;
@@ -37,6 +37,7 @@ public class StageSelector : MonoBehaviour
 
     float[] targetGaugeX;
     float gaugeWidth;
+    int selectNo;//武器何個選択したか
     bool canSelect;
 
     Counter fadeCounter;
@@ -62,7 +63,8 @@ public class StageSelector : MonoBehaviour
         }
         nowAngle = 0;
         targetAngle = 0;
-        
+
+        selectNo = 0;
         canSelect = true;
 
         SelectStage(1);
@@ -113,6 +115,10 @@ public class StageSelector : MonoBehaviour
             return;
         }
 
+        if (Input.GetKeyDown(UserData.instance.playersKeySet[playerNo].GetKey(KeyName.Cancel)))
+        {
+            CancelStage();
+        }
         if (!canSelect) return;
         if (Input.GetKeyDown(UserData.instance.playersKeySet[playerNo].GetKey(KeyName.Enter)))
         {
@@ -184,6 +190,18 @@ public class StageSelector : MonoBehaviour
         UserData.instance.selectedStageNo = selectCounter.Now;
         canSelect = false;
         onTransition = true;
+    }
+
+    void CancelStage()
+    {
+        if (selectNo == 0) return;
+
+        selectNo--;
+        int weaponIndex
+            = UserData.instance.playersWeapon[playerNo].GetWeaponIndexByIndex(selectNo);
+        transform.GetChild(weaponIndex)
+            .GetComponent<SpriteRenderer>().color = Color.white;
+        canSelect = true;
     }
 
     void FadeBackground()
