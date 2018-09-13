@@ -50,6 +50,7 @@ public class LoadManager : MonoBehaviour {
         AsyncOperation async = SceneManager.LoadSceneAsync(index);
         async.allowSceneActivation = false;    // シーン遷移を待つ
         FadeImage.enabled = true;
+        //fadeWaiter.Initialize();
         while (!FadeIn() || async.progress < 0.9f)
         {
             //Debug.Log(async.progress);
@@ -58,7 +59,7 @@ public class LoadManager : MonoBehaviour {
         yield return new WaitForSeconds(loadSec);
         async.allowSceneActivation = true;    // シーン遷移許可
         yield return new WaitForSeconds(0.2f);
-
+        Debug.Log("Load");
         fadeWaiter.Initialize();
         while (!FadeOut())
         {
@@ -87,6 +88,5 @@ public class LoadManager : MonoBehaviour {
     public void Disable()
     {
         transform.Find("Canvas").gameObject.SetActive(false);
-        //GetComponent<Animator>().SetTrigger("FadeIn");
     }
 }

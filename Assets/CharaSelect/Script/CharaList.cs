@@ -23,6 +23,19 @@ public class CharaList : MonoBehaviour {
         isSelected = new bool[charaCnt];
     }
 
+    private void Update()
+    {
+        bool allSelect = true;
+        for(int i = 0; i < charaCnt; i++)
+        {
+            allSelect = allSelect & isSelected[i];
+        }
+        if (allSelect)
+        {
+            LoadManager.Find().LoadScene(6);
+        }
+    }
+
     public void SwitchSelectState(bool on, int index, Color color)
     {
         isSelected[index] = on;

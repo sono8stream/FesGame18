@@ -107,6 +107,7 @@ public class CharaSelector : MonoBehaviour
 
     void DecideCharacter()
     {
+        if (charaList.isSelected[selectCounter.Now]) return;
         canSelect = false;
         charaList.SwitchSelectState(true, selectCounter.Now,
             GetComponent<Image>().color);
