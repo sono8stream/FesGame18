@@ -12,6 +12,8 @@ public class UserData
 
     public KeySet[] playersKeySet;
     public WeaponSet[] playersWeapon;
+    public CharacterID[] characters;
+    public CharaSet charaSet;
     public int selectedStageNo;
     public int winnerIndex;
     public int winnerMoney;
@@ -29,10 +31,12 @@ public class UserData
 
         playersWeapon = new WeaponSet[playerCount] {
             new WeaponSet(), new WeaponSet() };
-        selectedStageNo = 0;
+        characters = new CharacterID[playerCount];
+        charaSet = new CharaSet();
 
         variableDict = SaveManager.LoadVariableDict();
 
         stages = new StageSet();
+        selectedStageNo = 0;
     }
 }
