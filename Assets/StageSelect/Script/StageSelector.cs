@@ -58,7 +58,6 @@ public class StageSelector : MonoBehaviour
             float rad = (anglePerStage * i - 90) * Mathf.PI / 180;
             t.localPosition = new Vector3(
                 Mathf.Cos(rad), 0, Mathf.Sin(rad)) * selectRadius;
-            //t.GetComponent<SpriteRenderer>().sprite = stageSprites[i];
         }
         nowAngle = 0;
         targetAngle = 0;
