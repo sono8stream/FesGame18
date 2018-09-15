@@ -30,13 +30,18 @@ public class TweetGetter
             Debug.Log(request.downloadHandler.text);
             string result = request.downloadHandler.text;
             string[] tweetTexts = result.Split('%');
+            string[] tweetSplitKey = { "|||" };
+            tweetTexts = result.Split(tweetSplitKey, StringSplitOptions.None);
+
             var tweets = new List<Tweet>();
+            string[] textSplitKey = { ":::" };
             for (int i = 0; i < tweetTexts.Length; i++)
             {
                 if (string.IsNullOrEmpty(tweetTexts[i])) continue;
-                string[] tweet = tweetTexts[i].Split(':');
+                Debug.Log(tweetTexts[i]);
+                string[] tweet = tweetTexts[i].Split(textSplitKey, StringSplitOptions.None);
                 string user = tweet[0].Substring(1);
-                string message = tweet[1].Replace("\n", "");
+                string message = tweet[1].Replace("\n", " ");
                 tweets.Add(new Tweet(user, message));
                 Debug.Log(string.Format("{0}:{1}", user, message));
             }
