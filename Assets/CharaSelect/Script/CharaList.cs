@@ -12,6 +12,7 @@ public class CharaList : MonoBehaviour {
     public bool[] isSelected;
 
     CharacterID[] charaArray;
+    bool onEnd;
 
     private void Awake()
     {
@@ -25,6 +26,8 @@ public class CharaList : MonoBehaviour {
 
     private void Update()
     {
+        if (onEnd) return;
+
         bool allSelect = true;
         for(int i = 0; i < charaCnt; i++)
         {
@@ -33,6 +36,7 @@ public class CharaList : MonoBehaviour {
         if (allSelect)
         {
             LoadManager.Find().LoadScene(6);
+            onEnd = true;
         }
     }
 
