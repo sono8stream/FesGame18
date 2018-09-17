@@ -69,6 +69,7 @@ public class KoitanButton{
                 else return true;
                 break;
             case ConType.JoyButton:
+                if (Input.GetKey(name)) Debug.Log("down");
                 return Input.GetKey(name);
                 break;
             case ConType.Key:
