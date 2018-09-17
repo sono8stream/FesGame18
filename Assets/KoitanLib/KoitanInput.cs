@@ -58,7 +58,6 @@ namespace KoitanLib
                 {
                     if (GetButton(ButtonID.A, i) && GetButton(ButtonID.B, i))
                     {
-                        isConnecting = false;
                         orderList.Remove(i);
                         orderList.Add(i);
                         break;
@@ -118,7 +117,7 @@ namespace KoitanLib
                         {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,7,false,0.1f)}
                     });
                         break;
-                    case "Wireless Gamepad":
+                    case "Wireless Gamepad"://windows joycon(右左共通)
                         ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
                     {
                         {ButtonID.A,new KoitanButton(ConType.JoyButton,i+1,1)},
@@ -128,8 +127,8 @@ namespace KoitanLib
                     });
                         AxisTable.Add(new Dictionary<Axis, KoitanAxis>
                     {
-                        {Axis.Cross_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,8,false,0.1f)},
-                        {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,9,true,0.1f)}
+                        {Axis.L_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,8,false,0.1f)},
+                        {Axis.L_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,9,true,0.1f)}
                     });
                         break;
                     case "Unknown Joy-Con (L)":
@@ -295,10 +294,24 @@ namespace KoitanLib
             else return AxisTable[conNum][axis].GetAxisUp();
         }
 
-        public static void StopConnection()
+        public static string ControllerNames()
+        {
+            string s = "";
+            for(int i = 0; i < controllerCount; i++)
+            {
+                s += controllerNames[orderList[i]] + Environment.NewLine;
+            }
+            return s;
+        }
+
+        public static void StartReconnection()
+        {
+            isConnecting = true;
+        }
+
+        public static void EndReconnection()
         {
             isConnecting = false;
-            SetButtonAxis();
         }
     }
 }
