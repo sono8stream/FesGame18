@@ -69,6 +69,7 @@ namespace KoitanLib{
             {
                 switch (controllerNames[i])
                 {
+                    case "PAD A":
                     case "HORI CO.,LTD  PAD A":
                         ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
                     {
