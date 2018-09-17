@@ -18,7 +18,11 @@ namespace KoitanLib{
         private void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
-            connectionOrderNumber.Add(0);
+            controllerCount = Input.GetJoystickNames().Length;
+            for (int i = 0; i < controllerCount; i++)
+            {
+                connectionOrderNumber.Add(i);
+            }
             SetButtonAxis();
         }
 
@@ -27,7 +31,9 @@ namespace KoitanLib{
             if(controllerCount!=Input.GetJoystickNames().Length){
                 SetButtonAxis();
                 connectionOrderNumber.Clear();
-                connectionOrderNumber.Add(0);
+                for (int i = 0; i < controllerCount;i++){
+                    connectionOrderNumber.Add(i);
+                }
             }
             controllerCount = Input.GetJoystickNames().Length;
 
@@ -159,11 +165,11 @@ namespace KoitanLib{
         public static bool GetButton(ButtonID button,int conNum = -1){
             if(conNum==-1){
                 for (int i = 0; i < controllerNames.Length;i++){
-                    if (ButtonTable[connectionOrderNumber[i]][button].GetButton()) return true;
+                    if (ButtonTable[i][button].GetButton()) return true;
                 }
                 return false;
             }
-            else return ButtonTable[connectionOrderNumber[conNum]][button].GetButton();
+            else return ButtonTable[conNum][button].GetButton();
         }
 
         public static bool GetButtonDown(ButtonID button, int conNum = -1)
@@ -172,11 +178,11 @@ namespace KoitanLib{
             {
                 for (int i = 0; i < controllerNames.Length; i++)
                 {
-                    if (ButtonTable[connectionOrderNumber[i]][button].GetButtonDown()) return true;
+                    if (ButtonTable[i][button].GetButtonDown()) return true;
                 }
                 return false;
             }
-            else return ButtonTable[connectionOrderNumber[conNum]][button].GetButtonDown();
+            else return ButtonTable[conNum][button].GetButtonDown();
         }
 
         public static bool GetButtonUp(ButtonID button, int conNum = -1)
@@ -185,11 +191,11 @@ namespace KoitanLib{
             {
                 for (int i = 0; i < controllerNames.Length; i++)
                 {
-                    if (ButtonTable[connectionOrderNumber[i]][button].GetButtonUp()) return true;
+                    if (ButtonTable[i][button].GetButtonUp()) return true;
                 }
                 return false;
             }
-            else return ButtonTable[connectionOrderNumber[conNum]][button].GetButtonUp();
+            else return ButtonTable[conNum][button].GetButtonUp();
         }
 
         public static float GetAxis(Axis axis, int conNum = -1)
@@ -198,12 +204,12 @@ namespace KoitanLib{
             {
                 for (int i = 0; i < controllerNames.Length; i++)
                 {
-                    float value = AxisTable[connectionOrderNumber[i]][axis].GetAxis();
+                    float value = AxisTable[i][axis].GetAxis();
                     if (value !=0) return value;
                 }
                 return 0;
             }
-            else return AxisTable[connectionOrderNumber[conNum]][axis].GetAxis();
+            else return AxisTable[conNum][axis].GetAxis();
         }
 
         public static float GetAxisDown(Axis axis, int conNum = -1)
@@ -212,12 +218,12 @@ namespace KoitanLib{
             {
                 for (int i = 0; i < controllerNames.Length; i++)
                 {
-                    float value = AxisTable[connectionOrderNumber[i]][axis].GetAxisDown();
+                    float value = AxisTable[i][axis].GetAxisDown();
                     if (value != 0) return value;
                 }
                 return 0;
             }
-            else return AxisTable[connectionOrderNumber[conNum]][axis].GetAxisDown();
+            else return AxisTable[conNum][axis].GetAxisDown();
         }
 
         public static float GetAxisUp(Axis axis, int conNum = -1)
@@ -226,12 +232,12 @@ namespace KoitanLib{
             {
                 for (int i = 0; i < controllerNames.Length; i++)
                 {
-                    float value = AxisTable[connectionOrderNumber[i]][axis].GetAxisUp();
+                    float value = AxisTable[i][axis].GetAxisUp();
                     if (value != 0) return value;
                 }
                 return 0;
             }
-            else return AxisTable[connectionOrderNumber[conNum]][axis].GetAxisUp();
+            else return AxisTable[conNum][axis].GetAxisUp();
         }
 
         public static void StartConnection(){
