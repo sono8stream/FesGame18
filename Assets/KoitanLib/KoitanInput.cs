@@ -151,6 +151,24 @@ namespace KoitanLib
                         {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,11,false,0.1f)}
                     });
                         break;
+                    case "HORI PAD 3 TURBO":
+                        ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
+                    {
+                        {ButtonID.A,new KoitanButton(ConType.JoyButton,i+1,2)},
+                        {ButtonID.B,new KoitanButton(ConType.JoyButton,i+1,1)},
+                        {ButtonID.X,new KoitanButton(ConType.JoyButton,i+1,3)},
+                        {ButtonID.Y,new KoitanButton(ConType.JoyButton,i+1,0)}
+                    });
+                        AxisTable.Add(new Dictionary<Axis, KoitanAxis>
+                    {
+                        {Axis.L_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,0,false,0.1f)},
+                        {Axis.L_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,1,false,0.1f)},
+                        {Axis.R_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,2,false,0.1f)},
+                        {Axis.R_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,3,false,0.1f)},
+                        {Axis.Cross_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,4,false,0.1f)},
+                        {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,5,true,0.1f)}
+                    });
+                        break;
                     default:
                         ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
                     {
