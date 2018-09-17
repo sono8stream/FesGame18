@@ -39,24 +39,9 @@ namespace KoitanLib
 
             if (isConnecting)
             {
-                /*for (int i = 1; i <= 10; i++)
-                {
-                    List<int> keepingButtons = new List<int>();
-                    for (int j = 0; j <= 19; j++)
-                    {
-                        //デバッグ
-                        string button_name 
-                            = "joystick " + i.ToString() + " button " + j.ToString();
-
-                        if (Input.GetKey(button_name))
-                        {
-                            keepingButtons.Add(i);
-                        }
-                    }
-                }*/
                 for (int i = 0; i < controllerCount; i++)//再接続設定
                 {
-                    if (GetButton(ButtonID.A, i) && GetButton(ButtonID.B, i))
+                    if (GetButtonDown(ButtonID.A, i) && GetButtonDown(ButtonID.B, i))
                     {
                         orderList.Remove(i);
                         orderList.Add(i);
@@ -213,7 +198,8 @@ namespace KoitanLib
                 }
                 return false;
             }
-            else return ButtonTable[conNum][button].GetButton();
+            else return (ButtonTable[orderList[conNum]].ContainsKey(button)
+                    && ButtonTable[orderList[conNum]][button].GetButton());
         }
 
         public static bool GetButtonDown(ButtonID button, int conNum = -1)
@@ -228,7 +214,8 @@ namespace KoitanLib
                 }
                 return false;
             }
-            else return ButtonTable[conNum][button].GetButtonDown();
+            else return (ButtonTable[orderList[conNum]].ContainsKey(button)
+                    && ButtonTable[orderList[conNum]][button].GetButtonDown());
         }
 
         public static bool GetButtonUp(ButtonID button, int conNum = -1)
@@ -243,7 +230,8 @@ namespace KoitanLib
                 }
                 return false;
             }
-            else return ButtonTable[conNum][button].GetButtonUp();
+            else return (ButtonTable[orderList[conNum]].ContainsKey(button)
+                    && ButtonTable[orderList[conNum]][button].GetButtonUp());
         }
 
         public static float GetAxis(Axis axis, int conNum = -1)
@@ -259,7 +247,11 @@ namespace KoitanLib
                 }
                 return 0;
             }
-            else return AxisTable[conNum][axis].GetAxis();
+            else
+            {
+                if (!AxisTable[orderList[conNum]].ContainsKey(axis)) return 0;
+                else return AxisTable[orderList[conNum]][axis].GetAxis();
+            }
         }
 
         public static float GetAxisDown(Axis axis, int conNum = -1)
@@ -275,7 +267,11 @@ namespace KoitanLib
                 }
                 return 0;
             }
-            else return AxisTable[conNum][axis].GetAxisDown();
+            else
+            {
+                if (!AxisTable[orderList[conNum]].ContainsKey(axis)) return 0;
+                else return AxisTable[orderList[conNum]][axis].GetAxisDown();
+            }
         }
 
         public static float GetAxisUp(Axis axis, int conNum = -1)
@@ -291,7 +287,11 @@ namespace KoitanLib
                 }
                 return 0;
             }
-            else return AxisTable[conNum][axis].GetAxisUp();
+            else
+            {
+                if (!AxisTable[orderList[conNum]].ContainsKey(axis)) return 0;
+                else return AxisTable[orderList[conNum]][axis].GetAxisUp();
+            }
         }
 
         public static string ControllerNames()

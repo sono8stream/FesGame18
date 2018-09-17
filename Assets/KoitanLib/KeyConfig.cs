@@ -8,6 +8,8 @@ public class KeyConfig : MonoBehaviour
 {
     [SerializeField]
     Text text;
+    [SerializeField]
+    GameObject backImageObj;
 
     bool onConfig;
 
@@ -15,6 +17,7 @@ public class KeyConfig : MonoBehaviour
     void Start()
     {
         text.gameObject.SetActive(false);
+        backImageObj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,11 +29,14 @@ public class KeyConfig : MonoBehaviour
             {
                 KoitanInput.EndReconnection();
                 text.gameObject.SetActive(false);
+                backImageObj.SetActive(false);
             }
             else
             {
                 KoitanInput.StartReconnection();
                 text.gameObject.SetActive(true);
+                backImageObj.SetActive(true);
+                PauseScripts();
             }
             onConfig = !onConfig;
         }
@@ -39,5 +45,11 @@ public class KeyConfig : MonoBehaviour
         {
             text.text= KoitanInput.ControllerNames();
         }
+    }
+
+    void PauseScripts()
+    {
+        Debug.Log(
+            transform.GetComponentsInChildren<MonoBehaviour>().Length);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using KoitanLib;
 
 public class CharaSelector : MonoBehaviour
 {
@@ -47,36 +48,42 @@ public class CharaSelector : MonoBehaviour
     {
         GetUpTargetStatus();
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (KoitanInput.GetButtonDown(ButtonID.B, playerNo))
         {
             CancelCharacter();
         }
 
         if (!canSelect) return;
 
-        if (Input.GetKey(KeyCode.UpArrow)&&pressingCounter.Count())
+        if ((KoitanInput.GetAxis(Axis.L_Vertical, playerNo) == -1
+            || KoitanInput.GetAxis(Axis.Cross_Vertical, playerNo) == -1)
+            && pressingCounter.Count())
         {
             pressingCounter.Initialize();
             SelectCharacter(-1);
         }
-        if (Input.GetKey(KeyCode.DownArrow) && pressingCounter.Count())
+        if ((KoitanInput.GetAxis(Axis.L_Vertical, playerNo) == 1
+            || KoitanInput.GetAxis(Axis.Cross_Vertical, playerNo) == 1)
+            && pressingCounter.Count())
         {
             pressingCounter.Initialize();
             SelectCharacter(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (KoitanInput.GetAxisDown(Axis.L_Vertical, playerNo) == -1
+            || KoitanInput.GetAxisDown(Axis.Cross_Vertical, playerNo) == -1)
         {
             pressingCounter.Initialize();
             SelectCharacter(-1);
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (KoitanInput.GetAxisDown(Axis.L_Vertical, playerNo) == 1
+            || KoitanInput.GetAxisDown(Axis.Cross_Vertical, playerNo) == 1)
         {
             pressingCounter.Initialize();
             SelectCharacter(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (KoitanInput.GetButtonDown(ButtonID.A, playerNo))
         {
             pressingCounter.Initialize();
             DecideCharacter();
