@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using KoitanLib;
 
 public class Controller_Test : MonoBehaviour {
 
@@ -103,10 +104,10 @@ public class Controller_Test : MonoBehaviour {
             Debug.Log("Aボタンが離されました");
         }
         int k = 0;
-            conSprite[0].localScale = ButtonTable[k][ButtonID.A].GetButton() ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
-            conSprite[1].localScale = ButtonTable[k][ButtonID.B].GetButton() ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
-            conSprite[2].localScale = ButtonTable[k][ButtonID.X].GetButton() ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
-            conSprite[3].localScale = ButtonTable[k][ButtonID.Y].GetButton() ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
+        conSprite[0].localScale = KoitanInput.GetButton(ButtonID.A) ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
+        conSprite[1].localScale = KoitanInput.GetButton(ButtonID.B) ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
+            conSprite[2].localScale = KoitanInput.GetButton(ButtonID.X) ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
+            conSprite[3].localScale = KoitanInput.GetButton(ButtonID.Y) ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
             conSprite[8].localScale = (AxisTable[k][Axis.Cross_Horizontal].GetAxis() > 0) ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
             conSprite[7].localScale = (AxisTable[k][Axis.Cross_Horizontal].GetAxis() < 0) ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
             conSprite[6].localScale = (AxisTable[k][Axis.Cross_Vertical].GetAxis() > 0) ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
