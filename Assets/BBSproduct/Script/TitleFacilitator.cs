@@ -46,7 +46,7 @@ public class TitleFacilitator : MonoBehaviour
             LoadManager.Find().LoadScene(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (KoitanLib.KoitanInput.GetButtonDown(ButtonID.A))
         {
             onBattle = true;
             SoundPlayer.Find().PlaySE(enterSE);

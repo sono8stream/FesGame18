@@ -9,6 +9,8 @@ public class TweetGetter
     public Tweet[] Tweets { get; private set; }
     public bool DownloadEnded { get; private set; }
 
+    Counter tweetCounter;
+
     public IEnumerator GetTweet(int tweetCnt)
     {
         DownloadEnded = false;
@@ -46,6 +48,17 @@ public class TweetGetter
                 Debug.Log(string.Format("{0}:{1}", user, message));
             }
             Tweets = tweets.ToArray();
+
+            tweetCounter = new Counter(Tweets.Length);
         }
+    }
+
+    public Tweet Next()
+    {
+        if (tweetCounter == null) return null;
+
+        if (tweetCounter.Count()) tweetCounter.Initialize();
+
+        return Tweets[tweetCounter.Now];
     }
 }

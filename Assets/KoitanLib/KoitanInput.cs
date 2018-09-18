@@ -12,47 +12,43 @@ namespace KoitanLib
         public static List<Dictionary<Axis, KoitanAxis>> AxisTable = new List<Dictionary<Axis, KoitanAxis>>();
 
         private static List<string> controllerNames;
+        private static List<int> orderList;
         private static bool isConnecting;
-        private static int controllerCount;
+        //private static int controllerCount;
+
+        int joyPadCnt;
 
         private void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
-            controllerNames = new List<string>();
-            controllerCount = 0;
             SetButtonAxis();
         }
 
         private void Update()
         {
-            controllerNames = Input.GetJoystickNames().Where(
-                x => !string.IsNullOrEmpty(x)).ToList();
-            Debug.Log(controllerCount);
-            Debug.Log(controllerNames.Count);
-            if (controllerCount != controllerNames.Count)
-            {
-                Debug.Log(controllerNames.Count);
+            int joyPadCntTemp = Input.GetJoystickNames().Where(
+                x => !string.IsNullOrEmpty(x)).Count();
+            if (joyPadCntTemp != joyPadCnt)
+            {//接続数変更時
                 SetButtonAxis();
             }
-            controllerCount = controllerNames.Count;
-            
+            joyPadCnt = joyPadCntTemp;
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                isConnecting = true;
+            }
 
             if (isConnecting)
             {
-                string button_text = "";
-                List<int> keepingButtons = new List<int>();
-                for (int i = 1; i <= 10; i++)
+                for (int i = 0; i < controllerNames.Count; i++)//再接続設定
                 {
-                    keepingButtons.Clear();
-                    for (int j = 0; j <= 19; j++)
+                    if (ButtonTable[i].ContainsKey(ButtonID.Y)
+                    && ButtonTable[i][ButtonID.Y].GetButtonDown())
                     {
-                        //デバッグ
-                        string button_name = "joystick " + i.ToString() + " button " + j.ToString();
-
-                        if (Input.GetKey(button_name))
-                        {
-                            keepingButtons.Add(i);
-                        }
+                        orderList.Remove(i);
+                        orderList.Add(i);
+                        break;
                     }
                 }
             }
@@ -60,15 +56,18 @@ namespace KoitanLib
 
         public static void SetButtonAxis()
         {
-            ButtonTable.Clear();
-            AxisTable.Clear();
+            ButtonTable = new List<Dictionary<ButtonID, KoitanButton>>();
+            AxisTable = new List<Dictionary<Axis, KoitanAxis>>();
+            orderList = new List<int>();
+            controllerNames = Input.GetJoystickNames().Where(
+                x => !string.IsNullOrEmpty(x)).ToList();
+
             string[] joystickNames = Input.GetJoystickNames();
             int controllerIndex = 0;
             for (int i = 0; i < joystickNames.Length
-                &&controllerIndex<controllerNames.Count; i++)
+                && controllerIndex < controllerNames.Count; i++)
             {
                 if (joystickNames[i] != controllerNames[controllerIndex]) continue;
-                
                 switch (joystickNames[i])
                 {
                     case "PAD A":
@@ -89,7 +88,6 @@ namespace KoitanLib
                         {Axis.Cross_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,4,false,0.1f)},
                         {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,5,false,0.1f)}
                     });
-                        Debug.Log("pad a");
                         break;
                     case "Sony Interactive Entertainment Wireless Controller":
                         ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
@@ -99,8 +97,6 @@ namespace KoitanLib
                         {ButtonID.X,new KoitanButton(ConType.JoyButton,i+1,3)},
                         {ButtonID.Y,new KoitanButton(ConType.JoyButton,i+1,0)}
                     });
-#if UNITY_STANDALONE_OSX
-                        
                         AxisTable.Add(new Dictionary<Axis, KoitanAxis>
                     {
                         {Axis.L_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,0,false,0.1f)},
@@ -110,18 +106,20 @@ namespace KoitanLib
                         {Axis.Cross_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,6,false,0.1f)},
                         {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,7,false,0.1f)}
                     });
-#endif
-#if UNITY_STANDALONE_WIN
+                        break;
+                    case "Wireless Gamepad"://windows joycon(右左共通)
+                        ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
+                    {
+                        {ButtonID.A,new KoitanButton(ConType.JoyButton,i+1,1)},
+                        {ButtonID.B,new KoitanButton(ConType.JoyButton,i+1,0)},
+                        {ButtonID.X,new KoitanButton(ConType.JoyButton,i+1,3)},
+                        {ButtonID.Y,new KoitanButton(ConType.JoyButton,i+1,2)}
+                    });
                         AxisTable.Add(new Dictionary<Axis, KoitanAxis>
                     {
-                        {Axis.L_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,0,false,0.1f)},
-                        {Axis.L_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,1,false,0.1f)},
-                        {Axis.R_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,2,false,0.1f)},
-                        {Axis.R_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,3,false,0.1f)},
-                        {Axis.Cross_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,6,false,0.1f)},
-                        {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,7,false,0.1f)}
+                        {Axis.L_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,8,false,0.1f)},
+                        {Axis.L_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,9,true,0.1f)}
                     });
-#endif
                         break;
                     case "Unknown Joy-Con (L)":
                         ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
@@ -151,6 +149,24 @@ namespace KoitanLib
                         {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,11,false,0.1f)}
                     });
                         break;
+                    case "HORI PAD 3 TURBO":
+                        ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
+                    {
+                        {ButtonID.A,new KoitanButton(ConType.JoyButton,i+1,2)},
+                        {ButtonID.B,new KoitanButton(ConType.JoyButton,i+1,1)},
+                        {ButtonID.X,new KoitanButton(ConType.JoyButton,i+1,3)},
+                        {ButtonID.Y,new KoitanButton(ConType.JoyButton,i+1,0)}
+                    });
+                        AxisTable.Add(new Dictionary<Axis, KoitanAxis>
+                    {
+                        {Axis.L_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,0,false,0.1f)},
+                        {Axis.L_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,1,false,0.1f)},
+                        {Axis.R_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,2,false,0.1f)},
+                        {Axis.R_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,3,false,0.1f)},
+                        {Axis.Cross_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,4,false,0.1f)},
+                        {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,5,false,0.1f)}
+                    });
+                        break;
                     default:
                         ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
                     {
@@ -170,7 +186,55 @@ namespace KoitanLib
                     });
                         break;
                 }
+                orderList.Add(controllerIndex);
                 controllerIndex++;
+            }
+
+            if (controllerNames.Count < 2)
+            {
+                controllerNames.Add("Keyboard 1");
+                ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
+                    {
+                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.M)},
+                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.N)},
+                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.J)},
+                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.H)}
+                    });
+                AxisTable.Add(new Dictionary<Axis, KoitanAxis>
+                    {
+                        {Axis.L_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.RightArrow,KeyCode.LeftArrow)},
+                        {Axis.L_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.UpArrow,KeyCode.DownArrow)},
+                        {Axis.Cross_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.RightArrow,KeyCode.LeftArrow)},
+                        {Axis.Cross_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.UpArrow,KeyCode.DownArrow)},
+                    });
+                orderList.Add(controllerNames.Count - 1);
+            }
+            if (controllerNames.Count < 2)
+            {
+                controllerNames.Add("Keyboard 2");
+                ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
+                    {
+                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.X)},
+                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.Z)},
+                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.S)},
+                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.A)}
+                    });
+                AxisTable.Add(new Dictionary<Axis, KoitanAxis>
+                    {
+                        {Axis.L_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.B,KeyCode.C)},
+                        {Axis.L_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.F,KeyCode.V)},
+                        {Axis.Cross_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.B,KeyCode.C)},
+                        {Axis.Cross_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.F,KeyCode.V)},
+                    });
+                orderList.Add(controllerNames.Count - 1);
             }
         }
 
@@ -178,100 +242,133 @@ namespace KoitanLib
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
-                    Debug.Log(controllerNames[i]);
                     if (string.IsNullOrEmpty(controllerNames[i])) continue;
-                    if (ButtonTable[i][button].GetButton()) return true;
+                    if (ButtonTable[i].ContainsKey(button)
+                        && ButtonTable[i][button].GetButton()) return true;
                 }
-                Debug.Log(false);
                 return false;
             }
-            else return ButtonTable[conNum][button].GetButton();
+            else return (ButtonTable[orderList[conNum]].ContainsKey(button)
+                    && ButtonTable[orderList[conNum]][button].GetButton());
         }
 
         public static bool GetButtonDown(ButtonID button, int conNum = -1)
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
                     if (string.IsNullOrEmpty(controllerNames[i])) continue;
-                    if (ButtonTable[i][button].GetButtonDown()) return true;
+                    if (ButtonTable[i].ContainsKey(button)
+                        && ButtonTable[i][button].GetButtonDown()) return true;
                 }
                 return false;
             }
-            else return ButtonTable[conNum][button].GetButtonDown();
+            else return (ButtonTable[orderList[conNum]].ContainsKey(button)
+                    && ButtonTable[orderList[conNum]][button].GetButtonDown());
         }
 
         public static bool GetButtonUp(ButtonID button, int conNum = -1)
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
                     if (String.IsNullOrEmpty(controllerNames[i])) continue;
-                    if (ButtonTable[i][button].GetButtonUp()) return true;
+                    if (ButtonTable[i].ContainsKey(button)
+                        && ButtonTable[i][button].GetButtonUp()) return true;
                 }
                 return false;
             }
-            else return ButtonTable[conNum][button].GetButtonUp();
+            else return (ButtonTable[orderList[conNum]].ContainsKey(button)
+                    && ButtonTable[orderList[conNum]][button].GetButtonUp());
         }
 
         public static float GetAxis(Axis axis, int conNum = -1)
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
-                    if (String.IsNullOrEmpty(controllerNames[i])) continue;
+                    if (String.IsNullOrEmpty(controllerNames[i])
+                        || !AxisTable[i].ContainsKey(axis)) continue;
                     float value = AxisTable[i][axis].GetAxis();
                     if (value != 0) return value;
                 }
                 return 0;
             }
-            else return AxisTable[conNum][axis].GetAxis();
+            else
+            {
+                if (!AxisTable[orderList[conNum]].ContainsKey(axis)) return 0;
+                else return AxisTable[orderList[conNum]][axis].GetAxis();
+            }
         }
 
         public static float GetAxisDown(Axis axis, int conNum = -1)
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
-                    if (String.IsNullOrEmpty(controllerNames[i])) continue;
+                    if (String.IsNullOrEmpty(controllerNames[i])
+                        || !AxisTable[i].ContainsKey(axis)) continue;
                     float value = AxisTable[i][axis].GetAxisDown();
                     if (value != 0) return value;
                 }
                 return 0;
             }
-            else return AxisTable[conNum][axis].GetAxisDown();
+            else
+            {
+                if (!AxisTable[orderList[conNum]].ContainsKey(axis)) return 0;
+                else return AxisTable[orderList[conNum]][axis].GetAxisDown();
+            }
         }
 
         public static float GetAxisUp(Axis axis, int conNum = -1)
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
-                    if (String.IsNullOrEmpty(controllerNames[i])) continue;
+                    if (String.IsNullOrEmpty(controllerNames[i])
+                        || !AxisTable[i].ContainsKey(axis)) continue;
                     float value = AxisTable[i][axis].GetAxisUp();
                     if (value != 0) return value;
                 }
                 return 0;
             }
-            else return AxisTable[conNum][axis].GetAxisUp();
+            else
+            {
+                if (!AxisTable[orderList[conNum]].ContainsKey(axis)) return 0;
+                else return AxisTable[orderList[conNum]][axis].GetAxisUp();
+            }
         }
 
-        public static void StartConnection()
+        public static string ControllerNames()
+        {
+            string s = "";
+            for(int i = 0; i < controllerNames.Count; i++)
+            {
+                s += controllerNames[orderList[i]] + Environment.NewLine;
+            }
+            return s;
+        }
+
+        public static void StartReconnection()
         {
             isConnecting = true;
         }
 
-        public static void StopConnection()
+        public static void EndReconnection()
         {
             isConnecting = false;
-            SetButtonAxis();
+        }
+
+        public static int ControllerCount()
+        {
+            return controllerNames.Count;
         }
     }
 }

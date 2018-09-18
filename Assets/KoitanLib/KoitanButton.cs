@@ -67,14 +67,12 @@ public class KoitanButton{
                 float inputValue = Input.GetAxis(name);
                 if ((isInvert ? -inputValue : inputValue) < deadline) return false;
                 else return true;
-                break;
+
             case ConType.JoyButton:
-                if (Input.GetKey(name)) Debug.Log("down");
                 return Input.GetKey(name);
-                break;
+
             case ConType.Key:
                 return Input.GetKey(keyCode);
-                break;
         }
         return false;
     }

@@ -20,8 +20,7 @@ public class Player : Reactor {
 	public Transform handPos;
 
 	private float stopTime;
-
-	public KeyInput keyInput;
+    
     public PlayerStatus Status { get; private set; }
 	public GameObject coinPrefab;
     public Counter disableCounter;
@@ -30,9 +29,6 @@ public class Player : Reactor {
 	void Awake () {
 		anim = GetComponent<PC2D.AnimaController>();
 		playerController = GetComponent<PlayerController2D>();
-		keyInput = GetComponent<KeyInput>();
-		keyInput.isPlayable = true;
-        Debug.Log(keyInput.isPlayable);
         Status = GetComponent<PlayerStatus>();
 	}
 
@@ -80,7 +76,7 @@ public class Player : Reactor {
 
 	IEnumerator Koutyoku(float time)
     {
-        keyInput.isPlayable = false;
+        playerController.isPlayable = false;
         float prevTime = Time.fixedTime;
         while (time > 0)
         {
@@ -89,7 +85,7 @@ public class Player : Reactor {
             time -= Time.fixedTime - prevTime;
             prevTime = Time.fixedTime;
         }
-        keyInput.isPlayable = true;
+        playerController.isPlayable = true;
         anim._animator.CrossFade("Idle", 0.1f);
 	}
 

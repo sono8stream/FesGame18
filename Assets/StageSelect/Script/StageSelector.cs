@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using KoitanLib;
 
 public class StageSelector : MonoBehaviour
 {
@@ -80,7 +81,14 @@ public class StageSelector : MonoBehaviour
             transitionCounter.Count();
             if (transitionCounter.Now == transitionCounter.Limit / 2)
             {
-                LoadManager.Find().LoadScene(3);
+                if (selectCounter.Now == 0)
+                {
+                    LoadManager.Find().LoadScene(3);
+                }
+                else
+                {
+                    LoadManager.Find().LoadScene(7);
+                }
             }
             transform.GetChild(selectCounter.Now).localScale
                 = Vector3.one * (transitionCounter.Now % 2);
@@ -96,15 +104,13 @@ public class StageSelector : MonoBehaviour
             nowAngle = (nowAngle * 3 + targetAngle) * 0.25f;
 
             RotateList(nowAngle);
-            
-            if (Input.GetKeyDown(
-                UserData.instance.playersKeySet[playerNo].GetKey(KeyName.Left)))
+
+            if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) < -0.5f)
             {
                 SelectStage(-1);
-                leftArrowAnimation.BigBound(boundScale,boundPeriod);
+                leftArrowAnimation.BigBound(boundScale, boundPeriod);
             }
-            if (Input.GetKeyDown(
-                UserData.instance.playersKeySet[playerNo].GetKey(KeyName.Right)))
+            if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) > 0.5f)
             {
                 SelectStage(1);
                 rightArrowAnimation.BigBound(boundScale, boundPeriod);
@@ -113,18 +119,18 @@ public class StageSelector : MonoBehaviour
         }
 
         if (!canSelect) return;
-        if (Input.GetKeyDown(UserData.instance.playersKeySet[playerNo].GetKey(KeyName.Enter)))
+        if (KoitanInput.GetButtonDown(ButtonID.A))
         {
             ChooseStage();
             Debug.Log(canSelect);
         }
 
-        if (Input.GetKey(UserData.instance.playersKeySet[playerNo].GetKey(KeyName.Left)))
+        if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) < -0.5f)
         {
             SelectStage(-1);
             leftArrowAnimation.BigBound(boundScale, boundPeriod);
         }
-        if (Input.GetKey(UserData.instance.playersKeySet[playerNo].GetKey(KeyName.Right)))
+        if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) > 0.5f)
         {
             SelectStage(1);
             rightArrowAnimation.BigBound(boundScale, boundPeriod);

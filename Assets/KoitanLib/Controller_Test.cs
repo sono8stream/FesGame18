@@ -87,7 +87,6 @@ public class Controller_Test : MonoBehaviour
         {
             Debug.Log("Aボタンが離されました");
         }*/
-        int k = 0;
 
         conSprite[0].localScale = KoitanInput.GetButton(ButtonID.A) ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
         conSprite[1].localScale = KoitanInput.GetButton(ButtonID.B) ? new Vector2(1.2f, 1.2f) : new Vector2(1, 1);
