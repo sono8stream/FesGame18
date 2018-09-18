@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityChan;
 
 namespace PC2D
 {
@@ -23,6 +24,7 @@ namespace PC2D
 		public GameObject jumpEffectPrefab;
 		public GameObject landingEffectPrefab;
 		public Transform asimoto;
+        private SpringManager springManager;
 
 		PlatformerMotor2D.MotorState state = PlatformerMotor2D.MotorState.Jumping;
 
@@ -32,6 +34,7 @@ namespace PC2D
             _motor = GetComponent<PlatformerMotor2D>();
             _animator = visualChild.GetComponent<Animator>();
             _animator.Play("Idle");
+            springManager = GetComponent<SpringManager>();
 
             _motor.onJump += SetCurrentFacingLeft;
             defaultScale = transform.localScale;
@@ -116,10 +119,12 @@ namespace PC2D
             if (valueCheck >= 0.1f)
             {
 				muki = 1;
+                springManager.stiffnessForce = 1;
             }
             else if (valueCheck <= -0.1f)
             {
 				muki = -1;
+                springManager.stiffnessForce = -1;
             }
 			Vector3 newScale = defaultScale;
             newScale.x = defaultScale.x * muki;

@@ -3406,7 +3406,6 @@ MonoBehaviour:
   isThrowable: 0
   instantiateMissile: {fileID: 0}
   handPos: {fileID: 4166964424848586}
-  keyInput: {fileID: 0}
   coinPrefab: {fileID: 0}
 --- !u!114 &114313410723688780
 MonoBehaviour:
@@ -3825,6 +3824,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _motor: {fileID: 0}
   anim: {fileID: 0}
+  isPlayable: 0
+  orderNo: 0
 --- !u!114 &114628548405293872
 MonoBehaviour:
   m_ObjectHideFlags: 1
