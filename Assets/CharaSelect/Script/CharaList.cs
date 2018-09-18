@@ -28,12 +28,13 @@ public class CharaList : MonoBehaviour {
     {
         if (onEnd) return;
 
-        bool allSelect = true;
+        if (KoitanLib.KoitanInput.ControllerCount() < 2) return;
+        int selectCnt = 0;
         for(int i = 0; i < charaCnt; i++)
         {
-            allSelect = allSelect & isSelected[i];
+            selectCnt += isSelected[i] ? 1 : 0;
         }
-        if (allSelect)
+        if (selectCnt == KoitanLib.KoitanInput.ControllerCount())
         {
             LoadManager.Find().LoadScene(6);
             onEnd = true;
