@@ -9,25 +9,32 @@ public class PlayerController2D : MonoBehaviour
 {
     public PlatformerMotor2D _motor;
     public PC2D.AnimaController anim;
-    private KeyInput keyInput;
+    public bool isPlayable;
+
     private Player owner;
+    [SerializeField]
+    private int orderNo;
 
     // Use this for initialization
     void Start()
     {
         _motor = GetComponent<PlatformerMotor2D>();
         anim = GetComponent<PC2D.AnimaController>();
-        keyInput = GetComponent<KeyInput>();
+        Debug.Log(orderNo);
         owner = GetComponent<Player>();
+        orderNo = owner.PlayerID;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(KoitanInput.GetAxis(Axis.L_Horizontal))
+        if (!isPlayable) return;
+
+        if (Mathf.Abs(KoitanInput.GetAxis(Axis.L_Horizontal,orderNo))
             > PC2D.Globals.INPUT_THRESHOLD)
         {
-            _motor.normalizedXMovement = keyInput.GetAxis(PC2D.Input.HORIZONTAL);
+            _motor.normalizedXMovement
+                = KoitanInput.GetAxis(Axis.L_Horizontal, orderNo);
         }
         else
         {
@@ -35,14 +42,15 @@ public class PlayerController2D : MonoBehaviour
         }
 
         // Jump?
-        if (KoitanInput.GetButtonDown(ButtonID.X))
+        if (KoitanInput.GetButtonDown(ButtonID.X, orderNo))
         {
             _motor.Jump();
         }
 
-        _motor.jumpingHeld = keyInput.GetButton(PC2D.Input.JUMP);
+        _motor.jumpingHeld = KoitanInput.GetButton(ButtonID.X, orderNo);
 
-        if (KoitanInput.GetAxis(Axis.L_Vertical) < -PC2D.Globals.FAST_FALL_THRESHOLD)
+        if (KoitanInput.GetAxis(Axis.L_Vertical, orderNo)
+            < -PC2D.Globals.FAST_FALL_THRESHOLD)
         {
             _motor.fallFast = true;
         }
@@ -59,7 +67,7 @@ public class PlayerController2D : MonoBehaviour
             */
 
         //ボタン１
-        if (KoitanInput.GetButtonDown(ButtonID.A))
+        if (KoitanInput.GetButtonDown(ButtonID.A, orderNo))
         {
             if (owner.aroundItem && owner.havingItem == false)
             {
@@ -86,7 +94,7 @@ public class PlayerController2D : MonoBehaviour
             }
         }
 
-        if (KoitanInput.GetButtonDown(ButtonID.B))
+        if (KoitanInput.GetButtonDown(ButtonID.B, orderNo))
         {
             anim.Attack2();
         }

@@ -190,15 +190,15 @@ namespace KoitanLib
                 controllerIndex++;
             }
 
-            while (controllerNames.Count < 2)
+            if (controllerNames.Count < 2)
             {
-                controllerNames.Add("Keyboard");
+                controllerNames.Add("Keyboard 1");
                 ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
                     {
-                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.X)},
-                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.Z)},
-                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.S)},
-                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.A)}
+                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.M)},
+                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.N)},
+                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.J)},
+                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.H)}
                     });
                 AxisTable.Add(new Dictionary<Axis, KoitanAxis>
                     {
@@ -210,6 +210,29 @@ namespace KoitanLib
                         new KoitanAxis(ConType.Key,KeyCode.RightArrow,KeyCode.LeftArrow)},
                         {Axis.Cross_Vertical,
                         new KoitanAxis(ConType.Key,KeyCode.UpArrow,KeyCode.DownArrow)},
+                    });
+                orderList.Add(controllerNames.Count - 1);
+            }
+            if (controllerNames.Count < 2)
+            {
+                controllerNames.Add("Keyboard 2");
+                ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
+                    {
+                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.X)},
+                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.Z)},
+                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.S)},
+                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.A)}
+                    });
+                AxisTable.Add(new Dictionary<Axis, KoitanAxis>
+                    {
+                        {Axis.L_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.B,KeyCode.C)},
+                        {Axis.L_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.F,KeyCode.V)},
+                        {Axis.Cross_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.B,KeyCode.C)},
+                        {Axis.Cross_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.F,KeyCode.V)},
                     });
                 orderList.Add(controllerNames.Count - 1);
             }

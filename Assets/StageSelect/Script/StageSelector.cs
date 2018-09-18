@@ -81,7 +81,14 @@ public class StageSelector : MonoBehaviour
             transitionCounter.Count();
             if (transitionCounter.Now == transitionCounter.Limit / 2)
             {
-                LoadManager.Find().LoadScene(3);
+                if (selectCounter.Now == 0)
+                {
+                    LoadManager.Find().LoadScene(3);
+                }
+                else
+                {
+                    LoadManager.Find().LoadScene(7);
+                }
             }
             transform.GetChild(selectCounter.Now).localScale
                 = Vector3.one * (transitionCounter.Now % 2);
