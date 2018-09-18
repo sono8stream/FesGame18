@@ -14,23 +14,25 @@ namespace KoitanLib
         private static List<string> controllerNames;
         private static List<int> orderList;
         private static bool isConnecting;
-        private static int controllerCount;
+        //private static int controllerCount;
+
+        int joyPadCnt;
 
         private void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
-            controllerCount = 0;
+            SetButtonAxis();
         }
 
         private void Update()
         {
-            controllerNames = Input.GetJoystickNames().Where(
-                x => !string.IsNullOrEmpty(x)).ToList();
-            if (controllerCount != controllerNames.Count)
+            int joyPadCntTemp = Input.GetJoystickNames().Where(
+                x => !string.IsNullOrEmpty(x)).Count();
+            if (joyPadCntTemp != joyPadCnt)
             {//接続数変更時
                 SetButtonAxis();
             }
-            controllerCount = controllerNames.Count;
+            joyPadCnt = joyPadCntTemp;
 
             if (Input.GetKeyDown(KeyCode.J))
             {
@@ -39,7 +41,7 @@ namespace KoitanLib
 
             if (isConnecting)
             {
-                for (int i = 0; i < controllerCount; i++)//再接続設定
+                for (int i = 0; i < controllerNames.Count; i++)//再接続設定
                 {
                     if (ButtonTable[i].ContainsKey(ButtonID.Y)
                     && ButtonTable[i][ButtonID.Y].GetButtonDown())
@@ -57,6 +59,8 @@ namespace KoitanLib
             ButtonTable = new List<Dictionary<ButtonID, KoitanButton>>();
             AxisTable = new List<Dictionary<Axis, KoitanAxis>>();
             orderList = new List<int>();
+            controllerNames = Input.GetJoystickNames().Where(
+                x => !string.IsNullOrEmpty(x)).ToList();
 
             string[] joystickNames = Input.GetJoystickNames();
             int controllerIndex = 0;
@@ -160,7 +164,7 @@ namespace KoitanLib
                         {Axis.R_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,2,false,0.1f)},
                         {Axis.R_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,3,false,0.1f)},
                         {Axis.Cross_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,4,false,0.1f)},
-                        {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,5,true,0.1f)}
+                        {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,5,false,0.1f)}
                     });
                         break;
                     default:
@@ -185,13 +189,37 @@ namespace KoitanLib
                 orderList.Add(controllerIndex);
                 controllerIndex++;
             }
+
+            while (controllerNames.Count < 2)
+            {
+                controllerNames.Add("Keyboard");
+                ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
+                    {
+                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.X)},
+                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.Z)},
+                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.S)},
+                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.A)}
+                    });
+                AxisTable.Add(new Dictionary<Axis, KoitanAxis>
+                    {
+                        {Axis.L_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.RightArrow,KeyCode.LeftArrow)},
+                        {Axis.L_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.UpArrow,KeyCode.DownArrow)},
+                        {Axis.Cross_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.RightArrow,KeyCode.LeftArrow)},
+                        {Axis.Cross_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.UpArrow,KeyCode.DownArrow)},
+                    });
+                orderList.Add(controllerNames.Count - 1);
+            }
         }
 
         public static bool GetButton(ButtonID button, int conNum = -1)
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
                     if (string.IsNullOrEmpty(controllerNames[i])) continue;
                     if (ButtonTable[i].ContainsKey(button)
@@ -207,7 +235,7 @@ namespace KoitanLib
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
                     if (string.IsNullOrEmpty(controllerNames[i])) continue;
                     if (ButtonTable[i].ContainsKey(button)
@@ -223,7 +251,7 @@ namespace KoitanLib
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
                     if (String.IsNullOrEmpty(controllerNames[i])) continue;
                     if (ButtonTable[i].ContainsKey(button)
@@ -239,7 +267,7 @@ namespace KoitanLib
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
                     if (String.IsNullOrEmpty(controllerNames[i])
                         || !AxisTable[i].ContainsKey(axis)) continue;
@@ -259,7 +287,7 @@ namespace KoitanLib
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
                     if (String.IsNullOrEmpty(controllerNames[i])
                         || !AxisTable[i].ContainsKey(axis)) continue;
@@ -279,7 +307,7 @@ namespace KoitanLib
         {
             if (conNum == -1)
             {
-                for (int i = 0; i < controllerCount; i++)
+                for (int i = 0; i < controllerNames.Count; i++)
                 {
                     if (String.IsNullOrEmpty(controllerNames[i])
                         || !AxisTable[i].ContainsKey(axis)) continue;
@@ -298,7 +326,7 @@ namespace KoitanLib
         public static string ControllerNames()
         {
             string s = "";
-            for(int i = 0; i < controllerCount; i++)
+            for(int i = 0; i < controllerNames.Count; i++)
             {
                 s += controllerNames[orderList[i]] + Environment.NewLine;
             }
@@ -317,7 +345,7 @@ namespace KoitanLib
 
         public static int ControllerCount()
         {
-            return controllerCount;
+            return controllerNames.Count;
         }
     }
 }
