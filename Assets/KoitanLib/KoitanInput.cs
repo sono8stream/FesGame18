@@ -41,7 +41,8 @@ namespace KoitanLib
             {
                 for (int i = 0; i < controllerCount; i++)//再接続設定
                 {
-                    if (GetButtonDown(ButtonID.A, i) && GetButtonDown(ButtonID.B, i))
+                    if (ButtonTable[i].ContainsKey(ButtonID.Y)
+                    && ButtonTable[i][ButtonID.Y].GetButtonDown())
                     {
                         orderList.Remove(i);
                         orderList.Add(i);
