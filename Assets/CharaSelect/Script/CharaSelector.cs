@@ -29,10 +29,13 @@ public class CharaSelector : MonoBehaviour
     float[] targetGaugeX;
     float gaugeWidth;
     bool canSelect;
+    bool isPlayable;
 
     // Use this for initialization
     void Start()
     {
+        int cnt = KoitanInput.ControllerCount();
+
         selectCounter = new Counter(charaList.charaCnt);
         pressingCounter = new Counter(10);
         targetGaugeX = new float[gaugeTransforms.Length];
@@ -41,11 +44,42 @@ public class CharaSelector : MonoBehaviour
         Instantiate(charaList.GetPreview(selectCounter.Now),
             previewObj.transform, false);
         UpdateTargetStatus();
+
+        isPlayable = false;
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        previewObj.SetActive(false);
+        cursorT.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (playerNo < KoitanInput.ControllerCount() && !isPlayable)
+        {
+            isPlayable = true;
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+            previewObj.SetActive(true);
+            cursorT.gameObject.SetActive(true);
+        }
+        else if (playerNo >= KoitanInput.ControllerCount() && isPlayable)
+        {
+            isPlayable = false;
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+            previewObj.SetActive(false);
+            cursorT.gameObject.SetActive(false);
+        }
+
+        if (!isPlayable) return;
+
         GetUpTargetStatus();
 
         if (KoitanInput.GetButtonDown(ButtonID.B, playerNo))

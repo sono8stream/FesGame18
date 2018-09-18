@@ -314,6 +314,11 @@ namespace KoitanLib
         {
             isConnecting = false;
         }
+
+        public static int ControllerCount()
+        {
+            return controllerCount;
+        }
     }
 }
 
