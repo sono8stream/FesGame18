@@ -17,11 +17,17 @@ public class TweetScroller : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        floorWidth = GetComponent<RectTransform>().sizeDelta.x;
         text = transform.Find("Text").GetComponent<Text>();
+        text.text += "     ";
+        textWidth = text.preferredWidth;
+        do
+        {
+            text.text += text.text;
+        } while (text.preferredWidth < floorWidth * 2);
         text.rectTransform.sizeDelta
             = new Vector2(text.preferredWidth, text.preferredHeight);
-        textWidth = text.preferredWidth;
-        floorWidth = GetComponent<RectTransform>().sizeDelta.x;
+        text.rectTransform.localPosition = Vector3.left * floorWidth / 2;
         limitWaiter = new Counter(50);
     }
 
@@ -31,14 +37,10 @@ public class TweetScroller : MonoBehaviour
         if (onScroll)
         {
             text.transform.localPosition += Vector3.left * scrollSpeed;
-            if (text.transform.localPosition.x == -floorWidth / 2)
-            {
-                onScroll = false;
-            }
             if (text.transform.localPosition.x + textWidth < -floorWidth / 2)
             {
-                text.transform.localPosition 
-                    += Vector3.right * (textWidth + floorWidth);
+                text.transform.localPosition
+                    += Vector3.right * textWidth;
             }
         }
         else if (limitWaiter.Count())
