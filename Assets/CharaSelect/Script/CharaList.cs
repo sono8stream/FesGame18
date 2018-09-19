@@ -36,6 +36,7 @@ public class CharaList : MonoBehaviour {
         }
         if (selectCnt == KoitanLib.KoitanInput.ControllerCount())
         {
+            UserData.instance.playerCount = selectCnt;
             LoadManager.Find().LoadScene(6);
             onEnd = true;
         }

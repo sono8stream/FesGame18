@@ -6,7 +6,7 @@ public class UserData
 {
     public static UserData instance = new UserData();
 
-    const int playerCount = 4;
+    const int playerLimit = 4;
 
     public Dictionary<string, int> variableDict;//消さない
 
@@ -17,20 +17,21 @@ public class UserData
     public int selectedStageNo;
     public int winnerIndex;
     public int winnerMoney;
+    public int playerCount;
     public StageSet stages;
 
     Weapon[] weaponData;
 
     private UserData()
     {
-        playersKeySet = new KeySet[playerCount] {
+        playersKeySet = new KeySet[playerLimit] {
             new KeySet(KeySetName.KeyboardL), new KeySet(KeySetName.KeyboardR),
             new KeySet(KeySetName.KeyboardL), new KeySet(KeySetName.KeyboardR) };
 
         winnerIndex = 0;
         winnerMoney = 1000000;
 
-        playersWeapon = new WeaponSet[playerCount] {
+        playersWeapon = new WeaponSet[playerLimit] {
             new WeaponSet(), new WeaponSet(),
             new WeaponSet(), new WeaponSet() };
         characters = new CharacterID[playerCount];
