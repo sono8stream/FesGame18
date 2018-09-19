@@ -131,7 +131,9 @@ namespace KoitanLib
                     });
                         AxisTable.Add(new Dictionary<Axis, KoitanAxis>
                     {
-                        {Axis.Cross_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,10,false,0.1f)},
+                        {Axis.L_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,10,false,0.1f)},
+                        {Axis.L_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,11,false,0.1f)},
+                            {Axis.Cross_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,10,false,0.1f)},
                         {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,11,false,0.1f)}
                     });
                         break;
@@ -145,7 +147,9 @@ namespace KoitanLib
                     });
                         AxisTable.Add(new Dictionary<Axis, KoitanAxis>
                     {
-                        {Axis.Cross_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,10,false,0.1f)},
+                        {Axis.L_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,10,false,0.1f)},
+                        {Axis.L_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,11,false,0.1f)},
+                            {Axis.Cross_Horizontal,new KoitanAxis(ConType.JoyAxis,i+1,10,false,0.1f)},
                         {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,11,false,0.1f)}
                     });
                         break;
