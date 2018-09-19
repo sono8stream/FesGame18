@@ -53,7 +53,7 @@ public class PlayerController2D : MonoBehaviour
         _motor.jumpingHeld = KoitanInput.GetButton(ButtonID.X, orderNo);
 
         if (KoitanInput.GetAxis(Axis.L_Vertical, orderNo)
-            < -PC2D.Globals.FAST_FALL_THRESHOLD)
+            > PC2D.Globals.FAST_FALL_THRESHOLD)
         {
             _motor.fallFast = true;
         }

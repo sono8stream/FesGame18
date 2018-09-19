@@ -89,29 +89,29 @@ public class CharaSelector : MonoBehaviour
 
         if (!canSelect) return;
 
-        if ((KoitanInput.GetAxis(Axis.L_Vertical, playerNo) == 1
-            || KoitanInput.GetAxis(Axis.Cross_Vertical, playerNo) == 1)
+        if ((KoitanInput.GetAxis(Axis.L_Vertical, playerNo) == -1
+            || KoitanInput.GetAxis(Axis.Cross_Vertical, playerNo) == -1)
             && pressingCounter.Count())
         {
             pressingCounter.Initialize();
             SelectCharacter(-1);
         }
-        if ((KoitanInput.GetAxis(Axis.L_Vertical, playerNo) == -1
-            || KoitanInput.GetAxis(Axis.Cross_Vertical, playerNo) == -1)
+        if ((KoitanInput.GetAxis(Axis.L_Vertical, playerNo) == 1
+            || KoitanInput.GetAxis(Axis.Cross_Vertical, playerNo) == 1)
             && pressingCounter.Count())
         {
             pressingCounter.Initialize();
             SelectCharacter(1);
         }
 
-        if (KoitanInput.GetAxisDown(Axis.L_Vertical, playerNo) == 1
-            || KoitanInput.GetAxisDown(Axis.Cross_Vertical, playerNo) == 1)
+        if (KoitanInput.GetAxisDown(Axis.L_Vertical, playerNo) == -1
+            || KoitanInput.GetAxisDown(Axis.Cross_Vertical, playerNo) == -1)
         {
             pressingCounter.Initialize();
             SelectCharacter(-1);
         }
-        if (KoitanInput.GetAxisDown(Axis.L_Vertical, playerNo) == -1
-            || KoitanInput.GetAxisDown(Axis.Cross_Vertical, playerNo) == -1)
+        if (KoitanInput.GetAxisDown(Axis.L_Vertical, playerNo) == 1
+            || KoitanInput.GetAxisDown(Axis.Cross_Vertical, playerNo) == 1)
         {
             pressingCounter.Initialize();
             SelectCharacter(1);
