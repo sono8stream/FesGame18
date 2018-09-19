@@ -28,7 +28,10 @@ public class PlayerController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isPlayable) return;
+        if (!isPlayable) {
+            _motor.normalizedXMovement = 0;
+            return;
+        }
 
         if (Mathf.Abs(KoitanInput.GetAxis(Axis.L_Horizontal,orderNo))
             > PC2D.Globals.INPUT_THRESHOLD)
