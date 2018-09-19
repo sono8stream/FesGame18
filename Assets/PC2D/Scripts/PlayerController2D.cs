@@ -20,9 +20,9 @@ public class PlayerController2D : MonoBehaviour
     {
         _motor = GetComponent<PlatformerMotor2D>();
         anim = GetComponent<PC2D.AnimaController>();
-        Debug.Log(orderNo);
         owner = GetComponent<Player>();
         orderNo = owner.PlayerID;
+        Debug.Log(orderNo);
     }
 
     // Update is called once per frame

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Anima2D;
 
 [RequireComponent(typeof(PlayerStatus))]
@@ -33,7 +34,6 @@ public class Player : Reactor {
 	void Awake () {
 		anim = GetComponent<PC2D.AnimaController>();
 		playerController = GetComponent<PlayerController2D>();
-        Status = GetComponent<PlayerStatus>();
 	}
 
     // Update is called once per frame
@@ -113,7 +113,7 @@ public class Player : Reactor {
         return remainTime;
     }
 
-    public void SetTeam(TeamColor color, Material material)
+    public void SetTeam(TeamColor color, Material material,Transform statusT, int id)
     {
         Transform mesh = transform.Find("mesh");
         int borderCount = mesh.childCount - 5;
@@ -122,6 +122,11 @@ public class Player : Reactor {
             mesh.GetChild(i).GetComponent<SpriteMeshInstance>().sharedMaterial
                 = material;
         }
+        teamColor = color;
+        PlayerID = id;
+        Status = GetComponent<PlayerStatus>();
+        Status.moneyText = statusT.Find("moneyText").GetComponent<Text>();
+        Status.materialsTransform = statusT.Find("MaterialCounter");
     }
 }
 
@@ -135,6 +140,6 @@ public enum TeamColor
 {
     RED,
     BLUE,
-    YELLOW,
-    WHITE,
+    ORANGE,
+    GREEN,
 }

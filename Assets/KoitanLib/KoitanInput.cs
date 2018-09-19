@@ -89,6 +89,7 @@ namespace KoitanLib
                         {Axis.Cross_Vertical,new KoitanAxis(ConType.JoyAxis,i+1,5,false,0.1f)}
                     });
                         break;
+                    case "Wireless Controller":
                     case "Sony Interactive Entertainment Wireless Controller":
                         ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
                     {

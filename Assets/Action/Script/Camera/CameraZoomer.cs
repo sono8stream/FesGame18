@@ -59,6 +59,7 @@ public class CameraZoomer : MonoBehaviour
                 i--;
                 continue;
             }
+            if (!viewTargets[i].gameObject.activeSelf) continue;
             Vector2 targetPos = viewTargets[i].position;
             minPos = Vector2.Min(minPos, targetPos);
             maxPos = Vector2.Max(maxPos, targetPos);
