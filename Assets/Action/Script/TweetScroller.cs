@@ -19,16 +19,7 @@ public class TweetScroller : MonoBehaviour
     {
         floorWidth = GetComponent<RectTransform>().sizeDelta.x;
         text = transform.Find("Text").GetComponent<Text>();
-        text.text += "     ";
-        textWidth = text.preferredWidth;
-        do
-        {
-            text.text += text.text;
-        } while (text.preferredWidth < floorWidth * 2);
-        text.rectTransform.sizeDelta
-            = new Vector2(text.preferredWidth, text.preferredHeight);
-        text.rectTransform.localPosition = Vector3.left * floorWidth / 2;
-        limitWaiter = new Counter(50);
+        UpdateText(text.text);
     }
 
     // Update is called once per frame
@@ -53,8 +44,16 @@ public class TweetScroller : MonoBehaviour
     public void UpdateText(string str)
     {
         text.text = str;
+        text.text += "     ";
+        textWidth = text.preferredWidth;
+        do
+        {
+            text.text += text.text;
+        } while (text.preferredWidth < floorWidth * 2);
         text.rectTransform.sizeDelta
             = new Vector2(text.preferredWidth, text.preferredHeight);
-        textWidth = text.preferredWidth;
+        text.rectTransform.localPosition = Vector3.left * floorWidth / 2;
+        limitWaiter = new Counter(50);
+        onScroll = false;
     }
 }
