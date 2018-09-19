@@ -8,10 +8,8 @@ public class PlayerStatus : MonoBehaviour
 {
     const int materialLimit = 5;
 
-    [SerializeField]
-    Text moneyText;
-    [SerializeField]
-    Transform materialsTransform;
+    public Text moneyText;
+    public Transform materialsTransform;
 
     public int money;
     public int[] MaterialCounts { get; private set; }

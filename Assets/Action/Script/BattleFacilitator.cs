@@ -16,13 +16,44 @@ public class BattleFacilitator : MonoBehaviour
     BGMinfo bgm;
     [SerializeField]
     AudioClip startSE, stopSE;
+    [SerializeField]
+    TeamColor[] teamColors;
+    [SerializeField]
+    Material[] borderMaterials;
+    [SerializeField]
+    Transform[] statusUIs;
 
     TimeCounter timer;
     bool onBattle;
 
     private void Awake()
     {
-        
+        for(int i = 0; i < players.Length; i++)
+        {
+            bool isSelected = false;
+            for(int j = 0; j < UserData.instance.playerCount; j++)
+            {
+                int index = (int)UserData.instance.characters[j];
+                if (index == i)
+                {
+                    Debug.Log(j);
+                    players[i].SetTeam(teamColors[j], borderMaterials[j], j);
+                    isSelected = true;
+                    break;
+                }
+            }
+            if (!isSelected)
+            {
+                players[i].gameObject.SetActive(false);
+                statusUIs[i].gameObject.SetActive(false);
+            }
+        }
+
+        /*for(int i = 0; i < UserData.instance.playerCount; i++)
+        {
+            CharacterID id = UserData.instance.characters[i];
+            players[(int)id].SetTeam(teamColors[(int)id], borderMaterials[(int)id]);
+        }*/
     }
 
     // Use this for initialization

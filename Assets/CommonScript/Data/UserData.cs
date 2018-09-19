@@ -34,7 +34,7 @@ public class UserData
         playersWeapon = new WeaponSet[playerLimit] {
             new WeaponSet(), new WeaponSet(),
             new WeaponSet(), new WeaponSet() };
-        characters = new CharacterID[playerCount];
+        characters = new CharacterID[playerLimit];
         charaSet = new CharaSet();
 
         variableDict = SaveManager.LoadVariableDict();
