@@ -9,6 +9,7 @@ public class TweetUpdater : MonoBehaviour
     [SerializeField]
     Text[] tweetTexts;
 
+    TweetScroller[] scrollers;
     RectTransform[] tweetRects;
     BoxCollider2D[] tweetColliders;
 
@@ -24,10 +25,12 @@ public class TweetUpdater : MonoBehaviour
         tweetChangeCounter = new Counter(200);
         nowIndexCounter = new Counter(tweetTexts.Length);
 
+        scrollers = new TweetScroller[tweetTexts.Length];
         tweetRects = new RectTransform[tweetTexts.Length];
         tweetColliders = new BoxCollider2D[tweetTexts.Length];
         for (int i = 0; i < tweetTexts.Length; i++)
         {
+            scrollers[i] = tweetTexts[i].GetComponent<TweetScroller>();
             tweetRects[i] = tweetTexts[i].GetComponent<RectTransform>();
             tweetColliders[i] = tweetTexts[i].GetComponent<BoxCollider2D>();
         }
