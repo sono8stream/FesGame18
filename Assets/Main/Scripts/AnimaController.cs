@@ -24,7 +24,7 @@ namespace PC2D
 		public GameObject jumpEffectPrefab;
 		public GameObject landingEffectPrefab;
 		public Transform asimoto;
-        private SpringManager springManager;
+        private SpringManager[] springManagers;
 
 		PlatformerMotor2D.MotorState state = PlatformerMotor2D.MotorState.Jumping;
 
@@ -34,10 +34,12 @@ namespace PC2D
             _motor = GetComponent<PlatformerMotor2D>();
             _animator = visualChild.GetComponent<Animator>();
             _animator.Play("Idle");
-            springManager = GetComponent<SpringManager>();
+            springManagers = GetComponents<SpringManager>();
 
             _motor.onJump += SetCurrentFacingLeft;
             defaultScale = transform.localScale;
+
+            ChangeDirection(transform.localScale.x > 0 ? 1 : -1);
         }
 
         // Update is called once per frame
@@ -118,17 +120,13 @@ namespace PC2D
 
             if (valueCheck >= 0.1f)
             {
-				muki = 1;
-                springManager.stiffnessForce = 1;
+                ChangeDirection(1);
+                    
             }
             else if (valueCheck <= -0.1f)
             {
-				muki = -1;
-                springManager.stiffnessForce = -1;
+                ChangeDirection(-1);
             }
-			Vector3 newScale = defaultScale;
-            newScale.x = defaultScale.x * muki;
-            visualChild.transform.localScale = newScale;
 
             //ジャンプエフェクト
 			JumpEffect();
@@ -174,5 +172,17 @@ namespace PC2D
 				Instantiate(landingEffectPrefab, asimoto.position, Quaternion.identity);
 			}
 		}
+
+        //向き調整
+        private void ChangeDirection(int mukiValue){
+            muki = mukiValue;
+            foreach (SpringManager sm in springManagers)
+            {
+                sm.stiffnessForce = mukiValue;
+            }
+            Vector3 newScale = defaultScale;
+            newScale.x = Mathf.Abs(defaultScale.x) * muki;
+            visualChild.transform.localScale = newScale;
+        }
     }
 }
