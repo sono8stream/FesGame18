@@ -20,6 +20,11 @@ public class BattleFacilitator : MonoBehaviour
     TimeCounter timer;
     bool onBattle;
 
+    private void Awake()
+    {
+        
+    }
+
     // Use this for initialization
     void Start()
     {

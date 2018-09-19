@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Anima2D;
 
 [RequireComponent(typeof(PlayerStatus))]
 public class Player : Reactor {
@@ -18,6 +19,9 @@ public class Player : Reactor {
 	public bool isThrowable;
 	public InstantiateMissile instantiateMissile;
 	public Transform handPos;
+
+    [SerializeField]
+    Material material;
 
 	private float stopTime;
     
@@ -108,6 +112,17 @@ public class Player : Reactor {
         }
         return remainTime;
     }
+
+    public void SetTeam(TeamColor color, Material material)
+    {
+        Transform mesh = transform.Find("mesh");
+        int borderCount = mesh.childCount - 5;
+        for (int i = 0; i < borderCount; i++)
+        {
+            mesh.GetChild(i).GetComponent<SpriteMeshInstance>().sharedMaterial
+                = material;
+        }
+    }
 }
 
 public enum State
@@ -121,5 +136,5 @@ public enum TeamColor
     RED,
     BLUE,
     YELLOW,
-    GREEN
+    WHITE,
 }

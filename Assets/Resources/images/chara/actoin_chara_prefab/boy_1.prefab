@@ -1236,8 +1236,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1160783631549066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -10, y: -9, z: 0}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 1}
   m_Children:
   - {fileID: 4656437594875810}
   - {fileID: 4864732067524814}
@@ -2333,7 +2333,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: a43e912b1d21e443a96cf72191360078, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 6
   m_Bones: []
@@ -2354,7 +2354,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: e63055e3370034de1b19dffc68bcf6b2, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_Bones: []
@@ -2384,6 +2384,7 @@ MonoBehaviour:
   isThrowable: 0
   instantiateMissile: {fileID: 0}
   handPos: {fileID: 0}
+  material: {fileID: 0}
   coinPrefab: {fileID: 0}
 --- !u!114 &114088029351388510
 MonoBehaviour:
@@ -2397,7 +2398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 1.201427
+  m_Length: 1.2014273
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4595429708140460}
   m_AttachedIK: {fileID: 0}
@@ -2432,7 +2433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 0.543434
+  m_Length: 0.5434334
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4816732476473516}
   m_AttachedIK: {fileID: 0}
@@ -2484,7 +2485,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 3ad6286fd96dd4052b63126091bd17b4, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 21
   m_Bones: []
@@ -2505,7 +2506,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 3a53234db32314c31b8fb6a975d1fb76, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 4
   m_Bones: []
@@ -2525,7 +2526,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: e318b57429e9d45abb63e8c4d59a3f3c, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 20
   m_Bones: []
@@ -2567,7 +2568,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: b8e8013e8bc0a46ca84dc6f06f1ec6a2, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 3
   m_Bones: []
@@ -2634,7 +2635,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 9790dc354b3dd49f495b5ce03d7280cc, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 4
   m_Bones: []
@@ -2689,7 +2690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.8259529
+  m_Length: 0.8259537
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4453316396608528}
   m_AttachedIK: {fileID: 0}
@@ -2724,7 +2725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 0, g: 1, b: 0, a: 1}
-  m_Length: 0.55826086
+  m_Length: 0.5582599
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4476291469667540}
   m_AttachedIK: {fileID: 0}
@@ -2772,7 +2773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.5635985
+  m_Length: 0.5635992
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4371316578065088}
   m_AttachedIK: {fileID: 0}
@@ -2788,7 +2789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.65543646
+  m_Length: 0.6554373
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4976227188411304}
   m_AttachedIK: {fileID: 0}
@@ -2804,7 +2805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 0, g: 1, b: 0, a: 1}
-  m_Length: 0.68712425
+  m_Length: 0.6871247
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4294790103148770}
   m_AttachedIK: {fileID: 0}
@@ -2875,7 +2876,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 99ce5007e6234414dafc0b653e5ad555, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 5
   m_Bones: []
@@ -3009,7 +3010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 1.0776478
+  m_Length: 1.0776471
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4889959398387572}
   m_AttachedIK: {fileID: 0}
@@ -3025,7 +3026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 0, g: 1, b: 0, a: 1}
-  m_Length: 0.687125
+  m_Length: 0.6871255
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4214228937721084}
   m_AttachedIK: {fileID: 0}
@@ -3093,7 +3094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 1.2014263
+  m_Length: 1.2014271
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4348637964854138}
   m_AttachedIK: {fileID: 0}
@@ -3109,7 +3110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 0, g: 1, b: 0, a: 1}
-  m_Length: 0.68712467
+  m_Length: 0.6871235
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4231613495038700}
   m_AttachedIK: {fileID: 0}
@@ -3125,7 +3126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 0.48474568
+  m_Length: 0.48474553
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4014898058323968}
   m_AttachedIK: {fileID: 0}
@@ -3143,7 +3144,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: f1f8685831c88428191ddf2d53f34c03, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 21
   m_Bones: []
@@ -3328,7 +3329,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: aa275fc1574d644468838b39df787532, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_Bones: []
@@ -3350,7 +3351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 0, g: 1, b: 0, a: 1}
-  m_Length: 0.55826104
+  m_Length: 0.55826116
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4408006595721292}
   m_AttachedIK: {fileID: 0}
@@ -3528,7 +3529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.21105398
+  m_Length: 0.21105367
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4839079682977630}
   m_AttachedIK: {fileID: 0}
@@ -3546,7 +3547,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 2e0437a8623dc4b6b946adce6795eb89, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Bones: []
@@ -3572,7 +3573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 1.1103599
+  m_Length: 1.110361
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4896834514828526}
   m_AttachedIK: {fileID: 0}
@@ -3588,7 +3589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 0.5350404
+  m_Length: 0.5350411
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4536553442679222}
   m_AttachedIK: {fileID: 0}
@@ -3606,7 +3607,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 19d35b5c23cff4fba919e85a340cc122, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 5
   m_Bones: []
@@ -3629,7 +3630,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: d3ad1b5d646d6459eaad3fe31b72f098, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 16
   m_Bones: []
@@ -3671,7 +3672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.5298879
+  m_Length: 0.52988726
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4992074071936004}
   m_AttachedIK: {fileID: 0}
@@ -3689,7 +3690,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 9d6f17d319397450186bc6330ccefa1d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 19
   m_Bones: []
@@ -3728,7 +3729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.2873278
+  m_Length: 0.28732842
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4025874669423998}
   m_AttachedIK: {fileID: 0}
@@ -3838,7 +3839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.43657845
+  m_Length: 0.43657935
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4655227568760298}
   m_AttachedIK: {fileID: 0}
@@ -3854,7 +3855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.2009612
+  m_Length: 0.20096195
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4493435800195512}
   m_AttachedIK: {fileID: 0}
@@ -3908,7 +3909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.82595277
+  m_Length: 0.8259527
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4973760263102002}
   m_AttachedIK: {fileID: 0}
@@ -3926,7 +3927,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 2cf5e0b4b179847c5b83ac1cda26125c, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 18
   m_Bones: []
@@ -4000,7 +4001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 0.4813119
+  m_Length: 0.48131236
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4093278892573386}
   m_AttachedIK: {fileID: 0}
@@ -4031,7 +4032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 0.47587025
+  m_Length: 0.47586977
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4304733609362394}
   m_AttachedIK: {fileID: 0}
@@ -4047,7 +4048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 0, g: 1, b: 0, a: 1}
-  m_Length: 0.55826193
+  m_Length: 0.55826145
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4863592034213248}
   m_AttachedIK: {fileID: 0}
@@ -4111,7 +4112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.3548295
+  m_Length: 0.35482883
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4845543639430092}
   m_AttachedIK: {fileID: 0}
@@ -4148,7 +4149,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: a5c7838f0326f4b63adcf8b9207e33b8, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_SortingLayerID: 0
   m_SortingOrder: 4
   m_Bones: []
@@ -4209,7 +4210,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4308,7 +4309,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4360,7 +4361,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4410,7 +4411,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4466,7 +4467,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4522,7 +4523,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4572,7 +4573,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4622,7 +4623,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4671,7 +4672,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4767,7 +4768,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4816,7 +4817,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4912,7 +4913,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5011,7 +5012,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5059,7 +5060,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5109,7 +5110,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5159,7 +5160,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc95a56b1a8ba4a54aaa4d9fcb616e43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
