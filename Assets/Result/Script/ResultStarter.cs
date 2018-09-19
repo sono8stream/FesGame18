@@ -60,7 +60,7 @@ public class ResultStarter : MonoBehaviour
             toNextTransition = true;
             SoundPlayer.Find().PlaySE(enterSE);
         }
-        if (KoitanInput.GetButtonDown(Button.Y))
+        if (KoitanInput.GetButtonDown(ButtonID.Y))
         {
             onRetryTransition = true;
             SoundPlayer.Find().PlaySE(enterSE);
