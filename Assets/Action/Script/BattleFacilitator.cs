@@ -133,7 +133,7 @@ public class BattleFacilitator : MonoBehaviour
             if (status.money > winnerMoney)
             {
                 winnerMoney = status.money;
-                winnerIndex = i;
+                winnerIndex = players[i].PlayerID;
             }
         }
         UserData.instance.winnerIndex = winnerIndex;
