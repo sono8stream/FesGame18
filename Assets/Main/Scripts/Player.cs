@@ -23,8 +23,6 @@ public class Player : Reactor {
 
     [SerializeField]
     Material material;
-    [SerializeField]
-    Transform statusUIparent;
 
 	private float stopTime;
     
@@ -37,14 +35,6 @@ public class Player : Reactor {
 		anim = GetComponent<PC2D.AnimaController>();
 		playerController = GetComponent<PlayerController2D>();
 	}
-
-    private void Start()
-    {
-        Status = GetComponent<PlayerStatus>();
-        Transform statusT = statusUIparent.GetChild(PlayerID);
-        Status.moneyText = statusT.Find("moneyText").GetComponent<Text>();
-        Status.materialsTransform = statusT.Find("MaterialCounter");
-    }
 
     // Update is called once per frame
     void Update()
@@ -123,7 +113,7 @@ public class Player : Reactor {
         return remainTime;
     }
 
-    public void SetTeam(TeamColor color, Material material, int id)
+    public void SetTeam(TeamColor color, Material material,Transform statusT, int id)
     {
         Transform mesh = transform.Find("mesh");
         int borderCount = mesh.childCount - 5;
@@ -134,6 +124,9 @@ public class Player : Reactor {
         }
         teamColor = color;
         PlayerID = id;
+        Status = GetComponent<PlayerStatus>();
+        Status.moneyText = statusT.Find("moneyText").GetComponent<Text>();
+        Status.materialsTransform = statusT.Find("MaterialCounter");
     }
 }
 

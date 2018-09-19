@@ -37,7 +37,7 @@ public class BattleFacilitator : MonoBehaviour
                 if (index == i)
                 {
                     Debug.Log(j);
-                    players[i].SetTeam(teamColors[j], borderMaterials[j], j);
+                    players[i].SetTeam(teamColors[j], borderMaterials[j], statusUIs[j], j);
                     isSelected = true;
                     break;
                 }
@@ -48,12 +48,6 @@ public class BattleFacilitator : MonoBehaviour
                 statusUIs[i].gameObject.SetActive(false);
             }
         }
-
-        /*for(int i = 0; i < UserData.instance.playerCount; i++)
-        {
-            CharacterID id = UserData.instance.characters[i];
-            players[(int)id].SetTeam(teamColors[(int)id], borderMaterials[(int)id]);
-        }*/
     }
 
     // Use this for initialization
