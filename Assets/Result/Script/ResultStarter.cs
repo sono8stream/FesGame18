@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using KoitanLib;
 
 public class ResultStarter : MonoBehaviour
 {
@@ -47,19 +48,19 @@ public class ResultStarter : MonoBehaviour
             if (counter.Count())
             {
                 //LoadManager.Find().LoadScene(5);
-                int sceneIndex = toNextTransition ? 0 : 3;
+                int sceneIndex = toNextTransition ? 0 : 8;
                 LoadManager.Find().LoadScene(sceneIndex);
                 counter.Initialize();
             }
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (KoitanInput.GetButtonDown(ButtonID.A))
         {
             toNextTransition = true;
             SoundPlayer.Find().PlaySE(enterSE);
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (KoitanInput.GetButtonDown(Button.Y))
         {
             onRetryTransition = true;
             SoundPlayer.Find().PlaySE(enterSE);
