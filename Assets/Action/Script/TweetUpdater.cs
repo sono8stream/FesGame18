@@ -7,11 +7,9 @@ public class TweetUpdater : MonoBehaviour
 {
 
     [SerializeField]
-    Text[] tweetTexts;
-
     TweetScroller[] scrollers;
-    RectTransform[] tweetRects;
-    BoxCollider2D[] tweetColliders;
+    [SerializeField]
+    int updateInterval;
 
     TweetGetter getter;
     Counter tweetChangeCounter;
@@ -22,18 +20,8 @@ public class TweetUpdater : MonoBehaviour
     {
         getter = new TweetGetter();
         StartCoroutine(getter.GetTweet(20));
-        tweetChangeCounter = new Counter(200);
-        nowIndexCounter = new Counter(tweetTexts.Length);
-
-        scrollers = new TweetScroller[tweetTexts.Length];
-        tweetRects = new RectTransform[tweetTexts.Length];
-        tweetColliders = new BoxCollider2D[tweetTexts.Length];
-        for (int i = 0; i < tweetTexts.Length; i++)
-        {
-            scrollers[i] = tweetTexts[i].GetComponent<TweetScroller>();
-            tweetRects[i] = tweetTexts[i].GetComponent<RectTransform>();
-            tweetColliders[i] = tweetTexts[i].GetComponent<BoxCollider2D>();
-        }
+        tweetChangeCounter = new Counter(updateInterval);
+        nowIndexCounter = new Counter(scrollers.Length);
     }
 
     // Update is called once per frame
@@ -53,14 +41,6 @@ public class TweetUpdater : MonoBehaviour
     void UpdateTweetText(int index)
     {
         Tweet newTweet = getter.Next();
-        Text text = tweetTexts[index];
-        text.text = newTweet.message.Substring(0, 15);
-        if (newTweet.message.Length > 15)
-        {
-            text.text += "...";
-        }
-        Vector2 size = new Vector2(text.preferredWidth, text.preferredHeight);
-        tweetRects[index].sizeDelta = size;
-        tweetColliders[index].size = size;
+        scrollers[index].UpdateText(newTweet.message);
     }
 }
