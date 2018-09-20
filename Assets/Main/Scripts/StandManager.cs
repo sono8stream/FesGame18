@@ -60,9 +60,7 @@ public class StandManager : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            this.owner = collision.GetComponent<Player>();
-            owner.aroundStand = this;
-
+            collision.GetComponent<Player>().aroundStand = this;
         }
     }
 
@@ -71,7 +69,6 @@ public class StandManager : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.GetComponent<Player>().aroundStand = null;
-            owner = null;
         }
     }
 
@@ -97,6 +94,7 @@ public class StandManager : MonoBehaviour
             transform.position + Vector3.down, Quaternion.identity);
         stand.gameObject.SetActive(true);
         this.owner = player;
+        Debug.Log(owner);
         stand.owner = player;
         stand.GetComponent<SpriteRenderer>().material
             = outlineMaterials[owner.PlayerID];

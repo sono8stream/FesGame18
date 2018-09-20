@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1070111010529910}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1070111010529910
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4081821181256552}
   - component: {fileID: 212232039477890438}
@@ -34,7 +34,7 @@ GameObject:
 --- !u!4 &4081821181256552
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1070111010529910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -48,7 +48,7 @@ Transform:
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1070111010529910}
   m_BodyType: 0
@@ -67,7 +67,7 @@ Rigidbody2D:
 --- !u!58 &58031483467478802
 CircleCollider2D:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1070111010529910}
   m_Enabled: 1
@@ -82,7 +82,7 @@ CircleCollider2D:
 --- !u!58 &58086373233335132
 CircleCollider2D:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1070111010529910}
   m_Enabled: 1
@@ -97,7 +97,7 @@ CircleCollider2D:
 --- !u!114 &114567511320965504
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1070111010529910}
   m_Enabled: 1
@@ -110,10 +110,11 @@ MonoBehaviour:
   lifeTime: 5
   explosionEffect: {fileID: 1833499672548804, guid: c336fb7dbebf04507af31a745507867d,
     type: 2}
+  explodeSE: {fileID: 8300000, guid: 8abe44a0f1e316d40b047921c262ec98, type: 3}
 --- !u!212 &212232039477890438
 SpriteRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1070111010529910}
   m_Enabled: 1
@@ -155,3 +156,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

@@ -8,6 +8,9 @@ public class Bomb : PickableItem {
 	private bool isFire;
 	public GameObject explosionEffect;
 
+    [SerializeField]
+    AudioClip explodeSE;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -48,6 +51,7 @@ public class Bomb : PickableItem {
 		tmpObj.GetComponent<Attacker>().player = this.owner;
 		tmpObj.GetComponent<HitBox>().owner = this.owner;
 		Destroy(this.gameObject);
+        SoundPlayer.Find().PlaySE(explodeSE);
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
