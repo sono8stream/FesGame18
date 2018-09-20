@@ -240,6 +240,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 08ed5ab2b796c2147889b26d60fb1cb7, type: 3}
     loopBeginSec: 0
     loopEndSec: 0
+  transitSE: {fileID: 8300000, guid: 9df4db89eaba389469eba5694a07576b, type: 3}
   charaCnt: 4
   isSelected: 
 --- !u!1 &52680626
@@ -2109,6 +2110,9 @@ MonoBehaviour:
   - {fileID: 1425043521}
   - {fileID: 730113441}
   - {fileID: 1464166472}
+  selectSE: {fileID: 8300000, guid: 2e828ce5c3a4a0d47a8c04bcfa1e8ef4, type: 3}
+  decideSE: {fileID: 8300000, guid: 68cda8a8bf3ac4915b83d1328315635b, type: 3}
+  cancelSE: {fileID: 8300000, guid: 68723a625c64e8e469885504067b5a2c, type: 3}
 --- !u!1 &891486431
 GameObject:
   m_ObjectHideFlags: 0
@@ -4345,6 +4349,9 @@ MonoBehaviour:
   - {fileID: 2069535638}
   - {fileID: 1333793840}
   - {fileID: 276106952}
+  selectSE: {fileID: 8300000, guid: 2e828ce5c3a4a0d47a8c04bcfa1e8ef4, type: 3}
+  decideSE: {fileID: 8300000, guid: 68cda8a8bf3ac4915b83d1328315635b, type: 3}
+  cancelSE: {fileID: 8300000, guid: 68723a625c64e8e469885504067b5a2c, type: 3}
 --- !u!1 &1635555098
 GameObject:
   m_ObjectHideFlags: 0
@@ -5399,6 +5406,9 @@ MonoBehaviour:
   - {fileID: 2110320278}
   - {fileID: 1543532222}
   - {fileID: 197123713}
+  selectSE: {fileID: 8300000, guid: 2e828ce5c3a4a0d47a8c04bcfa1e8ef4, type: 3}
+  decideSE: {fileID: 8300000, guid: 68cda8a8bf3ac4915b83d1328315635b, type: 3}
+  cancelSE: {fileID: 8300000, guid: 68723a625c64e8e469885504067b5a2c, type: 3}
 --- !u!1 &1826835614
 GameObject:
   m_ObjectHideFlags: 0
@@ -5568,6 +5578,9 @@ MonoBehaviour:
   - {fileID: 27591261}
   - {fileID: 1703214484}
   - {fileID: 1594206121}
+  selectSE: {fileID: 8300000, guid: 2e828ce5c3a4a0d47a8c04bcfa1e8ef4, type: 3}
+  decideSE: {fileID: 8300000, guid: 68cda8a8bf3ac4915b83d1328315635b, type: 3}
+  cancelSE: {fileID: 8300000, guid: 68723a625c64e8e469885504067b5a2c, type: 3}
 --- !u!1 &1916728217
 GameObject:
   m_ObjectHideFlags: 0
