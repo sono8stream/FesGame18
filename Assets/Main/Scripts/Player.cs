@@ -45,7 +45,7 @@ public class Player : Reactor {
 
     public void Damage(SubHitBox subHitBox)
     {
-        if (state != State.HUTU) return;
+        if (state == State.MUTEKI) return;
 
         state = State.MUTEKI;
         //お金を落とす
