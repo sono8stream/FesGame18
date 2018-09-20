@@ -28,6 +28,7 @@ public class BattleFacilitator : MonoBehaviour
 
     private void Awake()
     {
+        var indexes = new Queue<int>();
         for(int i = 0; i < players.Length; i++)
         {
             bool isSelected = false;
@@ -39,14 +40,21 @@ public class BattleFacilitator : MonoBehaviour
                     Debug.Log(j);
                     players[i].SetTeam(teamColors[j], borderMaterials[j], statusUIs[j], j);
                     isSelected = true;
+                    indexes.Enqueue(j);
                     break;
                 }
             }
             if (!isSelected)
             {
                 players[i].gameObject.SetActive(false);
-                statusUIs[i].gameObject.SetActive(false);
             }
+        }
+
+        for(int i = 0; i < players.Length; i++)
+        {
+            if (indexes.Contains(i)) continue;
+
+            statusUIs[i].gameObject.SetActive(false);
         }
     }
 
@@ -85,7 +93,10 @@ public class BattleFacilitator : MonoBehaviour
         onBattle = true;
         foreach (Player player in players)
         {
-            player.playerController.isPlayable = true;
+            if (player.gameObject.activeSelf)
+            {
+                player.playerController.isPlayable = true;
+            }
         }
         leftTimeText.enabled = true;
         SoundPlayer.Find().PlayBGM(bgm);
