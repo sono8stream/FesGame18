@@ -31,6 +31,8 @@ public class CharaSelector : MonoBehaviour
     bool canSelect;
     bool isPlayable;
 
+    Animator previewAnimator;
+
     // Use this for initialization
     void Start()
     {
@@ -66,6 +68,8 @@ public class CharaSelector : MonoBehaviour
             }
             previewObj.SetActive(true);
             cursorT.gameObject.SetActive(true);
+            previewAnimator = previewObj.transform.GetChild(0).GetComponent<Animator>();
+            previewAnimator.Play("taiki");
         }
         else if (playerNo >= KoitanInput.ControllerCount() && isPlayable)
         {
@@ -142,8 +146,10 @@ public class CharaSelector : MonoBehaviour
         {
             Destroy(t.gameObject);
         }
-        Instantiate(
+        GameObject obj= Instantiate(
             charaList.GetPreview(selectCounter.Now), previewObj.transform, false);
+        previewAnimator = obj.GetComponent<Animator>();
+        previewAnimator.Play("taiki");
     }
 
     void DecideCharacter()
@@ -154,12 +160,14 @@ public class CharaSelector : MonoBehaviour
             GetComponent<Image>().color);
         UserData.instance.characters[playerNo] = charaList[selectCounter.Now];
         Debug.Log(charaList[selectCounter.Now]);
+        previewAnimator.SetBool("selected", true);
     }
 
     void CancelCharacter()
     {
         canSelect = true;
         charaList.SwitchSelectState(false, selectCounter.Now, Color.white);
+        previewAnimator.SetBool("selected", false);
     }
 
     void UpdateTargetStatus()
