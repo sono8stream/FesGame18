@@ -49,7 +49,7 @@ public class StageSelector : MonoBehaviour
     void Start()
     {
         stageCount = transform.childCount;
-        selectCounter = new Counter(stageCount);
+        selectCounter = new Counter(stageCount, true);
         anglePerStage = 360f / stageCount;
 
         for (int i = 0; i < stageCount; i++)//再配置
