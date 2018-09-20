@@ -23,6 +23,8 @@ public class CharaSelector : MonoBehaviour
     Text nameText, descriptionText;
     [SerializeField]
     RectTransform[] gaugeTransforms;
+    [SerializeField]
+    AudioClip selectSE, decideSE, cancelSE;
 
     Counter selectCounter;
     Counter pressingCounter;
@@ -86,7 +88,7 @@ public class CharaSelector : MonoBehaviour
 
         GetUpTargetStatus();
 
-        if (KoitanInput.GetButtonDown(ButtonID.B, playerNo))
+        if (!canSelect && KoitanInput.GetButtonDown(ButtonID.B, playerNo))
         {
             CancelCharacter();
         }
@@ -150,6 +152,7 @@ public class CharaSelector : MonoBehaviour
             charaList.GetPreview(selectCounter.Now), previewObj.transform, false);
         previewAnimator = obj.GetComponent<Animator>();
         previewAnimator.Play("taiki");
+        SoundPlayer.Find().PlaySE(selectSE);
     }
 
     void DecideCharacter()
@@ -161,6 +164,7 @@ public class CharaSelector : MonoBehaviour
         UserData.instance.characters[playerNo] = charaList[selectCounter.Now];
         Debug.Log(charaList[selectCounter.Now]);
         previewAnimator.SetBool("selected", true);
+        SoundPlayer.Find().PlaySE(decideSE);
     }
 
     void CancelCharacter()
@@ -168,6 +172,7 @@ public class CharaSelector : MonoBehaviour
         canSelect = true;
         charaList.SwitchSelectState(false, selectCounter.Now, Color.white);
         previewAnimator.SetBool("selected", false);
+        SoundPlayer.Find().PlaySE(cancelSE);
     }
 
     void UpdateTargetStatus()

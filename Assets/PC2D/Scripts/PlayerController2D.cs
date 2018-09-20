@@ -82,11 +82,13 @@ public class PlayerController2D : MonoBehaviour
             }
             else if (owner.aroundStand)
             {
-                if (owner.aroundStand.isStand)
+                if (owner.aroundStand.isStand && owner.aroundStand.owner == owner)
                 {
+                    Debug.Log(owner.aroundStand.owner);
+                    Debug.Log(owner);
                     owner.aroundStand.LevelUpStand();
                 }
-                else
+                else if (!owner.aroundStand.isStand)
                 {
                     owner.aroundStand.CreateStand(owner);
                 }

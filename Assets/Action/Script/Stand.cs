@@ -52,7 +52,6 @@ public class Stand : MonoBehaviour
         ResetLevel();
         defaultMoneyMaterial
             = moneyObjectOrigin.GetComponent<SpriteRenderer>().sharedMaterial;
-        Debug.Log(defaultMoneyMaterial);
     }
 
     // Update is called once per frame
@@ -77,7 +76,6 @@ public class Stand : MonoBehaviour
     {
         if (currentMoney == null)
         {
-            Debug.Log("moneyWait");
             if (regenerateCounter.Count())
             {
                 GenerateMoneyObject();

@@ -59,7 +59,7 @@ public class ItemGenerator : MonoBehaviour
         GameObject gameObject = Instantiate(itemObjects[index]);
         gameObject.transform.position = pos;
         generatedObjects.Add(gameObject);
-        Debug.Log(pos);
+        //Debug.Log(pos);
     }
 
     void FormatRatio()

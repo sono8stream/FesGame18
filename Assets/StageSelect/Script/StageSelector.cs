@@ -29,6 +29,8 @@ public class StageSelector : MonoBehaviour
     float boundScale;
     [SerializeField]
     int boundPeriod;
+    [SerializeField]
+    AudioClip selectSE, decideSE;
 
     Counter selectCounter;
     int stageCount;
@@ -72,8 +74,6 @@ public class StageSelector : MonoBehaviour
     void Update()
     {
         if (onFade) FadeBackground();
-
-        if (!canSelect) return;
 
         if (onRotate)
         {
@@ -142,6 +142,7 @@ public class StageSelector : MonoBehaviour
         onRotate = true;
         targetAngle = anglePerStage * selectCounter.Now;
         UpdateTargetStatus();
+        SoundPlayer.Find().PlaySE(selectSE);
     }
 
     void RotateList(float angle)
@@ -174,6 +175,7 @@ public class StageSelector : MonoBehaviour
         canSelect = false;
         int sceneIndex = selectCounter.Now == 0 ? 3 : 7;
         LoadManager.Find().LoadScene(sceneIndex);
+        SoundPlayer.Find().PlaySE(decideSE);
     }
 
     void FadeBackground()
