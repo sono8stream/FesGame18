@@ -94,7 +94,7 @@ public class Player : Reactor {
 		anim._animator.speed = 1f;
 	}
 
-	IEnumerator Koutyoku(float time)
+	public IEnumerator Koutyoku(float time)
     {
         playerController.isPlayable = false;
         float prevTime = Time.fixedTime;

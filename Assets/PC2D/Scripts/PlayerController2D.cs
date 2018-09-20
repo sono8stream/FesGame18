@@ -94,12 +94,14 @@ public class PlayerController2D : MonoBehaviour
             else
             {
                 anim.Attack1();
+                StartCoroutine(owner.Koutyoku(0.6f));
             }
         }
 
         if (KoitanInput.GetButtonDown(ButtonID.B, orderNo))
         {
             anim.Attack2();
+            StartCoroutine(owner.Koutyoku(0.5f));
         }
     }
 }
