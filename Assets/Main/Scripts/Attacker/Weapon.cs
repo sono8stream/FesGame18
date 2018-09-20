@@ -50,12 +50,16 @@ public class Weapon : Attacker
 
     public override void HitReaction(ContactPoint2D contact, SubHitBox subHitBox)
     {
-        if (contact.collider.gameObject.tag == "Player")
+        GameObject obj = contact.collider.gameObject;
+        if (obj.tag == "Player")
         {
-            GameObject tmpObj = Instantiate(
+            if(obj.GetComponent<Player>().state==State.HUTU){
+                Debug.Log("あたったエフェクト");
+                GameObject tmpObj = Instantiate(
                 subHitBox.Effect, contact.point, Quaternion.identity);
-            AudioSource audioSource = tmpObj.AddComponent<AudioSource>();//音
-            audioSource.PlayOneShot(subHitBox.HitSound);
+                AudioSource audioSource = tmpObj.AddComponent<AudioSource>();//音
+                audioSource.PlayOneShot(subHitBox.HitSound);
+            }
         }
     }
 }

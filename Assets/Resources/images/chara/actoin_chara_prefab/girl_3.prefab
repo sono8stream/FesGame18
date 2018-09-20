@@ -853,6 +853,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1779670571857186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4253139478325910}
+  - component: {fileID: 212214282844884454}
+  m_Layer: 0
+  m_Name: shock_wave_white (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1852131593519208
 GameObject:
   m_ObjectHideFlags: 1
@@ -1116,7 +1132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1520148849102010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 13.06, y: -3.15, z: 0}
   m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_Children:
   - {fileID: 4115295109017100}
@@ -1124,6 +1140,7 @@ Transform:
   - {fileID: 4144576251173616}
   - {fileID: 4984754616999908}
   - {fileID: 4520044509592168}
+  - {fileID: 4253139478325910}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1321,6 +1338,19 @@ Transform:
   m_Father: {fileID: 4718972816424354}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -4.8120003}
+--- !u!4 &4253139478325910
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1779670571857186}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.8181819, y: 1.8181819, z: 1.8181819}
+  m_Children: []
+  m_Father: {fileID: 4080294663769666}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4267539354999674
 Transform:
   m_ObjectHideFlags: 1
@@ -2189,7 +2219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.2009612
+  m_Length: 0.20096183
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4208088835300634}
   m_AttachedIK: {fileID: 0}
@@ -2303,7 +2333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 0.33071706
+  m_Length: 0.3307169
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4325825055526682}
   m_AttachedIK: {fileID: 0}
@@ -2355,7 +2385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.82595277
+  m_Length: 0.8259524
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4062834819797200}
   m_AttachedIK: {fileID: 0}
@@ -2371,7 +2401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.5635986
+  m_Length: 0.5635989
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4350030852057498}
   m_AttachedIK: {fileID: 0}
@@ -2471,7 +2501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.3548295
+  m_Length: 0.35482973
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4718675598978376}
   m_AttachedIK: {fileID: 0}
@@ -2506,7 +2536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 0.32662594
+  m_Length: 0.3266255
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4637809694190460}
   m_AttachedIK: {fileID: 0}
@@ -2572,7 +2602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1339807897742870, guid: 8012aad2208e349b79b4fce1a00214e6, type: 2}
-  speed: 3
+  speed: 6
   angle: 0
 --- !u!114 &114297177216717860
 MonoBehaviour:
@@ -2621,7 +2651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 1.1103601
+  m_Length: 1.1103599
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4243979928033382}
   m_AttachedIK: {fileID: 0}
@@ -2652,7 +2682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1678085288890146, guid: a27430bca9fdf4044b2cd5cfaf95837d, type: 2}
-  speed: 7
+  speed: 15
   angle: 0
 --- !u!114 &114367054170348496
 MonoBehaviour:
@@ -2701,9 +2731,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  PlayerID: 3
+  PlayerID: 1
   state: 0
-  teamColor: 0
+  teamColor: 3
   anim: {fileID: 0}
   playerController: {fileID: 0}
   havingWeapon: {fileID: 0}
@@ -2715,6 +2745,7 @@ MonoBehaviour:
   handPos: {fileID: 4350030852057498}
   material: {fileID: 0}
   coinPrefab: {fileID: 0}
+  MutekiPrefab: {fileID: 1779670571857186}
 --- !u!114 &114384414180443336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2727,7 +2758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 0.41050106
+  m_Length: 0.41050097
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4599136221391348}
   m_AttachedIK: {fileID: 0}
@@ -2743,7 +2774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 1.2014271
+  m_Length: 1.2014266
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4689787459644822}
   m_AttachedIK: {fileID: 0}
@@ -2796,7 +2827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 1.2014269
+  m_Length: 1.201427
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4668076462145034}
   m_AttachedIK: {fileID: 0}
@@ -2955,7 +2986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.43657845
+  m_Length: 0.4365784
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4990911914298342}
   m_AttachedIK: {fileID: 0}
@@ -2971,7 +3002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1678085288890146, guid: a27430bca9fdf4044b2cd5cfaf95837d, type: 2}
-  speed: 7
+  speed: 15
   angle: -30
 --- !u!114 &114573963821659902
 MonoBehaviour:
@@ -3008,7 +3039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1678085288890146, guid: a27430bca9fdf4044b2cd5cfaf95837d, type: 2}
-  speed: 7
+  speed: 15
   angle: 30
 --- !u!114 &114580481413916550
 MonoBehaviour:
@@ -3064,7 +3095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 0.3230133
+  m_Length: 0.32301322
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4626790406515096}
   m_AttachedIK: {fileID: 0}
@@ -3080,7 +3111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 0.34493288
+  m_Length: 0.34493276
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4728856508735088}
   m_AttachedIK: {fileID: 0}
@@ -3115,7 +3146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 1.0105779
+  m_Length: 1.0105778
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4836049031785778}
   m_AttachedIK: {fileID: 0}
@@ -3408,7 +3439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.5298879
+  m_Length: 0.52988774
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4533708815457720}
   m_AttachedIK: {fileID: 0}
@@ -3424,7 +3455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.2873278
+  m_Length: 0.2873276
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4546286678578080}
   m_AttachedIK: {fileID: 0}
@@ -3550,7 +3581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 0.21105398
+  m_Length: 0.21105348
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4838106259698790}
   m_AttachedIK: {fileID: 0}
@@ -3688,7 +3719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Length: 1.0776477
+  m_Length: 1.0776473
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4339603102232376}
   m_AttachedIK: {fileID: 0}
@@ -3832,7 +3863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 0.38353506
+  m_Length: 0.38353518
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4644659051485870}
   m_AttachedIK: {fileID: 0}
@@ -4611,6 +4642,52 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 7.16, y: 8}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!212 &212214282844884454
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1779670571857186}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: d0dc4ffef350449f0bedf00cb625b140, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

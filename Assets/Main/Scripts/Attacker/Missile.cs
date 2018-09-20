@@ -24,10 +24,14 @@ public class Missile : Attacker {
 
 	public override void HitReaction(ContactPoint2D contact, SubHitBox subHitBox)
 	{
-		if(contact.collider.gameObject.tag=="Player"){
-			GameObject tmpObj = Instantiate(subHitBox.Effect, contact.point, Quaternion.identity);
-            AudioSource audioSource = tmpObj.AddComponent<AudioSource>();//音
-            audioSource.PlayOneShot(subHitBox.HitSound);
+        GameObject obj = contact.collider.gameObject;
+        if (obj.tag=="Player"){
+            if (obj.GetComponent<Player>().state == State.HUTU)
+            {
+                GameObject tmpObj = Instantiate(subHitBox.Effect, contact.point, Quaternion.identity);
+                AudioSource audioSource = tmpObj.AddComponent<AudioSource>();//音
+                audioSource.PlayOneShot(subHitBox.HitSound);
+            }
 			if(afterCollisionState==AfterCollisionState.Disappearance){
 				Destroy(this.gameObject);
 			}            

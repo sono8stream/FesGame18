@@ -29,6 +29,7 @@ public class Player : Reactor {
     public PlayerStatus Status { get; private set; }
 	public GameObject coinPrefab;
     public Counter disableCounter;
+    public GameObject MutekiPrefab;
 
 	// Use this for initialization
 	void Awake () {
@@ -41,6 +42,9 @@ public class Player : Reactor {
     {
         playerController._motor.numOfAirJumps
             = (int)Status.TempStatus[(int)StatusNames.airJumpLims];
+
+        //無敵状態
+        MutekiPrefab.SetActive(state == State.MUTEKI);
     }
 
     public void Damage(SubHitBox subHitBox)
