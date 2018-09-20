@@ -86,7 +86,7 @@ public class CharaSelector : MonoBehaviour
 
         GetUpTargetStatus();
 
-        if (KoitanInput.GetButtonDown(ButtonID.B, playerNo))
+        if (!canSelect && KoitanInput.GetButtonDown(ButtonID.B, playerNo))
         {
             CancelCharacter();
         }
