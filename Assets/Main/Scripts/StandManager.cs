@@ -17,6 +17,8 @@ public class StandManager : MonoBehaviour
     Explodable explodable;
     [SerializeField]
     Material[] outlineMaterials;
+    [SerializeField]
+    AudioClip createSE, levelupSE, resetSE;
 
     private GameObject subjectObj;
     private Stand stand;
@@ -103,6 +105,7 @@ public class StandManager : MonoBehaviour
         popupObj.GetComponent<Animator>().Play("popup");
         popupObj.SetActive(true);
         emptyLandAnimator.SetTrigger("Switch");
+        SoundPlayer.Find().PlaySE(createSE);
     }
 
     public void LevelUpStand()
@@ -123,6 +126,7 @@ public class StandManager : MonoBehaviour
                 PopupMessage();
                 popupObj.GetComponent<Animator>().Play("popup");
             }
+            SoundPlayer.Find().PlaySE(levelupSE);
         }
     }
 
@@ -140,6 +144,7 @@ public class StandManager : MonoBehaviour
         }
         levelCounter.Initialize();
         emptyLandAnimator.SetTrigger("Switch");
+        SoundPlayer.Find().PlaySE(resetSE);
     }
 
     void AddLevelSprite()
