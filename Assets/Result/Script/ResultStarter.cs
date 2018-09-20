@@ -38,7 +38,6 @@ public class ResultStarter : MonoBehaviour
         int looserMatID = winnerMatID == 0 ? 1 : 0;
         winnerText.text = string.Format("Player {0} WIN !!",
             UserData.instance.winnerIndex + 1);
-        resultAnimCharas[winnerMatID].Play("boy_1_win");
         counter = new Counter(60);
     }
 
@@ -82,6 +81,7 @@ public class ResultStarter : MonoBehaviour
                     parent.GetChild(j).GetComponent<SpriteMeshInstance>().sharedMaterial 
                         = borderMaterial[winnerIndex];
                 }
+                resultAnimCharas[i].Play("boy_1_win");
             }
             else
             {

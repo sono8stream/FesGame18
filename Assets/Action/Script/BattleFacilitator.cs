@@ -118,7 +118,10 @@ public class BattleFacilitator : MonoBehaviour
         onBattle = false;
         foreach (Player player in players)
         {
-            player.playerController.isPlayable = false;
+            if (player.gameObject.activeSelf)
+            {
+                player.playerController.isPlayable = false;
+            }
         }
     }
 
