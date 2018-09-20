@@ -42,8 +42,6 @@ public class StageSelector : MonoBehaviour
 
     Counter fadeCounter;
     bool onFade;
-    Counter transitionCounter;
-    bool onTransition;
 
     // Use this for initialization
     void Start()
@@ -68,7 +66,6 @@ public class StageSelector : MonoBehaviour
         SelectStage(1);
 
         fadeCounter = new Counter(fadeFrame);
-        transitionCounter = new Counter(50);
     }
 
     // Update is called once per frame
@@ -76,24 +73,7 @@ public class StageSelector : MonoBehaviour
     {
         if (onFade) FadeBackground();
 
-        if (onTransition)
-        {
-            transitionCounter.Count();
-            if (transitionCounter.Now == transitionCounter.Limit / 2)
-            {
-                if (selectCounter.Now == 0)
-                {
-                    LoadManager.Find().LoadScene(3);
-                }
-                else
-                {
-                    LoadManager.Find().LoadScene(7);
-                }
-            }
-            transform.GetChild(selectCounter.Now).localScale
-                = Vector3.one * (transitionCounter.Now % 2);
-            return;
-        }
+        if (!canSelect) return;
 
         if (onRotate)
         {
@@ -192,7 +172,8 @@ public class StageSelector : MonoBehaviour
     {
         UserData.instance.selectedStageNo = selectCounter.Now;
         canSelect = false;
-        onTransition = true;
+        int sceneIndex = selectCounter.Now == 0 ? 3 : 7;
+        LoadManager.Find().LoadScene(sceneIndex);
     }
 
     void FadeBackground()

@@ -20,6 +20,9 @@ public class Player : Reactor {
 	public bool isThrowable;
 	public InstantiateMissile instantiateMissile;
 	public Transform handPos;
+    private float finishMutekiTime = 0;
+    public GameObject mesh;
+    private bool meshActive = true;
 
     [SerializeField]
     Material material;
@@ -29,7 +32,6 @@ public class Player : Reactor {
     public PlayerStatus Status { get; private set; }
 	public GameObject coinPrefab;
     public Counter disableCounter;
-    public GameObject MutekiPrefab;
 
 	// Use this for initialization
 	void Awake () {
@@ -43,13 +45,22 @@ public class Player : Reactor {
         playerController._motor.numOfAirJumps
             = (int)Status.TempStatus[(int)StatusNames.airJumpLims];
 
-        //無敵状態
-        MutekiPrefab.SetActive(state == State.MUTEKI);
+        //無敵解除
+        if(finishMutekiTime > 0){
+            finishMutekiTime -= Time.deltaTime;
+            if (meshActive == true){
+                StartCoroutine(Flashing());
+            }
+        }
+        else{
+            state = State.HUTU;
+        }
+
     }
 
     public void Damage(SubHitBox subHitBox)
     {
-        if (state != State.HUTU) return;
+        if (state == State.MUTEKI) return;
 
         state = State.MUTEKI;
         //お金を落とす
@@ -60,7 +71,8 @@ public class Player : Reactor {
         vec = new Vector2(vec.x * subHitBox.hitBox.owner.anim.muki, vec.y);
         StartCoroutine(anim.Damage(vec, subHitBox.Hitlag));
         StartCoroutine(Koutyoku(subHitBox.stopTime));
-        StartCoroutine(FinishMUTEKI(subHitBox.stopTime * 2));
+        //StartCoroutine(FinishMUTEKI(subHitBox.stopTime * 1.5f));
+        finishMutekiTime = subHitBox.stopTime * 1.5f;
     }
 
     private void LoseMoney()
@@ -115,6 +127,15 @@ public class Player : Reactor {
             remainTime -= 0.05f;
         }
         return remainTime;
+    }
+
+    IEnumerator Flashing(){
+        mesh.SetActive(false);
+        meshActive = false;
+        yield return new WaitForSeconds(0.1f);
+        mesh.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        meshActive = true;
     }
 
     public void SetTeam(TeamColor color, Material material,Transform statusT, int id)
