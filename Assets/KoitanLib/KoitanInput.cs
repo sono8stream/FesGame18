@@ -14,6 +14,7 @@ namespace KoitanLib
         private static List<string> controllerNames;
         private static List<int> orderList;
         private static bool isConnecting;
+        private static int keyboardInputCnt;
         //private static int controllerCount;
 
         int joyPadCnt;
@@ -212,51 +213,10 @@ namespace KoitanLib
                 controllerIndex++;
             }
 
-            if (controllerNames.Count < 2)
+            while (controllerIndex < 2)
             {
-                controllerNames.Add("Keyboard 1");
-                ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
-                    {
-                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.M)},
-                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.N)},
-                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.J)},
-                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.H)}
-                    });
-                AxisTable.Add(new Dictionary<Axis, KoitanAxis>
-                    {
-                        {Axis.L_Horizontal,
-                        new KoitanAxis(ConType.Key,KeyCode.RightArrow,KeyCode.LeftArrow)},
-                        {Axis.L_Vertical,
-                        new KoitanAxis(ConType.Key,KeyCode.UpArrow,KeyCode.DownArrow)},
-                        {Axis.Cross_Horizontal,
-                        new KoitanAxis(ConType.Key,KeyCode.RightArrow,KeyCode.LeftArrow)},
-                        {Axis.Cross_Vertical,
-                        new KoitanAxis(ConType.Key,KeyCode.UpArrow,KeyCode.DownArrow)},
-                    });
-                orderList.Add(controllerNames.Count - 1);
-            }
-            if (controllerNames.Count < 2)
-            {
-                controllerNames.Add("Keyboard 2");
-                ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
-                    {
-                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.X)},
-                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.Z)},
-                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.S)},
-                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.A)}
-                    });
-                AxisTable.Add(new Dictionary<Axis, KoitanAxis>
-                    {
-                        {Axis.L_Horizontal,
-                        new KoitanAxis(ConType.Key,KeyCode.B,KeyCode.C)},
-                        {Axis.L_Vertical,
-                        new KoitanAxis(ConType.Key,KeyCode.F,KeyCode.V)},
-                        {Axis.Cross_Horizontal,
-                        new KoitanAxis(ConType.Key,KeyCode.B,KeyCode.C)},
-                        {Axis.Cross_Vertical,
-                        new KoitanAxis(ConType.Key,KeyCode.F,KeyCode.V)},
-                    });
-                orderList.Add(controllerNames.Count - 1);
+                AddKeyboardInput();
+                controllerIndex++;
             }
         }
 
@@ -376,6 +336,70 @@ namespace KoitanLib
                 s += controllerNames[orderList[i]] + Environment.NewLine;
             }
             return s;
+        }
+
+        public static void AddKeyboardInput()
+        {
+            switch (keyboardInputCnt)
+            {
+                case 0:
+                    controllerNames.Add("Keyboard 1");
+                    ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
+                    {
+                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.M)},
+                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.N)},
+                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.J)},
+                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.H)}
+                    });
+                    AxisTable.Add(new Dictionary<Axis, KoitanAxis>
+                    {
+                        {Axis.L_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.RightArrow,KeyCode.LeftArrow)},
+                        {Axis.L_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.UpArrow,KeyCode.DownArrow)},
+                        {Axis.Cross_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.RightArrow,KeyCode.LeftArrow)},
+                        {Axis.Cross_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.UpArrow,KeyCode.DownArrow)},
+                    });
+                    orderList.Add(controllerNames.Count - 1);
+                    keyboardInputCnt++;
+                    break;
+                case 1:
+                    controllerNames.Add("Keyboard 2");
+                    ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
+                    {
+                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.X)},
+                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.Z)},
+                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.S)},
+                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.A)}
+                    });
+                    AxisTable.Add(new Dictionary<Axis, KoitanAxis>
+                    {
+                        {Axis.L_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.B,KeyCode.C)},
+                        {Axis.L_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.F,KeyCode.V)},
+                        {Axis.Cross_Horizontal,
+                        new KoitanAxis(ConType.Key,KeyCode.B,KeyCode.C)},
+                        {Axis.Cross_Vertical,
+                        new KoitanAxis(ConType.Key,KeyCode.F,KeyCode.V)},
+                    });
+                    orderList.Add(controllerNames.Count - 1);
+                    keyboardInputCnt++;
+                    break;
+            }
+        }
+
+        public static void RemoveKeyboardInput()
+        {
+            if (keyboardInputCnt == 0 || controllerNames.Count == 2) return;
+
+            int keyIndex = controllerNames.IndexOf("Keyboard " + keyboardInputCnt.ToString());
+            orderList.Remove(keyIndex);
+            controllerNames.RemoveAt(keyIndex);
+            ButtonTable.RemoveAt(keyIndex);
+            AxisTable.RemoveAt(keyIndex);
         }
 
         public static void StartReconnection()

@@ -44,6 +44,14 @@ public class KeyConfig : MonoBehaviour
         if (onConfig)
         {
             text.text= KoitanInput.ControllerNames();
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                KoitanInput.AddKeyboardInput();
+            }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                KoitanInput.RemoveKeyboardInput();
+            }
         }
     }
 

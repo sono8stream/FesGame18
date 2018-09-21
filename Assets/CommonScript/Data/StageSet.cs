@@ -24,9 +24,11 @@ public class StageSet
     {
         stageList = new List<StageStatus>();
         stageList.Add(new StageStatus("北海道大学",
-            "夏の北海道大学。" + Environment.NewLine + "ポプラ並木で商売開始！"));
+            "中級ステージ。" + Environment.NewLine
+            + "我らが北海道大学の夏。" + Environment.NewLine + "ポプラ並木で商売開始だ！"));
         stageList.Add(new StageStatus("幕張メッセ",
-            "TGS開催中の幕張メッセ。" + Environment.NewLine
+            "超上級ステージ。" + Environment.NewLine
+            + "TGS開催中の幕張メッセ。" + Environment.NewLine
             + "ステージ上を縦横無尽に駆け巡れ！"));
     }
 }

@@ -29,12 +29,13 @@ public class PlayerController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isPlayable) {
+        if (!isPlayable)
+        {
             _motor.normalizedXMovement = 0;
             return;
         }
 
-        if (Mathf.Abs(KoitanInput.GetAxis(Axis.L_Horizontal,orderNo))
+        if (Mathf.Abs(KoitanInput.GetAxis(Axis.L_Horizontal, orderNo))
             > PC2D.Globals.INPUT_THRESHOLD)
         {
             _motor.normalizedXMovement
@@ -94,14 +95,14 @@ public class PlayerController2D : MonoBehaviour
                     owner.aroundStand.CreateStand(owner);
                 }
             }
-            else if(canAttack)
+            else if (canAttack)
             {
                 anim.Attack1();
                 StartCoroutine(owner.Koutyoku(0.6f));
             }
         }
 
-        if (KoitanInput.GetButtonDown(ButtonID.B, orderNo))
+        if (canAttack && KoitanInput.GetButtonDown(ButtonID.B, orderNo))
         {
             anim.Attack2();
             StartCoroutine(owner.Koutyoku(0.5f));
