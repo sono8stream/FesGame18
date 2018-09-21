@@ -101,7 +101,7 @@ public class PlayerController2D : MonoBehaviour
             }
         }
 
-        if (KoitanInput.GetButtonDown(ButtonID.B, orderNo))
+        if (canAttack&&KoitanInput.GetButtonDown(ButtonID.B, orderNo))
         {
             anim.Attack2();
             StartCoroutine(owner.Koutyoku(0.5f));
