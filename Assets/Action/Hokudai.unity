@@ -2822,6 +2822,11 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114054413333497492, guid: 62ee9e56b1af7447086a9ce66e409b6c,
+        type: 2}
+      propertyPath: mesh
+      value: 
+      objectReference: {fileID: 169191728}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62ee9e56b1af7447086a9ce66e409b6c, type: 2}
   m_IsPrefabAsset: 0
@@ -2834,6 +2839,11 @@ MonoBehaviour:
 --- !u!4 &169191727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4480931454464090, guid: 62ee9e56b1af7447086a9ce66e409b6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 169191725}
+--- !u!1 &169191728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1600231369219256, guid: 62ee9e56b1af7447086a9ce66e409b6c,
     type: 2}
   m_PrefabInternal: {fileID: 169191725}
 --- !u!1 &178784377
@@ -3434,6 +3444,17 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114484816942262030, guid: 7cd43358c3c174bae984965d32df6da8,
+        type: 2}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 1752063481129636, guid: fdd661eac3452df4fa4b45edb87824f6,
+        type: 2}
+    - target: {fileID: 114484816942262030, guid: 7cd43358c3c174bae984965d32df6da8,
+        type: 2}
+      propertyPath: mesh
+      value: 
+      objectReference: {fileID: 183410349}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cd43358c3c174bae984965d32df6da8, type: 2}
   m_IsPrefabAsset: 0
@@ -3446,6 +3467,11 @@ MonoBehaviour:
 --- !u!4 &183410348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4286654095897470, guid: 7cd43358c3c174bae984965d32df6da8,
+    type: 2}
+  m_PrefabInternal: {fileID: 183410346}
+--- !u!1 &183410349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1139672748735984, guid: 7cd43358c3c174bae984965d32df6da8,
     type: 2}
   m_PrefabInternal: {fileID: 183410346}
 --- !u!1 &184109278
@@ -43137,6 +43163,17 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114106480947665810, guid: 47eefedf1afca48419afb092696a3529,
+        type: 2}
+      propertyPath: mesh
+      value: 
+      objectReference: {fileID: 1674681911}
+    - target: {fileID: 114106480947665810, guid: 47eefedf1afca48419afb092696a3529,
+        type: 2}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 1752063481129636, guid: fdd661eac3452df4fa4b45edb87824f6,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47eefedf1afca48419afb092696a3529, type: 2}
   m_IsPrefabAsset: 0
@@ -43149,6 +43186,11 @@ MonoBehaviour:
 --- !u!4 &1674681910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4680745619406414, guid: 47eefedf1afca48419afb092696a3529,
+    type: 2}
+  m_PrefabInternal: {fileID: 1674681908}
+--- !u!1 &1674681911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1878613049222094, guid: 47eefedf1afca48419afb092696a3529,
     type: 2}
   m_PrefabInternal: {fileID: 1674681908}
 --- !u!21 &1676401190
@@ -51100,6 +51142,17 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114372583937604024, guid: 4b3aa2629285848abb13d2f9f10e7564,
+        type: 2}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 1752063481129636, guid: fdd661eac3452df4fa4b45edb87824f6,
+        type: 2}
+    - target: {fileID: 114372583937604024, guid: 4b3aa2629285848abb13d2f9f10e7564,
+        type: 2}
+      propertyPath: mesh
+      value: 
+      objectReference: {fileID: 1899440403}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b3aa2629285848abb13d2f9f10e7564, type: 2}
   m_IsPrefabAsset: 0
@@ -51112,6 +51165,11 @@ MonoBehaviour:
 --- !u!4 &1899440402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4080294663769666, guid: 4b3aa2629285848abb13d2f9f10e7564,
+    type: 2}
+  m_PrefabInternal: {fileID: 1899440400}
+--- !u!1 &1899440403 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1007302792537904, guid: 4b3aa2629285848abb13d2f9f10e7564,
     type: 2}
   m_PrefabInternal: {fileID: 1899440400}
 --- !u!1 &1900087672
