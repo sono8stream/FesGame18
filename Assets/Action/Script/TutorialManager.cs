@@ -23,6 +23,7 @@ public class TutorialManager : MonoBehaviour {
             case 0:
                 if(standManager.isStand){
                     tutorialLevel++;
+                    tutorialObjects[0].SetActive(false);
                 }
                 break;
                 //お金回収
