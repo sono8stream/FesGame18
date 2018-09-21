@@ -41,10 +41,12 @@ public class TitleFacilitator : MonoBehaviour
             return;
         }
 
+        /*
         if (timer.OnLimit())
         {
             LoadManager.Find().LoadScene(1);
         }
+        */
 
         if (KoitanLib.KoitanInput.GetButtonDown(ButtonID.A))
         {
