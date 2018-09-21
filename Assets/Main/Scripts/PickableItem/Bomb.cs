@@ -61,9 +61,24 @@ public class Bomb : PickableItem {
 				Explosion();
 			}				
 		}
-	}
+        if (collision.collider.gameObject.tag == "Attacker")
+        {
+            Explosion();
+        }
+    }
 
-	public override void ThrowReaction()
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //めっちゃ重い
+        /*
+        if (collision.gameObject.tag == "Attacker")
+        {
+            Explosion();
+        }
+        */
+    }
+
+    public override void ThrowReaction()
 	{
 		transform.parent = null;
 		rb.velocity = new Vector2(10f * owner.anim.muki, 2);
