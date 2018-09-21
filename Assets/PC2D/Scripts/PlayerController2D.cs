@@ -10,6 +10,7 @@ public class PlayerController2D : MonoBehaviour
     public PlatformerMotor2D _motor;
     public PC2D.AnimaController anim;
     public bool isPlayable;
+    public bool canAttack = true;
 
     private Player owner;
     [SerializeField]
@@ -93,7 +94,7 @@ public class PlayerController2D : MonoBehaviour
                     owner.aroundStand.CreateStand(owner);
                 }
             }
-            else
+            else if(canAttack)
             {
                 anim.Attack1();
                 StartCoroutine(owner.Koutyoku(0.6f));
