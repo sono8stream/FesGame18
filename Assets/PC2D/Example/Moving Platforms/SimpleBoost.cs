@@ -84,7 +84,7 @@ namespace PC2D
                     if (_player.connectedPlatform == _mpMotor)
                     {
                         _player.DisconnectFromPlatform();
-                        _player.velocity += Vector2.up * playerSpeedYAtApex;
+                        _player.velocity += (Vector2)transform.up * playerSpeedYAtApex;
                         _player = null;
                     }
                 }
