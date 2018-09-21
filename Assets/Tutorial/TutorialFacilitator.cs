@@ -7,6 +7,14 @@ public class TutorialFacilitator : MonoBehaviour
 {
     [SerializeField]
     GameObject[] players;
+    [SerializeField]
+    StandManager[] stands;
+    [SerializeField]
+    GameObject[] walls;
+    [SerializeField]
+    GameObject[] bombGenerators;
+    [SerializeField]
+    GameObject[] floors;
 
     int playerCnt;
     int stateNo;
@@ -23,7 +31,34 @@ public class TutorialFacilitator : MonoBehaviour
     {
         switch (stateNo)
         {
+            //屋台配置
             case 0:
+                if (stands.Count(x => x.isStand) == playerCnt)
+                {
+                    stateNo = 1;
+                    foreach(GameObject g in walls)
+                    {
+                        g.SetActive(false);
+                    }
+                    foreach(GameObject g in bombGenerators)
+                    {
+                        g.SetActive(true);
+                    }
+                }
+                break;
+                //爆弾使用
+            case 1:
+                if (stands.Count(x => !x.isStand) == 0)
+                {
+                    stateNo = 2;
+                    foreach(GameObject g in floors)
+                    {
+                        g.SetActive(true);
+                    }
+                }
+                break;
+                //ゴールへ向かう
+            case 2:
                 break;
         }
     }
