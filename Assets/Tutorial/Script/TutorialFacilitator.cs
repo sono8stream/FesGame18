@@ -10,6 +10,10 @@ public class TutorialFacilitator : MonoBehaviour
     [SerializeField]
     StandManager[] stands;
     [SerializeField]
+    GameObject standUpImageObj;
+    [SerializeField]
+    GameObject bombImageObj;
+    [SerializeField]
     GameObject wall;
     [SerializeField]
     GameObject bombGenerator;
