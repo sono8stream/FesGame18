@@ -97,6 +97,7 @@ public class StandManager : MonoBehaviour
         stand.owner = player;
         stand.GetComponent<SpriteRenderer>().material
             = outlineMaterials[owner.PlayerID];
+        stand.ResetGeneration();
         isStand = true;
         PopupMessage();
         popupObj.GetComponent<Animator>().Play("popup");

@@ -6,15 +6,15 @@ using UnityEngine;
 public class TutorialFacilitator : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] players;
+    Player[] players;
     [SerializeField]
     StandManager[] stands;
     [SerializeField]
-    GameObject[] walls;
+    GameObject wall;
     [SerializeField]
-    GameObject[] bombGenerators;
+    GameObject bombGenerator;
     [SerializeField]
-    GameObject[] floors;
+    GameObject floor;
 
     int playerCnt;
     int stateNo;
@@ -22,7 +22,7 @@ public class TutorialFacilitator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        playerCnt = players.Count(x => x.activeSelf);
+        playerCnt = players.Count(x => x.gameObject.activeSelf);
         stateNo = 0;
     }
 
@@ -36,29 +36,30 @@ public class TutorialFacilitator : MonoBehaviour
                 if (stands.Count(x => x.isStand) == playerCnt)
                 {
                     stateNo = 1;
-                    foreach(GameObject g in walls)
-                    {
-                        g.SetActive(false);
-                    }
-                    foreach(GameObject g in bombGenerators)
-                    {
-                        g.SetActive(true);
-                    }
+                    wall.SetActive(false);
+                }
+                break;
+            //お金獲得
+            case 1:
+                if (players.Count(x =>
+                {
+                    return x.gameObject.activeSelf && x.Status.money > 0;
+                }) == playerCnt)
+                {
+                    stateNo = 2;
+                    bombGenerator.SetActive(true);
                 }
                 break;
                 //爆弾使用
-            case 1:
-                if (stands.Count(x => !x.isStand) == 0)
+            case 2:
+                if (stands.Count(x => x.isStand) == 0)
                 {
-                    stateNo = 2;
-                    foreach(GameObject g in floors)
-                    {
-                        g.SetActive(true);
-                    }
+                    stateNo = 3;
+                    floor.SetActive(true);
                 }
                 break;
                 //ゴールへ向かう
-            case 2:
+            case 3:
                 break;
         }
     }
