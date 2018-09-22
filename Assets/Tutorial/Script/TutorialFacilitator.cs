@@ -36,6 +36,11 @@ public class TutorialFacilitator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadManager.Find().LoadScene(8);
+        }
+
         switch (stateNo)
         {
             //屋台配置
