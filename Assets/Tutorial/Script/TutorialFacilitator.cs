@@ -43,6 +43,7 @@ public class TutorialFacilitator : MonoBehaviour
                 if (stands.Count(x => x.isStand) == playerCnt)
                 {
                     stateNo = 1;
+                    standUpImageObj.SetActive(false);
                 }
                 break;
             //お金獲得

@@ -346,8 +346,8 @@ namespace KoitanLib
                     controllerNames.Add("Keyboard 1");
                     ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
                     {
-                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.Underscore)},
-                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.Slash)},
+                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.Colon)},
+                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.Semicolon)},
                         {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.UpArrow)},
                         {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.DownArrow)}
                     });
