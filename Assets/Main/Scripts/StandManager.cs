@@ -100,8 +100,8 @@ public class StandManager : MonoBehaviour
         stand.ResetGeneration();
         isStand = true;
         PopupMessage();
-        popupObj.GetComponent<Animator>().Play("popup");
-        popupObj.SetActive(true);
+        //popupObj.GetComponent<Animator>().Play("popup");
+        //popupObj.SetActive(true);
         emptyLandAnimator.SetTrigger("Switch");
         SoundPlayer.Find().PlaySE(createSE);
     }
