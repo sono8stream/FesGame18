@@ -15,6 +15,8 @@ public class TutorialFacilitator : MonoBehaviour
     GameObject bombGenerator;
     [SerializeField]
     GameObject floor;
+    [SerializeField]
+    BGMinfo bgm;
 
     int playerCnt;
     int stateNo;
@@ -24,6 +26,7 @@ public class TutorialFacilitator : MonoBehaviour
     {
         playerCnt = players.Count(x => x.gameObject.activeSelf);
         stateNo = 0;
+        SoundPlayer.Find().PlayBGM(bgm);
     }
 
     // Update is called once per frame
@@ -36,7 +39,6 @@ public class TutorialFacilitator : MonoBehaviour
                 if (stands.Count(x => x.isStand) == playerCnt)
                 {
                     stateNo = 1;
-                    wall.SetActive(false);
                 }
                 break;
             //お金獲得
@@ -47,6 +49,7 @@ public class TutorialFacilitator : MonoBehaviour
                 }) == playerCnt)
                 {
                     stateNo = 2;
+                    wall.SetActive(false);
                     bombGenerator.SetActive(true);
                 }
                 break;
