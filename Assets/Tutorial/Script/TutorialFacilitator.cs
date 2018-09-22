@@ -56,6 +56,7 @@ public class TutorialFacilitator : MonoBehaviour
                     stateNo = 2;
                     wall.SetActive(false);
                     bombGenerator.SetActive(true);
+                    bombImageObj.SetActive(true);
                 }
                 break;
                 //爆弾使用
@@ -64,6 +65,7 @@ public class TutorialFacilitator : MonoBehaviour
                 {
                     stateNo = 3;
                     floor.SetActive(true);
+                    bombImageObj.SetActive(false);
                 }
                 break;
                 //ゴールへ向かう
