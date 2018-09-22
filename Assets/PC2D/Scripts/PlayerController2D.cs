@@ -47,12 +47,15 @@ public class PlayerController2D : MonoBehaviour
         }
 
         // Jump?
+        //if (KoitanInput.GetButtonDown(ButtonID.X, orderNo) || KoitanInput.GetAxisDown(Axis.L_Vertical, orderNo)<0)
         if (KoitanInput.GetButtonDown(ButtonID.X, orderNo))
         {
             _motor.Jump();
         }
 
+        //_motor.jumpingHeld = KoitanInput.GetButton(ButtonID.X, orderNo) || KoitanInput.GetAxis(Axis.L_Vertical, orderNo)<0;
         _motor.jumpingHeld = KoitanInput.GetButton(ButtonID.X, orderNo);
+
 
         if (KoitanInput.GetAxis(Axis.L_Vertical, orderNo)
             > PC2D.Globals.FAST_FALL_THRESHOLD)
@@ -101,7 +104,8 @@ public class PlayerController2D : MonoBehaviour
             {
                 owner.aroundItem.PickUpReaction(owner);
             }
-            else if (canAttack)
+
+            if (KoitanInput.GetButtonDown(ButtonID.Y, orderNo) && canAttack)
             {
                 anim.Attack1();
                 StartCoroutine(owner.Koutyoku(0.6f));
