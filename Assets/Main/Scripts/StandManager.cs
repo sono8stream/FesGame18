@@ -34,6 +34,7 @@ public class StandManager : MonoBehaviour
         stand = GetComponentInChildren<Stand>();
         stand.gameObject.SetActive(false);
         resetter = stand.GetComponent<ResetPieces>();
+        resetter.standManager = this;
         popupObj = transform.Find("popup").gameObject;
         popupObj.SetActive(false);
         stateTransform = transform.Find("state");

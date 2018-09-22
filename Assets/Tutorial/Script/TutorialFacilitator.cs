@@ -10,6 +10,10 @@ public class TutorialFacilitator : MonoBehaviour
     [SerializeField]
     StandManager[] stands;
     [SerializeField]
+    GameObject standUpImageObj;
+    [SerializeField]
+    GameObject bombImageObj;
+    [SerializeField]
     GameObject wall;
     [SerializeField]
     GameObject bombGenerator;
@@ -55,7 +59,7 @@ public class TutorialFacilitator : MonoBehaviour
                 break;
                 //爆弾使用
             case 2:
-                if (stands.Count(x => x.isStand) == 0)
+                if (stands.Count(x => x.isStand) < playerCnt)
                 {
                     stateNo = 3;
                     floor.SetActive(true);
