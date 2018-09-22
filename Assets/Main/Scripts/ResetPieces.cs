@@ -12,6 +12,7 @@ public class ResetPieces : MonoBehaviour
     [SerializeField]
     List<Vector3> childDefualtPos;
     public bool onEndExplosion;
+    public StandManager standManager;
     private bool isExplode;
     private float tmpTime;
     private Stand stand;
@@ -59,6 +60,7 @@ public class ResetPieces : MonoBehaviour
         isExplode = true;
         tmpTime = 0;
         stand.ReleaseMoney();
+        standManager.owner = null;
     }
 
     public void ResetP()
