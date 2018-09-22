@@ -15,16 +15,19 @@ public class Bomb : PickableItem {
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 	}
-	
-	// Update is called once per frame
-	void Update () {		
-		if(isFire){
-			lifeTime -= Time.deltaTime;
-			if(lifeTime<=0){
-				Explosion();
-			}
-		}
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isFire)
+        {
+            lifeTime -= Time.deltaTime;
+            if (lifeTime <= 0)
+            {
+                Explosion();
+            }
+        }
+    }
 
 	public override void PickUpReaction(Player owner)
 	{
@@ -38,13 +41,13 @@ public class Bomb : PickableItem {
         GetComponent<Rigidbody2D>().simulated = false;
 	}
 
-	public override void ReleaseReaction(Player owner)
-	{
-		this.owner = null;
-		this.transform.SetParent(null);
-		owner.havingItem = null;
-		GetComponent<Rigidbody2D>().simulated=true;
-	}
+    public override void ReleaseReaction(Player owner)
+    {
+        this.owner = null;
+        this.transform.SetParent(null);
+        owner.havingItem = null;
+        GetComponent<Rigidbody2D>().simulated = true;
+    }
 
 	public void Explosion(){		
 		GameObject tmpObj = Instantiate(explosionEffect, transform.position, Quaternion.identity);

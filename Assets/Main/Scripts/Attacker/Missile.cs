@@ -8,30 +8,35 @@ public enum AfterCollisionState{
     Bound   
 }
 
-public class Missile : Attacker {
-	public AfterCollisionState afterCollisionState;
-	public float lifeTime;
+public class Missile : Attacker
+{
+    public AfterCollisionState afterCollisionState;
+    public float lifeTime;
 
-	// Use this for initialization
-	void Start () {
-		Destroy(this.gameObject, lifeTime);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    void Start()
+    {
+        Destroy(this.gameObject, lifeTime);
+    }
 
-	public override void HitReaction(ContactPoint2D contact, SubHitBox subHitBox)
-	{
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public override void HitReaction(ContactPoint2D contact, SubHitBox subHitBox)
+    {
         GameObject obj = contact.collider.gameObject;
-        if (obj.tag=="Player"){
-                GameObject tmpObj = Instantiate(subHitBox.Effect, contact.point, Quaternion.identity);
-                AudioSource audioSource = tmpObj.AddComponent<AudioSource>();//音
-                audioSource.PlayOneShot(subHitBox.HitSound);
-			if(afterCollisionState==AfterCollisionState.Disappearance){
-				Destroy(this.gameObject);
-			}            
-		}      
-	}
+        if (obj.tag == "Player")
+        {
+            GameObject tmpObj = Instantiate(subHitBox.Effect, contact.point, Quaternion.identity);
+            AudioSource audioSource = tmpObj.AddComponent<AudioSource>();//音
+            audioSource.PlayOneShot(subHitBox.HitSound);
+            if (afterCollisionState == AfterCollisionState.Disappearance)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
 }
