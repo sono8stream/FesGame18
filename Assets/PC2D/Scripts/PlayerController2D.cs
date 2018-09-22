@@ -74,18 +74,9 @@ public class PlayerController2D : MonoBehaviour
         //ボタン１
         if (KoitanInput.GetButtonDown(ButtonID.A, orderNo))
         {
-            if (owner.aroundStand)
+            if (owner.aroundStand && !owner.aroundStand.isStand)
             {
-                if (owner.aroundStand.isStand && owner.aroundStand.owner == owner)
-                {
-                    Debug.Log(owner.aroundStand.owner);
-                    Debug.Log(owner);
-                    owner.aroundStand.LevelUpStand();
-                }
-                else if (!owner.aroundStand.isStand)
-                {
-                    owner.aroundStand.CreateStand(owner);
-                }
+                owner.aroundStand.CreateStand(owner);
             }
             else if (owner.havingItem)
             {
