@@ -22,6 +22,8 @@ public class Stand : MonoBehaviour
     int[] requiredMaterialIncrements;
     [SerializeField]
     int regenerateInterval = 200;
+    [SerializeField]
+    AudioClip generateMoneySE;
 
     Money currentMoney;
     Counter saleIntervalCounter;
@@ -66,10 +68,11 @@ public class Stand : MonoBehaviour
 
         currentMoney.transform.SetParent(transform);
         currentMoney.transform.localPosition = Vector3.up * 4;
-        currentMoney.colorID = owner.PlayerID;
+        currentMoney.colorID = (int)owner.teamColor;
         currentMoney.value = 100;
         currentMoney.GetComponent<SpriteRenderer>().material
             = GetComponent<SpriteRenderer>().material;
+        SoundPlayer.Find().PlaySE(generateMoneySE);
     }
 
     void SaleMoney()
