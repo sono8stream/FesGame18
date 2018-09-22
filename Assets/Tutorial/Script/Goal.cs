@@ -23,7 +23,7 @@ public class Goal : MonoBehaviour
             goalCnt++;
             if (goalCnt == playerCnt)
             {
-                LoadManager.Find().LoadScene(3);
+                LoadManager.Find().LoadScene(10);
             }
         }
     }
