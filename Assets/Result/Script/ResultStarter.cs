@@ -50,7 +50,7 @@ public class ResultStarter : MonoBehaviour
             {
                 //LoadManager.Find().LoadScene(5);
                 //int sceneIndex = toNextTransition ? 0 : 8;
-                int sceneIndex = 8;
+                int sceneIndex = 6;
                 LoadManager.Find().LoadScene(sceneIndex);
                 counter.Initialize();
             }
