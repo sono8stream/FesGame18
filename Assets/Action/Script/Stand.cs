@@ -137,4 +137,16 @@ public class Stand : MonoBehaviour
         currentMoney.GetComponent<SpriteRenderer>().material = defaultMoneyMaterial;
         Debug.Log("Released");
     }
+
+    public void ResetGeneration()
+    {
+        if (regenerateCounter == null)
+        {
+            regenerateCounter = new Counter(regenerateInterval);
+        }
+        else
+        {
+            regenerateCounter.Initialize();
+        }
+    }
 }
