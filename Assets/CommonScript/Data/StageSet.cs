@@ -23,9 +23,16 @@ public class StageSet
     public void Initialize()
     {
         stageList = new List<StageStatus>();
+        stageList.Add(new StageStatus("チュートリアル",
+            "最初に遊ぶステージ。" + Environment.NewLine
+            + "これで操作方法を確認しよう！"));
         stageList.Add(new StageStatus("北海道大学",
+            "初級ステージ。" + Environment.NewLine
+            + "我らが北海道大学。" + Environment.NewLine + "ポプラ並木で商売開始だ！"));
+        stageList.Add(new StageStatus("いくさば",
             "中級ステージ。" + Environment.NewLine
-            + "我らが北海道大学の夏。" + Environment.NewLine + "ポプラ並木で商売開始だ！"));
+            + "青い空と大草原。" + Environment.NewLine
+            + "広いステージと動くリフトをフル活用だ！"));
         stageList.Add(new StageStatus("幕張メッセ",
             "超上級ステージ。" + Environment.NewLine
             + "TGS開催中の幕張メッセ。" + Environment.NewLine
