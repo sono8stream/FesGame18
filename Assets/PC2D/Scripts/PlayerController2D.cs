@@ -74,26 +74,32 @@ public class PlayerController2D : MonoBehaviour
         //ボタン１
         if (KoitanInput.GetButtonDown(ButtonID.A, orderNo))
         {
-            if (owner.aroundItem && owner.havingItem == false)
-            {
-                owner.aroundItem.PickUpReaction(owner);
-            }
-            else if (owner.havingItem)
+            if (owner.havingItem)
             {
                 anim._animator.Play("throw");
             }
             else if (owner.aroundStand)
             {
+                /*
                 if (owner.aroundStand.isStand && owner.aroundStand.owner == owner)
                 {
                     Debug.Log(owner.aroundStand.owner);
                     Debug.Log(owner);
                     owner.aroundStand.LevelUpStand();
                 }
-                else if (!owner.aroundStand.isStand)
+                */
+                if (!owner.aroundStand.isStand)
                 {
                     owner.aroundStand.CreateStand(owner);
                 }
+                else if (owner.aroundItem && owner.havingItem == false)
+                {
+                    owner.aroundItem.PickUpReaction(owner);
+                }
+            }
+            else if (owner.aroundItem && owner.havingItem == false)
+            {
+                owner.aroundItem.PickUpReaction(owner);
             }
             else if (canAttack)
             {

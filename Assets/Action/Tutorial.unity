@@ -5172,6 +5172,8 @@ MonoBehaviour:
   - {fileID: 742745780}
   - {fileID: 851552779}
   - {fileID: 2012183555}
+  standUpImageObj: {fileID: 0}
+  bombImageObj: {fileID: 0}
   wall: {fileID: 1383104931}
   bombGenerator: {fileID: 251963767}
   floor: {fileID: 990618754}
@@ -5723,7 +5725,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 514206208}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9, y: -1.6080002, z: 0}
+  m_LocalPosition: {x: -1.9, y: -1.694, z: 0}
   m_LocalScale: {x: 0.10000037, y: 0.10000042, z: 0.10000042}
   m_Children:
   - {fileID: 1905836908}
@@ -11814,6 +11816,7 @@ MonoBehaviour:
   childList: []
   childDefualtPos: []
   onEndExplosion: 0
+  standManager: {fileID: 0}
 --- !u!114 &972930109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13483,7 +13486,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1111971571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.97, y: -1.6080002, z: 0}
+  m_LocalPosition: {x: 1.97, y: -1.694, z: 0}
   m_LocalScale: {x: 0.10000037, y: 0.10000042, z: 0.10000042}
   m_Children:
   - {fileID: 1369587622}
@@ -14396,7 +14399,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1167953699}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.608, z: 0}
+  m_LocalPosition: {x: 0, y: -1.694, z: 0}
   m_LocalScale: {x: 0.10000037, y: 0.10000042, z: 0.10000042}
   m_Children:
   - {fileID: 1132632865}
