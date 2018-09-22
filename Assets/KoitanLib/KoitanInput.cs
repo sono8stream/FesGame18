@@ -346,21 +346,21 @@ namespace KoitanLib
                     controllerNames.Add("Keyboard 1");
                     ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
                     {
-                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.M)},
-                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.N)},
-                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.J)},
-                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.H)}
+                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.Underscore)},
+                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.Slash)},
+                        {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.UpArrow)},
+                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.DownArrow)}
                     });
                     AxisTable.Add(new Dictionary<Axis, KoitanAxis>
                     {
                         {Axis.L_Horizontal,
                         new KoitanAxis(ConType.Key,KeyCode.RightArrow,KeyCode.LeftArrow)},
                         {Axis.L_Vertical,
-                        new KoitanAxis(ConType.Key,KeyCode.UpArrow,KeyCode.DownArrow)},
+                        new KoitanAxis(ConType.Key,KeyCode.DownArrow,KeyCode.UpArrow)},
                         {Axis.Cross_Horizontal,
                         new KoitanAxis(ConType.Key,KeyCode.RightArrow,KeyCode.LeftArrow)},
                         {Axis.Cross_Vertical,
-                        new KoitanAxis(ConType.Key,KeyCode.UpArrow,KeyCode.DownArrow)},
+                        new KoitanAxis(ConType.Key,KeyCode.DownArrow,KeyCode.UpArrow)},
                     });
                     orderList.Add(controllerNames.Count - 1);
                     keyboardInputCnt++;
@@ -369,21 +369,21 @@ namespace KoitanLib
                     controllerNames.Add("Keyboard 2");
                     ButtonTable.Add(new Dictionary<ButtonID, KoitanButton>
                     {
-                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.X)},
-                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.Z)},
+                        {ButtonID.A,new KoitanButton(ConType.Key,KeyCode.Q)},
+                        {ButtonID.B,new KoitanButton(ConType.Key,KeyCode.Tab)},
                         {ButtonID.X,new KoitanButton(ConType.Key,KeyCode.S)},
-                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.A)}
+                        {ButtonID.Y,new KoitanButton(ConType.Key,KeyCode.X)}
                     });
                     AxisTable.Add(new Dictionary<Axis, KoitanAxis>
                     {
                         {Axis.L_Horizontal,
-                        new KoitanAxis(ConType.Key,KeyCode.B,KeyCode.C)},
+                        new KoitanAxis(ConType.Key,KeyCode.C,KeyCode.Z)},
                         {Axis.L_Vertical,
-                        new KoitanAxis(ConType.Key,KeyCode.F,KeyCode.V)},
+                        new KoitanAxis(ConType.Key,KeyCode.X,KeyCode.S)},
                         {Axis.Cross_Horizontal,
-                        new KoitanAxis(ConType.Key,KeyCode.B,KeyCode.C)},
+                        new KoitanAxis(ConType.Key,KeyCode.C,KeyCode.Z)},
                         {Axis.Cross_Vertical,
-                        new KoitanAxis(ConType.Key,KeyCode.F,KeyCode.V)},
+                        new KoitanAxis(ConType.Key,KeyCode.X,KeyCode.S)},
                     });
                     orderList.Add(controllerNames.Count - 1);
                     keyboardInputCnt++;
