@@ -65,7 +65,7 @@ public class Stand : MonoBehaviour
         currentMoney = Instantiate(moneyObjectOrigin).GetComponent<Money>();
 
         currentMoney.transform.SetParent(transform);
-        currentMoney.transform.localPosition = Vector3.zero;
+        currentMoney.transform.localPosition = Vector3.up * 4;
         currentMoney.colorID = owner.PlayerID;
         currentMoney.value = 100;
         currentMoney.GetComponent<SpriteRenderer>().material
