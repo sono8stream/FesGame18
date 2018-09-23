@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 58031483467478802}
   - component: {fileID: 114567511320965504}
   - component: {fileID: 58086373233335132}
+  - component: {fileID: 111051850639701692}
   m_Layer: 0
   m_Name: bakudan
   m_TagString: Untagged
@@ -38,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1070111010529910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.1717749, y: -9.581579, z: 0}
-  m_LocalScale: {x: 0.25482225, y: 0.25482225, z: 0.25482225}
+  m_LocalPosition: {x: -2.5863721, y: -2.263533, z: 0}
+  m_LocalScale: {x: 0.2548223, y: 0.2548223, z: 0.2548223}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -94,6 +95,21 @@ CircleCollider2D:
   m_Offset: {x: -0.58222616, y: -0.47796038}
   serializedVersion: 2
   m_Radius: 5.63
+--- !u!111 &111051850639701692
+Animation:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070111010529910}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ecb8b9b1715d844b5b43f3180e0e180a, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: ecb8b9b1715d844b5b43f3180e0e180a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114567511320965504
 MonoBehaviour:
   m_ObjectHideFlags: 1
