@@ -86,11 +86,12 @@ public class PlayerController2D : MonoBehaviour
             {
                 owner.aroundItem.PickUpReaction(owner);
             }
-            else if (canAttack)
-            {
-                anim.Attack1();
-                StartCoroutine(owner.Koutyoku(0.6f));
-            }
+        }
+
+        if (KoitanInput.GetButtonDown(ButtonID.Y, orderNo) && canAttack)
+        {
+            anim.Attack1();
+            StartCoroutine(owner.Koutyoku(0.6f));
         }
 
         if (canAttack && KoitanInput.GetButtonDown(ButtonID.B, orderNo))
