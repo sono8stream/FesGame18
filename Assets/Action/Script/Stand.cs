@@ -126,7 +126,10 @@ public class Stand : MonoBehaviour
     public void ResetLevel()
     {
         tempSales = onceSales;
-        Destroy(currentMoney.gameObject);
+        if (currentMoney)
+        {
+            Destroy(currentMoney.gameObject);
+        }
     }
 
     public void ReleaseMoney()
@@ -139,6 +142,7 @@ public class Stand : MonoBehaviour
         currentMoney.transform.SetParent(null);
         currentMoney.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000);
         currentMoney.GetComponent<SpriteRenderer>().material = defaultMoneyMaterial;
+        currentMoney = null;
         Debug.Log("Released");
     }
 

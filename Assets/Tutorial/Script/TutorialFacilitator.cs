@@ -24,6 +24,10 @@ public class TutorialFacilitator : MonoBehaviour
 
     int playerCnt;
     int stateNo;
+    [SerializeField]
+    int bombCnt;
+    [SerializeField]
+    bool[] haveBomb;
 
     // Use this for initialization
     void Start()
@@ -31,6 +35,7 @@ public class TutorialFacilitator : MonoBehaviour
         playerCnt = players.Count(x => x.gameObject.activeSelf);
         stateNo = 0;
         SoundPlayer.Find().PlayBGM(bgm);
+        haveBomb = new bool[players.Length];
     }
 
     // Update is called once per frame
@@ -57,21 +62,39 @@ public class TutorialFacilitator : MonoBehaviour
                     return x.gameObject.activeSelf && x.Status.money > 0;
                 }) == playerCnt)
                 {
+                    stateNo = 2;
                     wall.SetActive(false);
                     bombGenerator.SetActive(true);
+                }
+                break;
+                //爆弾を使用
+            case 2:
+                for(int i = 0; i < players.Length; i++)
+                {
+                    if (!players[i].gameObject.activeSelf) continue;
+
+                    bool temp = players[i].havingItem;
+                    if (haveBomb[i] && !temp)
+                    {
+                        bombCnt++;
+                    }
+                    haveBomb[i] = temp;
+                }
+                if (bombCnt >=4)
+                {
                     floor.SetActive(true);
                     GetComponent<Animator>().enabled = true;
                     //GetComponent<Animator>().Play("Idle");
                     GetComponent<BattleFacilitator>().enabled = true;
                     transform.Find("Canvas").Find("TimerText").gameObject.SetActive(true);
-                    this.enabled = false;
-                    foreach(Player player in players)
+                    foreach (Player player in players)
                     {
                         if (player.gameObject.activeSelf)
                         {
                             player.playerController.isPlayable = false;
                         }
                     }
+                    this.enabled = false;
                 }
                 break;
         }
