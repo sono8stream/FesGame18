@@ -30,6 +30,8 @@ public class StageSelector : MonoBehaviour
     [SerializeField]
     int boundPeriod;
     [SerializeField]
+    BGMinfo bgm;
+    [SerializeField]
     AudioClip selectSE, decideSE;
 
     Counter selectCounter;
@@ -68,6 +70,8 @@ public class StageSelector : MonoBehaviour
         SelectStage(1);
 
         fadeCounter = new Counter(fadeFrame);
+
+        SoundPlayer.Find().PlayBGM(bgm);
     }
 
     // Update is called once per frame

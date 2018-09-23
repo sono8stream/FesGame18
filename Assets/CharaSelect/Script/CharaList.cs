@@ -8,8 +8,6 @@ public class CharaList : MonoBehaviour {
     [SerializeField]
     GameObject[] previewOrigins;
     [SerializeField]
-    BGMinfo bgm;
-    [SerializeField]
     AudioClip transitSE;
 
     public int charaCnt;
@@ -26,7 +24,6 @@ public class CharaList : MonoBehaviour {
             charaArray[i] = (CharacterID)i;
         }
         isSelected = new bool[charaCnt];
-        SoundPlayer.Find().PlayBGM(bgm);
     }
 
     private void Update()
