@@ -126,6 +126,7 @@ public class Stand : MonoBehaviour
     public void ResetLevel()
     {
         tempSales = onceSales;
+        Destroy(currentMoney.gameObject);
     }
 
     public void ReleaseMoney()
