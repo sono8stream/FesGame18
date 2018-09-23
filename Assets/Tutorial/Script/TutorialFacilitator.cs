@@ -38,7 +38,7 @@ public class TutorialFacilitator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            LoadManager.Find().LoadScene(8);
+            LoadManager.Find().LoadScene(6);
         }
 
         switch (stateNo)

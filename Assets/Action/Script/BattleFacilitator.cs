@@ -83,7 +83,7 @@ public class BattleFacilitator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             StopGame();
-            LoadManager.Find().LoadScene(8);
+            LoadManager.Find().LoadScene(6);
         }
     }
 
