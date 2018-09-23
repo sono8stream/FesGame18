@@ -26,6 +26,7 @@ public class ResultStarter : MonoBehaviour
 
     Counter counter;
     bool toNextTransition, onRetryTransition;
+    TimeCounter autoTransitTimer;
 
     // Use this for initialization
     void Start()
@@ -39,18 +40,20 @@ public class ResultStarter : MonoBehaviour
         winnerText.text = string.Format("Player {0} WIN !!",
             UserData.instance.winnerIndex + 1);
         counter = new Counter(60);
+        autoTransitTimer = new TimeCounter(5);
+        autoTransitTimer.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (toNextTransition||onRetryTransition)
+        if (toNextTransition || onRetryTransition || autoTransitTimer.OnLimit())
         {
             if (counter.Count())
             {
                 //LoadManager.Find().LoadScene(5);
                 //int sceneIndex = toNextTransition ? 0 : 8;
-                int sceneIndex = 8;
+                int sceneIndex = 6;
                 LoadManager.Find().LoadScene(sceneIndex);
                 counter.Initialize();
             }

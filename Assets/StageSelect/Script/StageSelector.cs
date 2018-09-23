@@ -171,7 +171,6 @@ public class StageSelector : MonoBehaviour
 
     void ChooseStage()
     {
-        UserData.instance.selectedStageNo = selectCounter.Now;
         canSelect = false;
         int sceneIndex = 0;
         switch (selectCounter.Now)
@@ -191,7 +190,8 @@ public class StageSelector : MonoBehaviour
             default:
                 break;
         }
-        LoadManager.Find().LoadScene(sceneIndex);
+        UserData.instance.selectedStageSceneNo = sceneIndex;
+        LoadManager.Find().LoadScene(8);
         SoundPlayer.Find().PlaySE(decideSE);
     }
 

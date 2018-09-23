@@ -48,7 +48,6 @@ public class TutorialFacilitator : MonoBehaviour
                 if (stands.Count(x => x.isStand) == playerCnt)
                 {
                     stateNo = 1;
-                    standUpImageObj.SetActive(false);
                 }
                 break;
             //お金獲得
@@ -58,23 +57,19 @@ public class TutorialFacilitator : MonoBehaviour
                     return x.gameObject.activeSelf && x.Status.money > 0;
                 }) == playerCnt)
                 {
-                    stateNo = 2;
                     wall.SetActive(false);
                     bombGenerator.SetActive(true);
-                    bombImageObj.SetActive(true);
-                }
-                break;
-                //爆弾使用
-            case 2:
-                if (stands.Count(x => x.isStand) < playerCnt)
-                {
-                    stateNo = 3;
                     floor.SetActive(true);
-                    bombImageObj.SetActive(false);
+                    GetComponent<Animator>().enabled = true;
+                    //GetComponent<Animator>().Play("Idle");
+                    GetComponent<BattleFacilitator>().enabled = true;
+                    transform.Find("Canvas").Find("TimerText").gameObject.SetActive(true);
+                    this.enabled = false;
+                    foreach(Player player in players)
+                    {
+                        player.playerController.isPlayable = false;
+                    }
                 }
-                break;
-                //ゴールへ向かう
-            case 3:
                 break;
         }
     }
