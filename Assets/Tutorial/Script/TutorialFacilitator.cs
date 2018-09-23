@@ -67,7 +67,10 @@ public class TutorialFacilitator : MonoBehaviour
                     this.enabled = false;
                     foreach(Player player in players)
                     {
-                        player.playerController.isPlayable = false;
+                        if (player.gameObject.activeSelf)
+                        {
+                            player.playerController.isPlayable = false;
+                        }
                     }
                 }
                 break;
