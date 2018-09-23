@@ -35,7 +35,7 @@ public class TutorialFacilitator : MonoBehaviour
         playerCnt = players.Count(x => x.gameObject.activeSelf);
         stateNo = 0;
         SoundPlayer.Find().PlayBGM(bgm);
-        haveBomb = new bool[playerCnt];
+        haveBomb = new bool[players.Length];
     }
 
     // Update is called once per frame
