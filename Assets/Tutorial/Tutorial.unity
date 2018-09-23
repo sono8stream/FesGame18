@@ -6170,7 +6170,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4680745619406414, guid: 47eefedf1afca48419afb092696a3529, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 137899815171910280, guid: 47eefedf1afca48419afb092696a3529,
         type: 2}
@@ -8025,6 +8025,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: aaf7c6919da007f4fbd6141b2ee8c2ba, type: 3}
     loopBeginSec: 0
     loopEndSec: 0
+  bombCnt: 0
+  haveBomb: 
 --- !u!1 &448239051
 GameObject:
   m_ObjectHideFlags: 0
@@ -34273,7 +34275,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4480931454464090, guid: 62ee9e56b1af7447086a9ce66e409b6c, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 137929284324614814, guid: 62ee9e56b1af7447086a9ce66e409b6c,
         type: 2}
@@ -34520,6 +34522,18 @@ Prefab:
       value: 
       objectReference: {fileID: 1704758278124038, guid: da0357fc9991d43b1bc336c72f73e55a,
         type: 2}
+    - target: {fileID: 4480931454464090, guid: 62ee9e56b1af7447086a9ce66e409b6c, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480931454464090, guid: 62ee9e56b1af7447086a9ce66e409b6c, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480931454464090, guid: 62ee9e56b1af7447086a9ce66e409b6c, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62ee9e56b1af7447086a9ce66e409b6c, type: 2}
   m_IsPrefabAsset: 0
@@ -35477,7 +35491,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4286654095897470, guid: 7cd43358c3c174bae984965d32df6da8, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 137927512643194022, guid: 7cd43358c3c174bae984965d32df6da8,
         type: 2}
@@ -36355,7 +36369,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1663226635
 MonoBehaviour:

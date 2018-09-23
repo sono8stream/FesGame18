@@ -10,10 +10,14 @@ public class Bomb : PickableItem {
 
     [SerializeField]
     AudioClip explodeSE;
+    Animation anim;
+
+    private Quaternion defaultRotation;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animation>();
 	}
 
     // Update is called once per frame
@@ -21,6 +25,11 @@ public class Bomb : PickableItem {
     {
         if (isFire)
         {
+            
+            if(!rb.simulated){
+                transform.position = owner.handPos.position+new Vector3(owner.anim.muki * 0.3f,0,0);
+                transform.rotation = owner.handPos.rotation * defaultRotation;
+            }      
             lifeTime -= Time.deltaTime;
             if (lifeTime <= 0)
             {
@@ -33,18 +42,20 @@ public class Bomb : PickableItem {
 	{
 		isFire = true;
 		this.owner = owner;
-		this.transform.parent = owner.handPos;
+		//this.transform.parent = owner.handPos;
         this.transform.position = owner.handPos.position;
         owner.anim._animator.Play("pick_up");
         owner.anim._animator.CrossFade("Idle", 1f);
         owner.havingItem = this;
         GetComponent<Rigidbody2D>().simulated = false;
+        anim.Play();
+        defaultRotation = transform.rotation;
 	}
 
     public override void ReleaseReaction(Player owner)
     {
         this.owner = null;
-        this.transform.SetParent(null);
+        // this.transform.SetParent(null);
         owner.havingItem = null;
         GetComponent<Rigidbody2D>().simulated = true;
     }
@@ -83,9 +94,8 @@ public class Bomb : PickableItem {
 
     public override void ThrowReaction()
 	{
-		transform.parent = null;
 		rb.velocity = new Vector2(10f * owner.anim.muki, 2);
 		rb.simulated = true;
-		owner.havingItem = null;      
+		owner.havingItem = null;             
 	}
 }
