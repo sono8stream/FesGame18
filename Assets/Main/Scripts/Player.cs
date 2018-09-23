@@ -32,6 +32,9 @@ public class Player : Reactor {
     public PlayerStatus Status { get; private set; }
 	public GameObject coinPrefab;
     public Counter disableCounter;
+    private int beforeMoney;
+    [SerializeField]
+    GameObject moneyText;
 
 	// Use this for initialization
 	void Awake () {
@@ -55,7 +58,16 @@ public class Player : Reactor {
         else{
             state = State.HUTU;
         }
-
+        int deltaMoney = Status.money - beforeMoney;
+        if (deltaMoney>0){
+            GameObject obj = Instantiate(moneyText, transform.position + Vector3.up*2 + Vector3.back, Quaternion.identity);
+            obj.GetComponent<ScoreAppear>().SetText("+" + deltaMoney.ToString(), new Color(1, 0, 0),transform);
+        }
+        else if(deltaMoney<0){
+            GameObject obj = Instantiate(moneyText, transform.position + Vector3.up * 2 + Vector3.back, Quaternion.identity);
+            obj.GetComponent<ScoreAppear>().SetText(deltaMoney.ToString(), new Color(0, 0, 1), transform);
+        }
+        beforeMoney = Status.money;
     }
 
     public void Damage(SubHitBox subHitBox)
@@ -81,10 +93,14 @@ public class Player : Reactor {
         if (Status.money <= 0) return;
 
         GameObject moneyObj = Instantiate(
-            coinPrefab, transform.position + Vector3.up * 2.5f, Quaternion.identity);
+            coinPrefab, transform.position, Quaternion.identity);
         Rigidbody2D tmpRb = moneyObj.AddComponent<Rigidbody2D>();
         tmpRb.AddForce(new Vector2(Random.Range(-300f, 300f), 600f));
-        moneyObj.GetComponent<Money>().value = (int)(Status.money * loseRatio);
+        int loseMoney = (int)(Status.money * loseRatio);
+        moneyObj.GetComponent<Money>().value = loseMoney;
+        moneyObj.transform.localScale
+                = Vector3.one * (1 + loseMoney * 0.0001f);
+        moneyObj.transform.Translate(Vector3.up * (2.5f + loseMoney * 0.00005f));
         Status.money = (int)(Status.money * (1 - loseRatio));
     }
 
