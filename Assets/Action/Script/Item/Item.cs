@@ -23,8 +23,8 @@ public abstract class Item : MonoBehaviour
     {
         if (collider.gameObject.tag != "Player") return;
 
-        /*Player player = collision.gameObject.GetComponent<Player>();
-        if (colorId != -1 && colorId != player.id) return;*/
+        Player player = collider.gameObject.GetComponent<Player>();
+        if (colorID != -1 && colorID != (int)player.teamColor) return;
 
         EffectFire(collider.gameObject.GetComponent<PlayerStatus>());
 
