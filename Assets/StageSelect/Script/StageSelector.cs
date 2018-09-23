@@ -176,15 +176,12 @@ public class StageSelector : MonoBehaviour
         switch (selectCounter.Now)
         {
             case 0:
-                sceneIndex = 11;
-                break;
-            case 1:
                 sceneIndex = 10;
                 break;
-            case 2:
+            case 1:
                 sceneIndex = 3;
                 break;
-            case 3:
+            case 2:
                 sceneIndex = 7;
                 break;
             default:

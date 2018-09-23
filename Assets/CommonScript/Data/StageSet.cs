@@ -23,9 +23,6 @@ public class StageSet
     public void Initialize()
     {
         stageList = new List<StageStatus>();
-        stageList.Add(new StageStatus("チュートリアル",
-            "最初に遊ぶステージ。" + Environment.NewLine
-            + "これで操作方法を確認しよう！"));
         stageList.Add(new StageStatus("北海道大学",
             "初級ステージ。" + Environment.NewLine
             + "我らが北海道大学。" + Environment.NewLine + "ポプラ並木で商売開始だ！"));
