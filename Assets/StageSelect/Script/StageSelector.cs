@@ -79,6 +79,11 @@ public class StageSelector : MonoBehaviour
     {
         if (onFade) FadeBackground();
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadManager.Find().LoadScene(11);
+        }
+
         if (onRotate)
         {
             if (Mathf.Abs(nowAngle - targetAngle) < 0.1f)
