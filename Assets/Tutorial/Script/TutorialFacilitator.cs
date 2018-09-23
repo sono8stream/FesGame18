@@ -69,7 +69,7 @@ public class TutorialFacilitator : MonoBehaviour
                 break;
                 //爆弾を使用
             case 2:
-                for(int i = 0; i < playerCnt; i++)
+                for(int i = 0; i < players.Length; i++)
                 {
                     if (!players[i].gameObject.activeSelf) continue;
 
