@@ -6,6 +6,7 @@ using UnityEngine;
 public class StandManager : MonoBehaviour
 {
     public bool isStand;
+    public bool canCreate;
     public Player owner;
     public GameObject smokeEffect;
 
@@ -31,6 +32,7 @@ public class StandManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        canCreate = true;
         stand = GetComponentInChildren<Stand>();
         stand.gameObject.SetActive(false);
         resetter = stand.GetComponent<ResetPieces>();
@@ -48,6 +50,7 @@ public class StandManager : MonoBehaviour
         if (stand.owner == null)
         {
             isStand = false;
+            canCreate = true;
         }
         else if (resetter.onEndExplosion)//リセット処理
         {
@@ -100,6 +103,7 @@ public class StandManager : MonoBehaviour
             = outlineMaterials[owner.PlayerID];
         stand.ResetGeneration();
         isStand = true;
+        canCreate = false;
         PopupMessage();
         //popupObj.GetComponent<Animator>().Play("popup");
         //popupObj.SetActive(true);
