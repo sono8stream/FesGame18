@@ -95,6 +95,7 @@ public class TutorialFacilitator : MonoBehaviour
                         }
                     }
                     this.enabled = false;
+                    LoadManager.Find().LoadScene(10);
                 }
                 break;
         }
