@@ -110,14 +110,14 @@ public class CharaSelector : MonoBehaviour
             SelectCharacter(1);
         }
 
-        if (KoitanInput.GetAxisDown(Axis.L_Vertical, playerNo) == -1
-            || KoitanInput.GetAxisDown(Axis.Cross_Vertical, playerNo) == -1)
+        if (KoitanInput.GetAxisDown(Axis.L_Vertical, playerNo) < 0
+            || KoitanInput.GetAxisDown(Axis.Cross_Vertical, playerNo) < 0)
         {
             pressingCounter.Initialize();
             SelectCharacter(-1);
         }
-        if (KoitanInput.GetAxisDown(Axis.L_Vertical, playerNo) == 1
-            || KoitanInput.GetAxisDown(Axis.Cross_Vertical, playerNo) == 1)
+        if (KoitanInput.GetAxisDown(Axis.L_Vertical, playerNo) > 0
+            || KoitanInput.GetAxisDown(Axis.Cross_Vertical, playerNo) > 0)
         {
             pressingCounter.Initialize();
             SelectCharacter(1);
