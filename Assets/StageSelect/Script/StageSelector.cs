@@ -95,14 +95,14 @@ public class StageSelector : MonoBehaviour
 
             RotateList(nowAngle);
 
-            if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) == -1
-            || KoitanInput.GetAxisDown(Axis.L_Horizontal) == -1)
+            if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) < 0
+            || KoitanInput.GetAxisDown(Axis.L_Horizontal) < 0)
             {
                 SelectStage(-1);
                 leftArrowAnimation.BigBound(boundScale, boundPeriod);
             }
-            if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) == 1
-            || KoitanInput.GetAxisDown(Axis.L_Horizontal) == 1)
+            if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) > 0
+            || KoitanInput.GetAxisDown(Axis.L_Horizontal) > 0)
             {
                 SelectStage(1);
                 rightArrowAnimation.BigBound(boundScale, boundPeriod);
@@ -117,14 +117,14 @@ public class StageSelector : MonoBehaviour
             Debug.Log(canSelect);
         }
 
-        if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) == -1
-            || KoitanInput.GetAxisDown(Axis.L_Horizontal) == -1)
+        if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) < 0
+            || KoitanInput.GetAxisDown(Axis.L_Horizontal) < 0)
         {
             SelectStage(-1);
             leftArrowAnimation.BigBound(boundScale, boundPeriod);
         }
-        if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) == 1
-            || KoitanInput.GetAxisDown(Axis.L_Horizontal) == 1)
+        if (KoitanInput.GetAxisDown(Axis.Cross_Horizontal) > 0
+            || KoitanInput.GetAxisDown(Axis.L_Horizontal) > 0)
         {
             SelectStage(1);
             rightArrowAnimation.BigBound(boundScale, boundPeriod);
