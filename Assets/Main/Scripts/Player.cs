@@ -95,7 +95,7 @@ public class Player : Reactor {
         GameObject moneyObj = Instantiate(
             coinPrefab, transform.position, Quaternion.identity);
         Rigidbody2D tmpRb = moneyObj.AddComponent<Rigidbody2D>();
-        tmpRb.AddForce(new Vector2(Random.Range(-300f, 300f), 600f));
+        tmpRb.AddForce(new Vector2(Random.Range(-300f, 300f), 300f));
         int loseMoney = (int)(Status.money * loseRatio);
         moneyObj.GetComponent<Money>().value = loseMoney;
         moneyObj.transform.localScale

@@ -138,9 +138,10 @@ public class Stand : MonoBehaviour
         /*currentMoney.GetComponent<SpriteRenderer>().material
             = Resources.GetBuiltinResource<Material>("Sprites-Default.mat");*/
         currentMoney.colorID = -1;
-        currentMoney.gameObject.AddComponent<Rigidbody2D>();
+        Rigidbody2D rb = currentMoney.gameObject.AddComponent<Rigidbody2D>();
         currentMoney.transform.SetParent(null);
-        currentMoney.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000);
+        //rb.AddForce(Vector2.up * 500);
+        rb.mass = 2;
         currentMoney.GetComponent<SpriteRenderer>().material = defaultMoneyMaterial;
         currentMoney = null;
         Debug.Log("Released");
