@@ -34,7 +34,7 @@ public class TitleFacilitator : MonoBehaviour
             transitionCounter.Count();
             if (transitionCounter.Now == transitionCounter.Limit / 2)
             {
-                LoadManager.Find().LoadScene(11);
+                LoadManager.Find().LoadScene(10);
             }
             startTextTransform.localScale
                 = Vector3.one * (transitionCounter.Now % 2);
