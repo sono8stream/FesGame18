@@ -91,7 +91,7 @@ public class TutorialFacilitator : MonoBehaviour
                     {
                         if (player.gameObject.activeSelf)
                         {
-                            player.playerController.isPlayable = false;
+                            player.characterController.isPlayable = false;
                         }
                     }
                     this.enabled = false;

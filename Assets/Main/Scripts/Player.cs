@@ -12,7 +12,7 @@ public class Player : Reactor {
     public TeamColor teamColor;
 
 	public PC2D.AnimaController anim;
-	public PlayerController2D playerController;
+	public CharacterController2D characterController;
 	public Weapon havingWeapon;
 	public PickableItem havingItem;
 	public PickableItem aroundItem;
@@ -39,13 +39,13 @@ public class Player : Reactor {
 	// Use this for initialization
 	void Awake () {
 		anim = GetComponent<PC2D.AnimaController>();
-		playerController = GetComponent<PlayerController2D>();
+		characterController = GetComponent<CharacterController2D>();
 	}
 
     // Update is called once per frame
     void Update()
     {
-        playerController._motor.numOfAirJumps
+        characterController._motor.numOfAirJumps
             = (int)Status.TempStatus[(int)StatusNames.airJumpLims];
 
         //無敵解除
@@ -112,7 +112,7 @@ public class Player : Reactor {
 
 	public IEnumerator Koutyoku(float time)
     {
-        playerController.isPlayable = false;
+        characterController.isPlayable = false;
         float prevTime = Time.fixedTime;
         while (time > 0)
         {
@@ -121,7 +121,7 @@ public class Player : Reactor {
             time -= Time.fixedTime - prevTime;
             prevTime = Time.fixedTime;
         }
-        playerController.isPlayable = true;
+        characterController.isPlayable = true;
         anim._animator.CrossFade("Idle", 0.1f);
 	}
 

@@ -4,27 +4,7 @@ using KoitanLib;
 /// <summary>
 /// This class is a simple example of how to build a controller that interacts with PlatformerMotor2D.
 /// </summary>
-[RequireComponent(typeof(PlatformerMotor2D))]
-public class PlayerController2D : MonoBehaviour
-{
-    public PlatformerMotor2D _motor;
-    public PC2D.AnimaController anim;
-    public bool isPlayable;
-    public bool canAttack = true;
-
-    private Player owner;
-    [SerializeField]
-    private int orderNo;
-
-    // Use this for initialization
-    void Start()
-    {
-        _motor = GetComponent<PlatformerMotor2D>();
-        anim = GetComponent<PC2D.AnimaController>();
-        owner = GetComponent<Player>();
-        orderNo = owner.PlayerID;
-        Debug.Log(orderNo);
-    }
+public class PlayerController2D : CharacterController2D{
 
     // Update is called once per frame
     void Update()
@@ -64,13 +44,6 @@ public class PlayerController2D : MonoBehaviour
             _motor.fallFast = false;
         }
 
-        /*
-			if (keyInput.GetButtonDown(PC2D.Input.DASH))
-            {
-                _motor.Dash();
-            }
-            */
-
         //ボタン１
         if (KoitanInput.GetButtonDown(ButtonID.A, orderNo))
         {
@@ -88,13 +61,13 @@ public class PlayerController2D : MonoBehaviour
             }
         }
 
-        if (KoitanInput.GetButtonDown(ButtonID.Y, orderNo) && canAttack)
+        if (KoitanInput.GetButtonDown(ButtonID.Y, orderNo))
         {
             anim.Attack1();
             StartCoroutine(owner.Koutyoku(0.6f));
         }
 
-        if (canAttack && KoitanInput.GetButtonDown(ButtonID.B, orderNo))
+        if (KoitanInput.GetButtonDown(ButtonID.B, orderNo))
         {
             anim.Attack2();
             StartCoroutine(owner.Koutyoku(0.5f));

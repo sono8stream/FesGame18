@@ -95,7 +95,7 @@ public class BattleFacilitator : MonoBehaviour
         {
             if (player.gameObject.activeSelf)
             {
-                player.playerController.isPlayable = true;
+                player.characterController.isPlayable = true;
             }
         }
         leftTimeText.enabled = true;
@@ -120,7 +120,7 @@ public class BattleFacilitator : MonoBehaviour
         {
             if (player.gameObject.activeSelf)
             {
-                player.playerController.isPlayable = false;
+                player.characterController.isPlayable = false;
             }
         }
     }
