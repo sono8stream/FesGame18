@@ -36,6 +36,12 @@ public class AIController2D : CharacterController2D
     // Update is called once per frame
     void Update()
     {
+        if (!isPlayable)
+        {
+            _motor.normalizedXMovement = 0;
+            return;
+        }
+
         if (currentState != null)
         {
             currentState.Execute();
@@ -150,7 +156,6 @@ public class AIController2D : CharacterController2D
                     owner._motor.normalizedXMovement = 0;
                     owner._motor.Jump();
                     Debug.Log("Jump");
-                    owner.ChangeState(AIState.Wait);
                 }
                 else if (owner.transform.position.x < targetMoney.transform.position.x)
                 {
