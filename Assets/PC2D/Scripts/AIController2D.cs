@@ -6,7 +6,7 @@ using StateMachine;
 
 public enum AIState
 {
-    Right, Left,CatchupStand,CatchupMoney,Wait
+    Right, Left,CatchupStand,CatchupMoney,CatchupBomb,Wait
 }
 
 public class AIController2D : CharacterController2D
@@ -25,6 +25,7 @@ public class AIController2D : CharacterController2D
         stateList.Add(new StateLeft(this, 60));
         stateList.Add(new StateCatchupStand(this, 2f));
         stateList.Add(new StateCatchupMoney(this));
+        stateList.Add(new StateCatchupBomb(this, 2f));
         stateList.Add(new StateWait(this, 60));
         speed = 0.5f;
         ChangeState(AIState.CatchupStand);
@@ -86,12 +87,13 @@ public class AIController2D : CharacterController2D
 
         public override void Execute()
         {
-            if (targetStand.canCreate)
+            if (targetStand.canCreate
+                && Math.Abs(owner.transform.position.y - targetStand.transform.position.y) < findRangeY)
             {
-                if (owner.owner.aroundStand && owner.owner.aroundStand.canCreate)
+                if (owner.owner.aroundStand&&owner.owner.aroundStand.canCreate)
                 {
-                    owner.owner.aroundStand.CreateStand(owner.owner);
                     owner._motor.normalizedXMovement = 0;
+                    owner.owner.aroundStand.CreateStand(owner.owner);
                     owner.ChangeState(AIState.Wait);
                 }
                 else if (owner.transform.position.x < targetStand.transform.position.x)
@@ -150,6 +152,65 @@ public class AIController2D : CharacterController2D
                     owner.ChangeState(AIState.Wait);
                 }
                 else if (owner.transform.position.x < targetMoney.transform.position.x)
+                {
+                    owner._motor.normalizedXMovement = owner.speed;
+                }
+                else
+                {
+                    owner._motor.normalizedXMovement = -owner.speed;
+                }
+            }
+            else
+            {
+                owner.ChangeState(AIState.Wait);
+            }
+
+        }
+    }
+
+
+    private class StateCatchupBomb : State<AIController2D>
+    {
+        float findRangeY;
+        Money targetBomb;
+
+        public StateCatchupBomb(AIController2D owner, float rangeY) : base(owner)
+        {
+            findRangeY = rangeY;
+        }
+
+        public override void Enter()
+        {
+            targetBomb = null;
+            foreach (Money money in FindObjectsOfType<Money>())
+            {
+                if (money.colorID == -1 || money.colorID == (int)owner.owner.teamColor)
+                {
+                    if (targetBomb == null
+                           || (money.transform.position - owner.transform.position).magnitude
+                           < (targetBomb.transform.position - owner.transform.position).magnitude)
+                    {
+                        targetBomb = money;
+                    }
+                }
+            }
+            if (targetBomb == null)
+            {
+                owner.ChangeState(AIState.Wait);
+            }
+        }
+
+        public override void Execute()
+        {
+            if (targetBomb)
+            {
+                if (owner.owner.aroundItem)
+                {
+                    owner._motor.normalizedXMovement = 0;
+                    owner.owner.aroundItem.PickUpReaction(owner.owner);
+                    owner.ChangeState(AIState.Wait);
+                }
+                else if (owner.transform.position.x < targetBomb.transform.position.x)
                 {
                     owner._motor.normalizedXMovement = owner.speed;
                 }

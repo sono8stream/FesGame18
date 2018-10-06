@@ -42234,6 +42234,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   isPlayable: 0
   orderNo: 0
+  stateName: 
 --- !u!1 &1462395084
 GameObject:
   m_ObjectHideFlags: 0
@@ -57664,6 +57665,14 @@ Prefab:
     - target: {fileID: 4174424730717194, guid: e23528c95eaa70d43b346a6806016e52, type: 2}
       propertyPath: m_RootOrder
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4161816071955604, guid: e23528c95eaa70d43b346a6806016e52, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252218108901526, guid: e23528c95eaa70d43b346a6806016e52, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e23528c95eaa70d43b346a6806016e52, type: 2}
