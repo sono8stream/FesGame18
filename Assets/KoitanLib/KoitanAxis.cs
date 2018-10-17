@@ -25,6 +25,9 @@ public class KoitanAxis{
     private float cuValue = 0;
     private float uNow = 0;
 
+    private bool isAI;
+    private float aiValue;
+
 
     public KoitanAxis(ConType conType, int orderNum, int axisNum, bool isInvert, float deadline)
     {
@@ -68,7 +71,19 @@ public class KoitanAxis{
         }
     }
 
+    public void SetIsAI(bool avilable)
+    {
+        isAI = avilable;
+    }
+
+    public void SetAIValue(float value)
+    {
+        aiValue = value;
+    }
+
     public float GetAxis(){
+        //外部からの操作を受け付ける
+        if (isAI) return aiValue;
         switch(conType){
             case ConType.JoyAxis:
                 float inputValue = Input.GetAxis(name);

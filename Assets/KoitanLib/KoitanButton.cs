@@ -22,6 +22,9 @@ public class KoitanButton{
     private bool cuValue = false;
     private float uNow = 0;
 
+    private bool isAI;
+    private bool aiValue;
+
 
     public KoitanButton(ConType conType, int orderNum, int axisNum, bool isInvert, float deadline){
         this.conType = conType;
@@ -60,8 +63,18 @@ public class KoitanButton{
         }
     }
 
+    public void SetIsAI(bool avilable){
+        isAI = avilable;
+    }
+
+    public void SetAIValue(bool value){
+        aiValue = value;
+    }
+
     public bool GetButton(){
-        switch(conType)
+        //外部からの操作を受け付ける
+        if (isAI) return aiValue;
+        switch (conType)
         {
             case ConType.JoyAxis:
                 float inputValue = Input.GetAxis(name);
