@@ -94,6 +94,7 @@ public class TestAI : MonoBehaviour {
             wpnm.goalPoint = screenToWorldPointPosition;
         }
 
+
         //メインルーチン
         if(route.Count!=0){
             cancelCount--;
@@ -140,6 +141,7 @@ public class TestAI : MonoBehaviour {
             }
             /// 爆弾が爆発しそうだったら投げる
             if(player.havingItem != null){
+
                 bombExplosionSeconds -= Time.deltaTime;
                 //Debug.Log("爆発するまで残り" + bombExplosionSeconds.ToString() + "秒");
                 if (bombExplosionSeconds <= 0.5f)
@@ -208,20 +210,19 @@ public class TestAI : MonoBehaviour {
             targetState = TargetState.Urichi;
         }
         else{
-            if (player.havingItem != null && enemyStand)
-            {
-                //左側か右側どちらが近いか(あとで実装)
-                float RDistance = (Vector3.right * 8 + enemyStand.transform.position - transform.position).magnitude;
-                float LDistance = (Vector3.right * -8 + enemyStand.transform.position - transform.position).magnitude;
-                float shiftX = RDistance < LDistance ? 8 : -8;
-                route = wpnm.SearchShortestRoute(transform.position, enemyStand.transform.position + Vector3.right *shiftX);
-                route.Add(enemyStand.transform.position + Vector3.right * shiftX / 1.5f);
-                //route = wpnm.SearchShortestRoute(transform.position, enemyStand.transform.position);
-                targetState = TargetState.enemyStand;
-            }
-            else
-            {
-                if(enemyStand){
+            if(enemyStand){
+                if (player.havingItem != null)
+                {
+                    //左側か右側どちらが近いか(あとで実装)
+                    float RDistance = (Vector3.right * 8 + enemyStand.transform.position - transform.position).magnitude;
+                    float LDistance = (Vector3.right * -8 + enemyStand.transform.position - transform.position).magnitude;
+                    float shiftX = RDistance < LDistance ? 8 : -8;
+                    route = wpnm.SearchShortestRoute(transform.position, enemyStand.transform.position + Vector3.right * shiftX);
+                    route.Add(enemyStand.transform.position + Vector3.right * shiftX / 1.5f);
+                    //route = wpnm.SearchShortestRoute(transform.position, enemyStand.transform.position);
+                    targetState = TargetState.enemyStand;
+                }
+                else {
                     if (targetBomb && targetMoney)
                     {
                         if (Random.Range(0, 10) > 3)
@@ -245,7 +246,10 @@ public class TestAI : MonoBehaviour {
                         }
                     }
                 }
-                else{
+            }
+            else{
+                if (targetMoney)
+                {
                     SetRouteToMoney();
                 }
             }
@@ -363,7 +367,7 @@ public class TestAI : MonoBehaviour {
     }
 
 
-    void SetAIController(bool available)
+    public void SetAIController(bool available)
     {
         Dictionary<ButtonID, KoitanButton> koitanButtons = KoitanInput.ButtonTable[playerNo];
         foreach (KeyValuePair<ButtonID, KoitanButton> pair in koitanButtons)

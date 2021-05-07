@@ -141,7 +141,7 @@ public class Stand : MonoBehaviour
         Rigidbody2D rb = currentMoney.gameObject.AddComponent<Rigidbody2D>();
         currentMoney.transform.SetParent(null);
         //rb.AddForce(Vector2.up * 500);
-        rb.mass = 2;
+        rb.mass = 10;
         currentMoney.GetComponent<SpriteRenderer>().material = defaultMoneyMaterial;
         currentMoney = null;
         Debug.Log("Released");

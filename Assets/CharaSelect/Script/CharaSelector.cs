@@ -128,6 +128,23 @@ public class CharaSelector : MonoBehaviour
             pressingCounter.Initialize();
             DecideCharacter();
         }
+
+        
+        if ((KoitanInput.GetAxis(Axis.L_Horizontal, playerNo) == -1
+             || KoitanInput.GetAxis(Axis.Cross_Horizontal, playerNo) == -1)
+            && pressingCounter.Count())
+        {
+            pressingCounter.Initialize();
+            OffCPUMode();
+        }
+        if ((KoitanInput.GetAxis(Axis.L_Horizontal, playerNo) == 1
+             || KoitanInput.GetAxis(Axis.Cross_Horizontal, playerNo) == 1)
+            && pressingCounter.Count())
+        {
+            pressingCounter.Initialize();
+            OnCPUMode();
+        }
+        
     }
 
     void SelectCharacter(int iterator)
@@ -172,6 +189,20 @@ public class CharaSelector : MonoBehaviour
         canSelect = true;
         charaList.SwitchSelectState(false, selectCounter.Now, Color.white);
         previewAnimator.SetBool("selected", false);
+        SoundPlayer.Find().PlaySE(cancelSE);
+    }
+
+    void OnCPUMode()
+    {
+        UserData.instance.isCpu[selectCounter.Now] = true;
+        Debug.Log(charaList[selectCounter.Now]);
+        SoundPlayer.Find().PlaySE(decideSE);
+    }
+
+    void OffCPUMode()
+    {
+        UserData.instance.isCpu[selectCounter.Now] = false;
+        Debug.Log(charaList[selectCounter.Now]);
         SoundPlayer.Find().PlaySE(cancelSE);
     }
 

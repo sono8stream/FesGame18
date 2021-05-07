@@ -38,7 +38,8 @@ public class BattleFacilitator : MonoBehaviour
                 if (index == i)
                 {
                     Debug.Log(j);
-                    players[i].SetTeam(teamColors[j], borderMaterials[j], statusUIs[j], j);
+                    bool isCPU = UserData.instance.isCpu[i];
+                    players[i].SetTeam(teamColors[j], borderMaterials[j], statusUIs[j], j,isCPU);
                     isSelected = true;
                     indexes.Enqueue(j);
                     break;

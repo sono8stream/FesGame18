@@ -22,6 +22,9 @@ public class UserData
 
     Weapon[] weaponData;
 
+    //Add by koitan at 12/2
+    public bool[] isCpu = new bool[playerLimit];
+
     private UserData()
     {
         playersKeySet = new KeySet[playerLimit] {

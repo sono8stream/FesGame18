@@ -22,6 +22,8 @@ public class ItemGenerator : MonoBehaviour
     float ratioTotal;
     [SerializeField]
     List<GameObject> generatedObjects;
+    [SerializeField]
+    GameObject generateEffect;
 
     // Use this for initialization
     void Start()
@@ -59,6 +61,8 @@ public class ItemGenerator : MonoBehaviour
         GameObject gameObject = Instantiate(itemObjects[index]);
         gameObject.transform.position = pos;
         generatedObjects.Add(gameObject);
+        GameObject obj = Instantiate(generateEffect);
+        obj.transform.position = pos;
         //Debug.Log(pos);
     }
 

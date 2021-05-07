@@ -36,6 +36,8 @@ public class Player : Reactor {
     [SerializeField]
     GameObject moneyText;
 
+    public int canGetItem = 0;//0のとき取れる
+
 	// Use this for initialization
 	void Awake () {
 		anim = GetComponent<PC2D.AnimaController>();
@@ -48,6 +50,8 @@ public class Player : Reactor {
         playerController._motor.numOfAirJumps
             = (int)Status.TempStatus[(int)StatusNames.airJumpLims];
 
+        //アイテム取れる
+        if (canGetItem > 0) canGetItem--;
         //無敵解除
         if(finishMutekiTime > 0){
             finishMutekiTime -= Time.deltaTime;
@@ -112,6 +116,7 @@ public class Player : Reactor {
 
 	public IEnumerator Koutyoku(float time)
     {
+        canGetItem = 10;
         playerController.isPlayable = false;
         float prevTime = Time.fixedTime;
         while (time > 0)
@@ -154,7 +159,7 @@ public class Player : Reactor {
         meshActive = true;
     }
 
-    public void SetTeam(TeamColor color, Material material,Transform statusT, int id)
+    public void SetTeam(TeamColor color, Material material,Transform statusT, int id, bool isCPU)
     {
         Transform mesh = transform.Find("mesh");
         int borderCount = mesh.childCount - 5;
@@ -165,6 +170,7 @@ public class Player : Reactor {
         }
         teamColor = color;
         PlayerID = id;
+        GetComponent<TestAI>().enabled = isCPU;
         Status = GetComponent<PlayerStatus>();
         Status.moneyText = statusT.Find("moneyText").GetComponent<Text>();
         Status.materialsTransform = statusT.Find("MaterialCounter");

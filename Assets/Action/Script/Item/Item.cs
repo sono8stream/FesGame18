@@ -25,6 +25,7 @@ public abstract class Item : MonoBehaviour
 
         Player player = collider.gameObject.GetComponent<Player>();
         if (colorID != -1 && colorID != (int)player.teamColor) return;
+        if (player.canGetItem > 0) return;
 
         EffectFire(collider.gameObject.GetComponent<PlayerStatus>());
 
@@ -40,6 +41,7 @@ public abstract class Item : MonoBehaviour
 
         Player player = collision.gameObject.GetComponent<Player>();
         if (colorID != -1 && colorID != player.PlayerID) return;
+        if (player.canGetItem > 0) return;
 
         EffectFire(collision.gameObject.GetComponent<PlayerStatus>());
 

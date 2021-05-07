@@ -9,6 +9,8 @@ public class WayPoint : MonoBehaviour {
     public WayPoint parentWayPoint;
     public State state;
 
+    // 止まってるかどうか
+
     //実コスト
     public float cost = 0;
     //ヒューリスティック・コスト
@@ -96,4 +98,5 @@ public class WayPoint : MonoBehaviour {
         Open,
         Closed
     }
+
 }
